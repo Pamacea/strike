@@ -1,280 +1,387 @@
 {
-  "$schema": "./anti-patterns.schema.json",
-  "version": "1.0.0",
-  "description": "Database of UI patterns to actively avoid - The tired trends of modern web design",
-  
-  "categories": {
-    "ui_effects": {
-      "description": "Overused visual effects that scream 'trendy 2020s'",
-      "patterns": [
-        {
-          "name": "particle_canvas",
-          "description": "Canvas-based particle systems (dots, connections, confetti)",
-          "examples": ["Three.js particle backgrounds", "tsParticles", "particles.js"],
-          "why_avoid": "Every SaaS landing page has this. It's visual noise that adds nothing.",
-          "severity": "high"
-        },
-        {
-          "name": "glitch_text",
-          "description": "CSS/JS text glitch effects with color channels splitting",
-          "examples": ["Cyberpunk text effects", "RGB shift text", "data corruption aesthetics"],
-          "why_avoid": "Overused in 'edgy' portfolios. Usually hurts readability.",
-          "severity": "high"
-        },
-        {
-          "name": "scanlines",
-          "description": "CRT/retro scanline overlays",
-          "examples": ["VHS effects", "old TV overlays", "retro game filters"],
-          "why_avoid": "Fake nostalgia that adds loading time and nothing else.",
-          "severity": "medium"
-        },
-        {
-          "name": "custom_cursor",
-          "description": "Custom cursor replacements (circles, dots, followers)",
-          "examples": ["Cursor followers", "magnetic cursors", "cursor trails"],
-          "why_avoid": "Accessibility nightmare. Users expect system cursors.",
-          "severity": "high"
-        },
-        {
-          "name": "gradient_mesh",
-          "description": "Blurred gradient mesh backgrounds",
-          "examples": ["Mesh gradient generators", "Aurora backgrounds", "Apple-style gradients"],
-          "why_avoid": "Every startup copied Apple. Time to move on.",
-          "severity": "medium"
-        },
-        {
-          "name": "blob_morphing",
-          "description": "Organic blob shapes that animate/morph",
-          "examples": ["SVG blob animations", "Lava lamp backgrounds", "organic shape transitions"],
-          "why_avoid": "Became a cliché after every UI kit included them.",
-          "severity": "medium"
-        },
-        {
-          "name": "noise_texture",
-          "description": "Grain/noise texture overlays for 'depth'",
-          "examples": ["Film grain", "subtle noise backgrounds", "texture overlays"],
-          "why_avoid": "Usually just adds file size. Rarely adds value.",
-          "severity": "low"
-        }
-      ]
+  "$schema": "../.claude/.smiteUI/anti-patterns.schema.json",
+  "ui_effects": {
+    "description": "Overused visual effects that scream 'trendy 2020s'",
+    "particle_canvas": {
+      "name": "particle_canvas",
+      "examples": [
+        "Three.js particle backgrounds",
+        "tsParticles",
+        "particles.js"
+      ],
+      "why_avoid": "Every SaaS landing page has this. It's visual noise that adds nothing.",
+      "severity": "high"
     },
-    
-    "colors": {
-      "description": "Color schemes that have been done to death",
-      "patterns": [
-        {
-          "name": "neon_pink_blue",
-          "description": "Hot pink (#FF00FF) to electric blue (#00FFFF) gradients",
-          "examples": ["Synthwave palettes", "Vaporwave aesthetics", "Cyberpunk themes"],
-          "why_avoid": "Every 'futuristic' design since 2018. It's exhausting.",
-          "severity": "high"
-        },
-        {
-          "name": "gradient_trendy",
-          "description": "The Instagram/Spotify gradient combos",
-          "examples": ["Purple-orange", "Pink-yellow", "Blue-green transitions"],
-          "why_avoid": "Indistinguishable from a million other sites.",
-          "severity": "medium"
-        },
-        {
-          "name": "dark_mode_default",
-          "description": "Dark backgrounds with neon accents by default",
-          "examples": ["#0a0a0a backgrounds", "Purple/cyan accents", "Space themes"],
-          "why_avoid": "Dark mode is fine, but it's become the lazy default.",
-          "severity": "low"
-        },
-        {
-          "name": "pastel_everything",
-          "description": "Soft pastel palettes for 'modern' feel",
-          "examples": ["Millennial pink", "Soft lavender", "Mint green UI"],
-          "why_avoid": "Overused in productivity/wellness apps. Feels generic.",
-          "severity": "medium"
-        }
-      ]
+    "glitch_text": {
+      "name": "glitch_text",
+      "examples": [
+        "Cyberpunk text effects",
+        "RGB shift text",
+        "data corruption aesthetics"
+      ],
+      "why_avoid": "Overused in 'edgy' portfolios. Usually hurts readability.",
+      "severity": "high"
     },
-    
-    "layouts": {
-      "description": "Structural patterns that have become visual white noise",
-      "patterns": [
-        {
-          "name": "hero_generic",
-          "description": "Standard hero with big text left, image/mockup right",
-          "examples": ["SaaS landing pages", "'Get started free' heroes", "Product showcases"],
-          "why_avoid": "Users scroll past without reading. It's invisible.",
-          "severity": "high"
-        },
-        {
-          "name": "card_grid",
-          "description": "Uniform grid of cards with icons and short descriptions",
-          "examples": ["Features sections", "Pricing tables", "Team grids"],
-          "why_avoid": "Information gets lost in visual sameness.",
-          "severity": "medium"
-        },
-        {
-          "name": "bento_boxes",
-          "description": "Asymmetric grid layouts (Apple-style bento)",
-          "examples": ["Dashboard widgets", "Feature grids", "Portfolio layouts"],
-          "why_avoid": "Trendy in 2023, already tired. Use with caution.",
-          "severity": "medium"
-        },
-        {
-          "name": "fullscreen_sections",
-          "description": "Each section takes exactly 100vh",
-          "examples": ["One-page sites", "Scroll-hijacking layouts", "Presentation websites"],
-          "why_avoid": "Breaks natural reading flow. Frustrates users.",
-          "severity": "high"
-        },
-        {
-          "name": "sticky_everything",
-          "description": "Multiple sticky elements competing for attention",
-          "examples": ["Sticky nav + sticky sidebar + sticky CTA", "Fixed headers that eat space"],
-          "why_avoid": "Reduces actual content space. Mobile nightmare.",
-          "severity": "medium"
-        }
-      ]
+    "scanlines": {
+      "name": "scanlines",
+      "examples": [
+        "VHS effects",
+        "old TV overlays",
+        "retro game filters"
+      ],
+      "why_avoid": "Fake nostalgia that adds loading time and nothing else.",
+      "severity": "medium"
     },
-    
-    "interactions": {
-      "description": "Animation and interaction patterns that are overdone",
-      "patterns": [
-        {
-          "name": "parallax",
-          "description": "Parallax scrolling effects on images/backgrounds",
-          "examples": ["Layer parallax", "Speed-based scrolling", "3D depth effects"],
-          "why_avoid": "Often causes motion sickness. Usually pointless.",
-          "severity": "high"
-        },
-        {
-          "name": "scroll_reveal",
-          "description": "Elements animate in as you scroll (fade up, slide in)",
-          "examples": ["AOS library", "GSAP scroll triggers", "Intersection Observer reveals"],
-          "why_avoid": "Slows down content consumption. Gets annoying.",
-          "severity": "medium"
-        },
-        {
-          "name": "hover_effects_classic",
-          "description": "Standard scale/shadow hover effects",
-          "examples": ["transform: scale(1.05)", "Box shadow on hover", "Color transitions"],
-          "why_avoid": "So common they're invisible. No differentiation.",
-          "severity": "low"
-        },
-        {
-          "name": "scroll_hijacking",
-          "description": "Taking over native scroll behavior",
-          "examples": ["Smooth scroll libraries", "Snap scrolling", "Custom scroll speeds"],
-          "why_avoid": "Breaks user expectations. Accessibility issues.",
-          "severity": "high"
-        },
-        {
-          "name": "loading_animations",
-          "description": "Elaborate loading screens/spinners",
-          "examples": ["Logo animations", "Progress bars", "Skeleton screens everywhere"],
-          "why_avoid": "Usually hides poor performance. Just make it faster.",
-          "severity": "medium"
-        }
-      ]
+    "custom_cursor": {
+      "name": "custom_cursor",
+      "examples": [
+        "Cursor followers",
+        "magnetic cursors",
+        "cursor trails"
+      ],
+      "why_avoid": "Accessibility nightmare. Users expect system cursors.",
+      "severity": "high"
     },
-    
-    "typography": {
-      "description": "Text treatments that have become clichés",
-      "patterns": [
-        {
-          "name": "distortion_acid",
-          "description": "Warped, stretched, or liquified text",
-          "examples": ["Brutalist text effects", "Acid graphics influence", "Stretched display type"],
-          "why_avoid": "Sacrifices readability for 'art'. Usually fails at both.",
-          "severity": "high"
-        },
-        {
-          "name": "brutalism_helvetica",
-          "description": "All-caps Helvetica/Arial with brutalist layouts",
-          "examples": ["Anti-design aesthetics", "Raw typography", "Deliberately ugly"],
-          "why_avoid": "The 'ironic' ugly became genuinely ugly.",
-          "severity": "medium"
-        },
-        {
-          "name": "variable_font_tricks",
-          "description": "Animating variable font axes for effect",
-          "examples": ["Weight morphing", "Width animations", "Slant on hover"],
-          "why_avoid": "Often distracting. Rarely adds meaning.",
-          "severity": "low"
-        },
-        {
-          "name": "giant_headlines",
-          "description": "Extremely large display text (200px+) as design element",
-          "examples": ["Statement typography", "Text as hero image", "Edge-to-edge headlines"],
-          "why_avoid": "Everyone does this now. Lost its impact.",
-          "severity": "medium"
-        },
-        {
-          "name": "gradient_text",
-          "description": "Gradient fills on text via background-clip",
-          "examples": ["Rainbow text", "Metallic text", "Iridescent headings"],
-          "why_avoid": "Cool in 2020, dated in 2024.",
-          "severity": "medium"
-        }
-      ]
+    "gradient_mesh": {
+      "name": "gradient_mesh",
+      "examples": [
+        "Mesh gradient generators",
+        "Aurora backgrounds",
+        "Apple-style gradients"
+      ],
+      "why_avoid": "Every startup copied Apple. Time to move on.",
+      "severity": "medium"
     },
-    
-    "components": {
-      "description": "UI components that have been cloned into oblivion",
-      "patterns": [
-        {
-          "name": "glassmorphism_cards",
-          "description": "Frosted glass effect cards with blur",
-          "examples": ["backdrop-filter: blur", "Semi-transparent cards", "iOS-style glass"],
-          "why_avoid": "Every component library has this. No longer distinctive.",
-          "severity": "high"
-        },
-        {
-          "name": "neumorphism_buttons",
-          "description": "Soft UI with inset/outset shadows",
-          "examples": ["Soft shadows", "Extruded buttons", "3D soft elements"],
-          "why_avoid": "Poor contrast. Accessibility nightmare. The trend is dead.",
-          "severity": "high"
-        },
-        {
-          "name": "floating_labels",
-          "description": "Input labels that animate from placeholder to top",
-          "examples": ["Material Design inputs", "Animated form labels"],
-          "why_avoid": "Actually causes usability issues. Use static labels.",
-          "severity": "medium"
-        },
-        {
-          "name": "rounded_everything",
-          "description": "Max border-radius on all elements",
-          "examples": ["Pill buttons", "Fully rounded cards", "Bubble aesthetics"],
-          "why_avoid": "Became the default. Sharp edges are refreshing now.",
-          "severity": "low"
-        },
-        {
-          "name": "icon_overload",
-          "description": "Icons for everything, even when text is clearer",
-          "examples": ["Icon-only navigation", "Mystery meat buttons", "Emoji-heavy UI"],
-          "why_avoid": "Icons are ambiguous. Words are clear.",
-          "severity": "medium"
-        }
-      ]
+    "blob_morphing": {
+      "name": "blob_morphing",
+      "examples": [
+        "SVG blob animations",
+        "Lava lamp backgrounds",
+        "Organic shape transitions"
+      ],
+      "why_avoid": "Became a cliché after every UI kit included them.",
+      "severity": "medium"
+    },
+    "noise_texture": {
+      "name": "noise_texture",
+      "examples": [
+        "Film grain",
+        "subtle noise backgrounds",
+        "texture overlays"
+      ],
+      "why_avoid": "Usually just adds file size. Rarely adds value.",
+      "severity": "low"
     }
   },
-  
+  "colors": {
+    "description": "Color schemes that have been done to death",
+    "neon_pink_blue": {
+      "name": "neon_pink_blue",
+      "examples": [
+        "Synthwave palettes",
+        "Vaporwave aesthetics",
+        "Cyberpunk themes"
+      ],
+      "why_avoid": "Every 'futuristic' design since 2018. It's exhausting.",
+      "severity": "high"
+    },
+    "gradient_trendy": {
+      "name": "gradient_trendy",
+      "examples": [
+        "Purple-orange",
+        "Pink-yellow",
+        "Blue-green transitions"
+      ],
+      "why_avoid": "Indistinguishable from a million other sites.",
+      "severity": "medium"
+    },
+    "dark_mode_default": {
+      "name": "dark_mode_default",
+      "examples": [
+        "#0a0a0a backgrounds",
+        "Purple/cyan accents",
+        "Space themes"
+      ],
+      "why_avoid": "Dark mode is fine, but it's become lazy default.",
+      "severity": "low"
+    },
+    "pastel_everything": {
+      "name": "pastel_everything",
+      "examples": [
+        "Millennial pink",
+        "Soft lavender",
+        "Mint green UI"
+      ],
+      "why_avoid": "Overused in productivity/wellness apps. Feels generic.",
+      "severity": "medium"
+    }
+  },
+  "layouts": {
+    "description": "Structural patterns that have become visual white noise",
+    "hero_generic": {
+      "name": "hero_generic",
+      "examples": [
+        "SaaS landing pages",
+        "'Get started free' heroes",
+        "Product showcases"
+      ],
+      "why_avoid": "Users scroll past without reading. It's invisible.",
+      "severity": "high"
+    },
+    "card_grid": {
+      "name": "card_grid",
+      "examples": [
+        "Features sections",
+        "Pricing tables",
+        "Team grids"
+      ],
+      "why_avoid": "Information gets lost in visual sameness.",
+      "severity": "medium"
+    },
+    "bento_boxes": {
+      "name": "bento_boxes",
+      "examples": [
+        "Dashboard widgets",
+        "Feature grids",
+        "Portfolio layouts"
+      ],
+      "why_avoid": "Trendy in 2023, already tired. Use with caution.",
+      "severity": "medium"
+    },
+    "fullscreen_sections": {
+      "name": "fullscreen_sections",
+      "examples": [
+        "One-page sites",
+        "Scroll-hijacking layouts",
+        "Presentation websites"
+      ],
+      "why_avoid": "Breaks natural reading flow. Frustrates users.",
+      "severity": "high"
+    },
+    "sticky_everything": {
+      "name": "sticky_everything",
+      "examples": [
+        "Sticky nav + sticky sidebar + sticky CTA",
+        "Fixed headers that eat space",
+        "Floating action buttons"
+      ],
+      "why_avoid": "Reduces actual content space. Mobile nightmare.",
+      "severity": "medium"
+    }
+  },
+  "interactions": {
+    "description": "Animation and interaction patterns that are overdone",
+    "parallax": {
+      "name": "parallax",
+      "examples": [
+        "Layer parallax",
+        "Speed-based scrolling",
+        "3D depth effects"
+      ],
+      "why_avoid": "Often causes motion sickness. Usually pointless.",
+      "severity": "high"
+    },
+    "scroll_reveal": {
+      "name": "scroll_reveal",
+      "examples": [
+        "AOS library",
+        "GSAP scroll triggers",
+        "Intersection Observer reveals"
+      ],
+      "why_avoid": "Slows down content consumption. Gets annoying.",
+      "severity": "medium"
+    },
+    "scroll_hijacking": {
+      "name": "scroll_hijacking",
+      "examples": [
+        "Smooth scroll libraries",
+        "Snap scrolling",
+        "Custom scroll speeds",
+        "Scroll momentum"
+      ],
+      "why_avoid": "Breaks user expectations. Accessibility issues.",
+      "severity": "high"
+    },
+    "hover_effects_classic": {
+      "name": "hover_effects_classic",
+      "examples": [
+        "transform: scale(1.05)",
+        "Box shadow on hover",
+        "Color transitions"
+      ],
+      "why_avoid": "So common they're invisible. No differentiation.",
+      "severity": "low"
+    },
+    "loading_animations": {
+      "name": "loading_animations",
+      "examples": [
+        "Logo animations",
+        "Progress bars",
+        "Skeleton screens everywhere"
+      ],
+      "why_avoid": "Usually hides poor performance. Just make it faster.",
+      "severity": "medium"
+    }
+  },
+  "typography": {
+    "description": "Text treatments that have become clichés",
+    "distortion_acid": {
+      "name": "distortion_acid",
+      "examples": [
+        "Brutalist text effects",
+        "Acid graphics influence",
+        "Stretched display type"
+      ],
+      "why_avoid": "Sacrifices readability for 'art'. Usually fails at both.",
+      "severity": "high"
+    },
+    "brutalism_helvetica": {
+      "name": "brutalism_helvetica",
+      "examples": [
+        "All-caps Helvetica/Arial with brutalist layouts",
+        "Deliberately ugly",
+        "Anti-design aesthetics"
+      ],
+      "why_avoid": "The 'ironic' ugly became genuinely ugly.",
+      "severity": "medium"
+    },
+    "variable_font_tricks": {
+      "name": "variable_font_tricks",
+      "examples": [
+        "Animating variable font axes for effect",
+        "Weight morphing",
+        "Width animations",
+        "Slant on hover"
+      ],
+      "why_avoid": "Often distracting. Rarely adds meaning.",
+      "severity": "low"
+    },
+    "giant_headlines": {
+      "name": "giant_headlines",
+      "examples": [
+        "Extremely large display text (200px+)",
+        "Edge-to-edge headlines",
+        "Text as hero image"
+      ],
+      "why_avoid": "Everyone does this now. Lost its impact.",
+      "severity": "medium"
+    },
+    "gradient_text": {
+      "name": "gradient_text",
+      "examples": [
+        "Rainbow text",
+        "Metallic text",
+        "Iridescent headings"
+      ],
+      "why_avoid": "Cool in 2020, dated in 2024.",
+      "severity": "medium"
+    }
+  },
+  "components": {
+    "description": "UI components that have been cloned into oblivion",
+    "glassmorphism_cards": {
+      "name": "glassmorphism_cards",
+      "examples": [
+        "Frosted glass effect cards",
+        "Semi-transparent cards",
+        "iOS-style glass"
+      ],
+      "why_avoid": "Every component library has this. No longer distinctive.",
+      "severity": "high"
+    },
+    "neumorphism_buttons": {
+      "name": "neumorphism_buttons",
+      "examples": [
+        "Soft UI with inset/outset shadows",
+        "Extruded buttons",
+        "3D soft elements"
+      ],
+      "why_avoid": "Poor contrast. Accessibility nightmare. The trend is dead.",
+      "severity": "high"
+    },
+    "floating_labels": {
+      "name": "floating_labels",
+      "examples": [
+        "Input labels that animate from placeholder to top",
+        "Material Design input labels",
+        "Animated form fields"
+      ],
+      "why_avoid": "Actually causes usability issues. Use static labels.",
+      "severity": "medium"
+    },
+    "rounded_everything": {
+      "name": "rounded_everything",
+      "examples": [
+        "Max border-radius on all elements",
+        "Pill buttons",
+        "Fully rounded cards",
+        "Bubble aesthetics"
+      ],
+      "why_avoid": "Became the default. Sharp edges are refreshing now.",
+      "severity": "low"
+    },
+    "icon_overload": {
+      "name": "icon_overload",
+      "examples": [
+        "Icons for everything, even when text is clearer",
+        "Mystery meat buttons",
+        "Emoji-heavy UI",
+        "Icon-only navigation"
+      ],
+      "why_avoid": "Icons are ambiguous. Words are clear.",
+      "severity": "medium"
+    }
+  },
   "detection_rules": {
     "prompt_keywords": {
-      "high_risk": ["modern", "trendy", "sleek", "futuristic", "stunning", "beautiful", "minimal but impactful"],
-      "medium_risk": ["clean", "professional", "elegant", "smooth", "polished"],
-      "context_dependent": ["simple", "minimalist", "bold", "unique"]
+      "high_risk": [
+        "modern",
+        "trendy",
+        "sleek",
+        "futuristic",
+        "stunning",
+        "beautiful",
+        "minimal but impactful",
+        "cutting-edge",
+        "next-gen",
+        "innovative"
+      ],
+      "medium_risk": [
+        "clean",
+        "professional",
+        "elegant",
+        "smooth",
+        "polished"
+      ],
+      "context_dependent": [
+        "simple",
+        "minimalist",
+        "bold",
+        "unique"
+      ]
     },
     "combination_warnings": [
       {
-        "patterns": ["gradient_mesh", "glassmorphism_cards"],
+        "patterns": [
+          "gradient_mesh",
+          "glassmorphism_cards"
+        ],
         "warning": "This combo was peak 2022. Consider a different direction."
       },
       {
-        "patterns": ["hero_generic", "scroll_reveal", "card_grid"],
+        "patterns": [
+          "hero_generic",
+          "scroll_reveal",
+          "card_grid"
+        ],
         "warning": "This describes 80% of SaaS landing pages. Be more specific."
       },
       {
-        "patterns": ["neon_pink_blue", "glitch_text", "particle_canvas"],
+        "patterns": [
+          "neon_pink_blue",
+          "glitch_text",
+          "particle_canvas"
+        ],
         "warning": "Maximum cliché detected. Cyberpunk is over."
       }
     ]

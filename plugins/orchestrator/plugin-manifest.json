@@ -1,6 +1,6 @@
 {
   "name": "orchestrator",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Contextual orchestration agent - Analyzes prompts, applies anti-patterns, generates creative constraints",
   "smite": "3.0.0",
   "core": "1.0.0",
@@ -9,10 +9,11 @@
     "ui-orchestration",
     "prompt-analysis",
     "anti-pattern-detection",
-    "constraint-generation"
+    "constraint-generation",
+    "lazy-pattern-loading"
   ],
   "loadAfter": [],
-  "tags": ["orchestration", "anti-patterns", "creative-constraints", "prompt-enrichment", "ui"],
+  "tags": ["orchestration", "anti-patterns", "creative-constraints", "prompt-enrichment", "lazy-loading"],
   "author": "Pamacea",
   "license": "MIT"
 }
