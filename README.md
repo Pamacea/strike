@@ -1,19 +1,27 @@
-# smiteUI v2.0
+# Strike v2.3
 
-> **Anti-trend UI generation with contextual orchestration**
+> **Anti-trend UI generation with parallel orchestration, dynamic pattern detection, demo mode, and visual flag feedback**
 
-Break patterns. Create unique. Build thoughtful interfaces.
+Break patterns. Create unique. Build thoughtful interfaces. Fast iterations when needed.
 
 ---
 
-## What is smiteUI?
+## What is strike?
 
-smiteUI is a creative constraint system for Claude Code that prevents generic UI patterns. It works in two phases:
+strike is a creative constraint system for Claude Code that prevents generic UI patterns. It works in **two phases** with **optional parallel execution**:
 
-1. **Orchestrator** — Analyzes your prompt, detects anti-patterns, applies creative constraints
+1. **Orchestrator** — Analyzes prompts, detects anti-patterns (dynamic + static), applies creative constraints, displays Red/Green flag table
 2. **Implementer** — Builds the UI from the enriched specification
 
-**New in v2.0:** Schema validation, constraint scoring, component registry, accessibility-first, build metrics.
+**New in v2.3:**
+- **Parallel mode (`--parallel`)** — Orchestrator analysis and Implementer preparation run simultaneously (8-17% faster)
+
+**v2.2 features:**
+- **Dynamic anti-pattern generation** — Creates NEW patterns from semantic keywords (futuriste, nuageux, mélancolique...)
+- **Demo mode (`--demo`)** — Lightweight v1-style workflow for fast iterations, fewer tokens
+- **Red/Green flag table** — Visual feedback showing patterns to avoid (🔴) and constraints applied (🟢)
+
+**v2.1 features:** Adversarial challenge, teaching explanations, auto-learning.
 
 ---
 
@@ -29,15 +37,17 @@ The orchestrator is a guard against the obvious. It doesn't just build what you 
 
 ## Features
 
-### Orchestrator (`/ui`)
+### Orchestrator (`/ui` - Enhanced in v2.1)
 
 - **Anti-pattern detection** — 40+ patterns to avoid (particles, glitch, neon...)
 - **Creative constraints** — 25+ constraint types (monochrome, ASCII, print-first...)
 - **Context-aware selection** — Constraints that fit the project, not random
 - **Prompt enrichment** — Transforms generic requests into specific briefs
-- **NEW: Schema validation** — JSON Schema validation for specifications
-- **NEW: Constraint scoring** — Creativity, difficulty, impact, synergy scores
-- **NEW: Feedback loop** — Learns from previous builds
+- **Schema validation** — JSON Schema validation for specifications
+- **Constraint scoring** — Creativity, difficulty, impact, synergy scores
+- **Adversarial mode** — Always-active challenge of its own decisions (NEW)
+- **Teaching mode** — Generates diagrams and explanations (NEW)
+- **Auto-learning** — Extracts patterns from sessions (NEW)
 
 ### Implementer (`/build`)
 
@@ -45,11 +55,39 @@ The orchestrator is a guard against the obvious. It doesn't just build what you 
 - **Anti-pattern validation** — Checks implementation against blacklist
 - **Constraint compliance** — Ensures all creative boundaries are respected
 - **Template-driven** — Consistent structure, clean output
-- **NEW: Component registry** — Validated components with alternatives
-- **NEW: Build metrics** — Bundle size, compliance scores, timing
-- **NEW: Accessibility-first** — WCAG compliance, semantic HTML, keyboard navigation
+- **Component registry** — Validated components with alternatives
+- **Build metrics** — Bundle size, compliance scores, timing
+- **Accessibility-first** — WCAG compliance, semantic HTML, keyboard navigation
 
 ---
+
+## What's New in v2.3
+
+| Feature | Description |
+|---------|-------------|
+| **Parallel Mode** | `--parallel` flag runs Orchestrator + Implementer simultaneously (8-17% faster) |
+| **Shared State Protocol** | `.claude/.strike/parallel-state.json` for agent coordination |
+| **Coordination Phase** | Merges orchestrator output with implementer preparation |
+
+## What's New in v2.2
+
+| Feature | Description |
+|---------|-------------|
+| **Dynamic Anti-Patterns** | Generates NEW patterns from semantic keywords, not just static DB |
+| **Demo Mode** | `--demo` flag for lightweight v1-style workflow (faster, fewer tokens) |
+| **Red/Green Flag Table** | Visual feedback displayed by default (🔴 avoid, 🟢 apply) |
+| **Subfolder Output** | `output/react-tailwind/` and `output/vanilla/` for cleaner builds |
+| **No README in Output** | Documentation in `.claude/.strike/` and `build-result.json` only |
+
+## What's New in v2.1
+
+| Feature | Description |
+|---------|-------------|
+| **Integrated Adversarial** | Always-active challenge mode debates and stress-tests decisions |
+| **Integrated Teaching** | `--explain` flag generates diagrams and explanations |
+| **Integrated Learning** | `--learn` flag extracts patterns from sessions |
+| **Boris Cherny Patterns** | Multi-agent workflow within single orchestrator |
+| **No Separate Plugins** | All features unified into orchestrator/implementer |
 
 ## What's New in v2.0
 
@@ -57,12 +95,9 @@ The orchestrator is a guard against the obvious. It doesn't just build what you 
 |---------|-------------|
 | **Schema Validation** | JSON schemas for specs and build results |
 | **Constraint Scoring** | Creativity, difficulty, impact, synergy (0-100) |
-| **Conflict Resolution** | Automatic resolution of conflicting constraints |
 | **Component Registry** | Validated components with anti-pattern alternatives |
 | **Accessibility Checklist** | 30+ checks across 8 categories |
-| **Build Metrics** | Time, bundle size, compliance, validation scores |
-| **Feedback Loop** | System learns from previous builds |
-| **New Flags** | `--score`, `--validate`, `--feedback=<id>` |
+| **Build Metrics** | Bundle size, compliance scores, timing |
 
 ---
 
@@ -71,8 +106,15 @@ The orchestrator is a guard against the obvious. It doesn't just build what you 
 ### In Claude Code
 
 ```bash
-# Full UI generation
+# ===== ORCHESTRATOR =====
+# Full UI generation with deep analysis
 /ui "Create a modern dashboard"
+
+# Parallel mode - Orchestrator + Implementer run together (NEW v2.3)
+/ui --parallel "Create a modern dashboard"
+
+# Demo mode - lightweight, fast, fewer tokens
+/ui --demo "Quick portfolio"
 
 # Just analyze prompt
 /ui --analyze "Sleek portfolio"
@@ -80,24 +122,34 @@ The orchestrator is a guard against the obvious. It doesn't just build what you 
 # Show constraints to apply
 /ui --constraints "Product page"
 
-# Show constraint scoring details (NEW)
-/ui --score "Minimal blog layout"
-
-# Validate spec only (NEW)
-/ui --validate "Portfolio site"
-
-# Include previous feedback (NEW)
-/ui --feedback=build-123 "Redesign my dashboard"
-
+# ===== IMPLEMENTER =====
 # Build from enriched spec
 /build
+```
+
+**Red/Green Flag Table** (shown by default in all modes):
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  🔴 RED FLAGS - Patterns to AVOID                                          │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  ❌ card_grid                 Every dashboard does this                     │
+│  ❌ glassmorphism_cards       Overused since 2022                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  🟢 GREEN FLAGS - Selected Constraints                                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  ✅ paper_and_ink             Crisp print aesthetic                        │
+│  ✅ architectural             Spatial, grounded structure                   │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## Output Files
 
-After `/ui` runs, it creates in `.claude/.smiteUI/`:
+After `/ui` runs, it creates in `.claude/.strike/`:
 
 | File | Content |
 |------|---------|
@@ -105,15 +157,17 @@ After `/ui` runs, it creates in `.claude/.smiteUI/`:
 | `anti-patterns.md` | Detected patterns to avoid |
 | `constraints.md` | Selected constraints with scores |
 | `enriched-spec.md` | Full brief for implementer |
-| `enriched-spec.json` | Validated JSON specification (NEW) |
+| `enriched-spec.json` | Validated JSON specification |
 
-After `/build` runs, it creates:
+After `/build` runs, it creates in `./output/`:
 
 | Path | Stack | Content |
 |------|-------|---------|
-| `./output/` | React/Tailwind | Component-based production app |
-| `./output/index.html` | Vanilla | Single-file instant prototype |
-| `./output/build-result.json` | Both | Metrics and validation (NEW) |
+| `./output/react-tailwind/` | React/Tailwind | Component-based production app |
+| `./output/vanilla/` | Vanilla | Single-file instant prototype |
+| `./output/build-result.json` | Both | Metrics and validation |
+
+**Note:** No README in output/ - documentation stays in `.claude/.strike/`. Images folder created only if needed.
 
 ---
 
@@ -208,7 +262,7 @@ Not to be contrarian for its own sake, but to push past the first obvious soluti
 
 ## Configuration
 
-Settings in `.claude/.smiteUI/config.json`:
+Settings in `.claude/.strike/config.json`:
 
 ```json
 {
@@ -249,14 +303,14 @@ This is a Claude Code marketplace plugin. Install it via Claude Code's marketpla
 
 ```bash
 # In Claude Code, open the marketplace
-# Search for "smiteUI"
+# Search for "strike"
 # Click install
 ```
 
 Or manually add to `.claude/plugins/`:
 
 ```bash
-git clone https://github.com/Pamacea/smiteUI ~/.claude/plugins/smiteUI
+git clone https://github.com/Pamacea/strike ~/.claude/plugins/strike
 ```
 
 ---
@@ -267,4 +321,4 @@ MIT — See [LICENSE](LICENSE) for details.
 
 ---
 
-*Version*: 2.0.0 | *Author*: Pamacea | *Repository*: https://github.com/Pamacea/smiteUI
+*Version*: 2.3.0 | *Author*: Pamacea | *Repository*: https://github.com/Pamacea/strike

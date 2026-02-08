@@ -1,0 +1,230 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Strike Parallel State",
+  "description": "Shared state schema for parallel Orchestrator + Implementer execution",
+  "type": "object",
+  "required": ["session_id", "timestamp", "status", "orchestrator", "implementer", "coordination"],
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for this parallel session"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Session creation time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update time"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["initializing", "running", "coordinating", "building", "completed", "failed", "cancelled"],
+      "description": "Current session status"
+    },
+    "user_prompt": {
+      "type": "string",
+      "description": "Original user prompt"
+    },
+    "orchestrator": {
+      "type": "object",
+      "description": "Orchestrator agent status",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["pending", "running", "completed", "failed"],
+          "description": "Orchestrator execution status"
+        },
+        "stage": {
+          "type": "string",
+          "enum": ["analyze", "detect", "generate", "select", "enrich", "done"],
+          "description": "Current orchestrator stage"
+        },
+        "progress": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Progress percentage"
+        },
+        "output_files": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Generated output file paths"
+        },
+        "anti_patterns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "category": {"type": "string"},
+              "severity": {"type": "string"}
+            }
+          },
+          "description": "Detected anti-patterns"
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "score": {"type": "number"},
+              "category": {"type": "string"}
+            }
+          },
+          "description": "Selected constraints"
+        },
+        "enriched_spec": {
+          "type": "object",
+          "description": "Enriched specification output"
+        },
+        "error": {
+          "type": "string",
+          "description": "Error message if failed"
+        }
+      }
+    },
+    "implementer": {
+      "type": "object",
+      "description": "Implementer agent status",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["pending", "running", "completed", "failed"],
+          "description": "Implementer execution status"
+        },
+        "stage": {
+          "type": "string",
+          "enum": ["read", "check", "prepare", "ready", "done"],
+          "description": "Current implementer stage"
+        },
+        "progress": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Progress percentage"
+        },
+        "template": {
+          "type": "string",
+          "enum": ["react-tailwind", "vanilla"],
+          "description": "Selected build template"
+        },
+        "components_loaded": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Loaded component names"
+        },
+        "structure_ready": {
+          "type": "boolean",
+          "description": "Whether output structure is prepared"
+        },
+        "accessibility_checked": {
+          "type": "boolean",
+          "description": "Whether accessibility requirements are loaded"
+        },
+        "error": {
+          "type": "string",
+          "description": "Error message if failed"
+        }
+      }
+    },
+    "coordination": {
+      "type": "object",
+      "description": "Coordination state between agents",
+      "properties": {
+        "orchestrator_ready": {
+          "type": "boolean",
+          "description": "Orchestrator has completed analysis"
+        },
+        "implementer_ready": {
+          "type": "boolean",
+          "description": "Implementer has completed preparation"
+        },
+        "merged_spec": {
+          "type": "object",
+          "description": "Merged specification for build"
+        },
+        "build_ready": {
+          "type": "boolean",
+          "description": "Ready to proceed to build phase"
+        },
+        "merge_strategy": {
+          "type": "string",
+          "enum": ["orchestrator-first", "implementer-first", "merge"],
+          "description": "Strategy for merging outputs"
+        }
+      }
+    },
+    "build": {
+      "type": "object",
+      "description": "Build phase tracking",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["pending", "running", "completed", "failed"],
+          "description": "Build execution status"
+        },
+        "output_path": {
+          "type": "string",
+          "description": "Build output directory"
+        },
+        "metrics": {
+          "type": "object",
+          "description": "Build metrics"
+        },
+        "error": {
+          "type": "string",
+          "description": "Build error if failed"
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Session metrics",
+      "properties": {
+        "orchestrator_duration_ms": {
+          "type": "integer",
+          "description": "Orchestrator execution time"
+        },
+        "implementer_duration_ms": {
+          "type": "integer",
+          "description": "Implementer preparation time"
+        },
+        "coordination_duration_ms": {
+          "type": "integer",
+          "description": "Coordination phase time"
+        },
+        "build_duration_ms": {
+          "type": "integer",
+          "description": "Build phase time"
+        },
+        "total_duration_ms": {
+          "type": "integer",
+          "description": "Total session time"
+        },
+        "parallel_speedup": {
+          "type": "number",
+          "description": "Speedup factor from parallel execution"
+        }
+      }
+    },
+    "messages": {
+      "type": "array",
+      "description": "Message log between agents",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": {"type": "string"},
+          "to": {"type": "string"},
+          "type": {"type": "string"},
+          "message": {"type": "string"},
+          "timestamp": {"type": "string", "format": "date-time"}
+        }
+      }
+    }
+  }
+}

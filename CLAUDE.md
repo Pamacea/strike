@@ -1,25 +1,23 @@
-# 🚀 SMITEUI v2.0 — Quick Reference
+# 🚀 strike v2.1 — Quick Reference
 
 ## 🎯 I'm here to...
 
-- **Generate unique UIs**: `/ui "prompt"` — Orchestrator applies constraints, then implements
+- **Generate unique UIs**: `/ui "prompt"` — Orchestrator with integrated adversarial, teaching, and learning
 - **Build from specs**: `/build` — Takes enriched spec and creates UI
-- **Validate specs**: `/ui --validate "prompt"` — Schema validation only (NEW)
-- **Score constraints**: `/ui --score "prompt"` — See constraint scoring details (NEW)
 
 ---
 
 ## 🔍 Core Workflow
 
-**CRITICAL: ALWAYS run through orchestrator first.**
+**ENHANCED in v2.1 - All modes integrated into orchestrator:**
 
-1. **ALWAYS** use `/ui "prompt"` for new UI requests
-2. **NEVER** jump straight to implementation without constraint analysis
-3. **Anti-patterns are automatically detected** and enforced
-4. **Constraints are scored** by creativity, difficulty, impact, synergy (NEW)
-5. **Specs are schema-validated** before implementation (NEW)
+1. **Orchestrator** — Analyzes prompt, detects anti-patterns, selects constraints
+2. **Self-Challenge** — Debates its own decisions, proposes alternatives
+3. **Explanation** — Generates diagrams when requested (--explain flag)
+4. **Learning** — Extracts patterns when requested (--learn flag)
+5. **Implementer** — Builds validated UI
 
-**Why?** Direct implementation → generic, trend-following UIs. Orchestrator → unique, thoughtful interfaces.
+**Why integrated?** Cleaner UX, single entry point, all features work together seamlessly.
 
 ---
 
@@ -27,13 +25,11 @@
 
 | Command | Purpose | When to use |
 |---------|---------|-------------|
-| `/ui "prompt"` | Full UI generation with anti-pattern analysis | New UI projects, landing pages, dashboards |
-| `/ui --analyze "prompt"` | Just analyze, don't build | Understanding what would be detected |
-| `/ui --constraints "prompt"` | Show constraints to apply | Review before building |
-| `/ui --score "prompt"` | Show constraint scoring details | See creativity/difficulty scores (NEW) |
-| `/ui --validate "prompt"` | Validate spec only, don't build | Schema validation check (NEW) |
-| `/ui --feedback=<id> "prompt"` | Include previous build feedback | Iterative improvements (NEW) |
-| `/build` | Implement from enriched spec | After orchestrator runs |
+| `/ui "prompt"` | Full UI generation with all enhancements | New UI projects |
+| `/ui --explain "prompt"` | Include diagram explanation | Understand the workflow |
+| `/ui --learn "prompt"` | Extract patterns from this session | Improve future results |
+| `/ui --no-challenge "prompt"` | Skip adversarial step (use with caution!) | Trivial requests |
+| `/build` | Implement from enriched spec | Build the UI |
 
 ---
 
@@ -42,9 +38,6 @@
 - **Marketplace**: `.claude-plugin/marketplace.json`
 - **Orchestrator**: `plugins/orchestrator/README.md`
 - **Implementer**: `plugins/implementer/README.md`
-- **Schemas**: `plugins/orchestrator/data/schemas/` (NEW)
-- **Component Registry**: `plugins/implementer/data/component-registry.json` (NEW)
-- **A11y Checklist**: `plugins/implementer/data/accessibility-checklist.json` (NEW)
 
 ---
 
@@ -164,23 +157,25 @@ Example scores:
 
 ## 📂 Generated Output
 
-When you run `/ui`, it creates in `.claude/.smiteUI/`:
+When you run `/ui`, it creates in `.claude/.strike/`:
 
 | File | Purpose |
 |------|---------|
 | `analysis.md` | Prompt analysis with risk assessment |
 | `anti-patterns.md` | Detected patterns to avoid |
-| `constraints.md` | Selected constraints with scores (NEW) |
+| `constraints.md` | Selected constraints with scores |
 | `enriched-spec.md` | Full specification for implementer |
-| `enriched-spec.json` | Validated JSON specification (NEW) |
+| `enriched-spec.json` | Validated JSON specification |
 
-Then `/build` creates:
+Then `/ui` creates in `./output/`:
 
 | Output | Stack | Purpose |
 |--------|-------|---------|
-| `./output/` | React/Tailwind | Component-based production app |
-| `./output/index.html` | Vanilla | Single-file instant prototype |
-| `./output/build-result.json` | Both | Metrics and validation (NEW) |
+| `./output/react-tailwind/` | React/Tailwind | Component-based production app |
+| `./output/vanilla/` | Vanilla | Single-file instant prototype |
+| `build-result.json` | Both | Metrics and validation |
+
+**NO README in output/** - Documentation stays in `.claude/.strike/` only.
 
 ---
 
@@ -256,7 +251,7 @@ index.html              # Self-contained, all CSS/JS inline
 
 ## 🔧 Configuration
 
-Settings in `.claude/.smiteUI/config.json`:
+Settings in `.claude/.strike/config.json`:
 
 ```json
 {

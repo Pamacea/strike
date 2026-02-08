@@ -1,5 +1,4 @@
 {
-  "$schema": "../.claude/.claude/.smiteUI/anti-patterns.schema.json",
   "ui_effects": {
     "description": "Overused visual effects that scream 'trendy 2020s'",
     "particle_canvas": {
@@ -102,8 +101,9 @@
         "Purple/cyan accents",
         "Space themes"
       ],
-      "why_avoid": "Dark mode is fine, but it's become lazy default.",
-      "severity": "low"
+      "why_avoid": "Dark mode is fine, but it's become lazy default. Consider context and user preference.",
+      "severity": "medium",
+      "exception": "low_energy constraint explicitly requests dark mode for OLED efficiency"
     },
     "pastel_everything": {
       "name": "pastel_everything",

@@ -1,6 +1,6 @@
 {
   "name": "implementer",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "UI implementation agent - Builds unique interfaces from enriched prompts with anti-pattern validation",
   "smite": "3.0.0",
   "core": "1.0.0",

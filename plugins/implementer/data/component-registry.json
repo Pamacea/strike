@@ -1,8 +1,8 @@
 {
-  "$schema": "./schemas/registry.schema.json",
-  "version": "2.0.0",
-  "description": "Validated component registry for smiteUI implementer",
+  "version": "2.1.0",
+  "description": "Validated component registry for strike implementer",
   "last_updated": "2025-02-02",
+  "schema_version": "1.0.0",
 
   "categories": {
     "layout": {
@@ -163,14 +163,291 @@
           "name": "StatusMessage",
           "anti_pattern_safe": true,
           "constraint_compatibility": ["all"],
-          "description": "ARIA live region for status updates",
+          "description": "ARIA live region for status updates - use polite for info, assertive for errors",
           "accessibility": {
             "aria": true,
             "live_region": true
           },
           "implementations": {
-            "react-tailwind": "className='p-4 rounded role=\"status\" aria-live=\"polite\"'",
+            "react-tailwind": "className='p-4 rounded' role='status' aria-live='polite'",
             "vanilla": "class=\"status p-4 rounded\" role=\"status\" aria-live=\"polite\""
+          }
+        },
+        {
+          "name": "EmptyState",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Empty state component with helpful messaging and actions",
+          "accessibility": {
+            "aria": true,
+            "role": "status"
+          },
+          "implementations": {
+            "react-tailwind": "className='text-center py-12' role='status' aria-live='polite'",
+            "vanilla": "class=\"empty-state text-center py-12\" role=\"status\""
+          }
+        },
+        {
+          "name": "ErrorState",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Error state with clear message and recovery actions",
+          "accessibility": {
+            "aria": true,
+            "live_region": "assertive",
+            "role": "alert"
+          },
+          "implementations": {
+            "react-tailwind": "className='p-6 border-l-4 border-red-500' role='alert' aria-live='assertive'",
+            "vanilla": "class=\"error-state p-6 border-l-4 border-red-500\" role=\"alert\" aria-live=\"assertive\""
+          }
+        },
+        {
+          "name": "LoadingSkeleton",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Skeleton loader for perceived performance during data fetch",
+          "accessibility": {
+            "aria": true,
+            "role": "status",
+            "aria_busy": true
+          },
+          "implementations": {
+            "react-tailwind": "className='animate-pulse bg-slate-200 rounded' role='status' aria-busy='true' aria-label='Loading'",
+            "vanilla": "class=\"skeleton bg-slate-200 rounded animate-pulse\" role=\"status\" aria-busy=\"true\""
+          }
+        },
+        {
+          "name": "ProgressBar",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Determinate progress indicator with proper ARIA",
+          "accessibility": {
+            "aria": true,
+            "role": "progressbar",
+            "valuemin": true,
+            "valuemax": true,
+            "valuenow": true
+          },
+          "implementations": {
+            "react-tailwind": "className='w-full bg-slate-200 rounded' role='progressbar' aria-valuenow='{progress}' aria-valuemin='0' aria-valuemax='100'",
+            "vanilla": "class=\"progress-bar w-full bg-slate-200\" role=\"progressbar\" aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"100\""
+          }
+        },
+        {
+          "name": "Spinner",
+          "anti_pattern_safe": false,
+          "anti_pattern_risk": "loading_animations",
+          "constraint_compatibility": ["css_only"],
+          "description": "Indeterminate loading spinner - use sparingly",
+          "accessibility": {
+            "aria": true,
+            "role": "status",
+            "aria_live": "polite"
+          },
+          "implementations": {
+            "react-tailwind": "className='animate-spin rounded-full h-8 w-8 border-b-2 border-slate-900' role='status' aria-live='polite' aria-label='Loading'",
+            "vanilla": "class=\"spinner animate-spin rounded-full\" role=\"status\" aria-label=\"Loading\""
+          }
+        }
+      ]
+    },
+    "navigation": {
+      "description": "Navigation and wayfinding components",
+      "components": [
+        {
+          "name": "NavList",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Semantic navigation list with proper role",
+          "accessibility": {
+            "aria": true,
+            "role": "navigation",
+            "aria_label": true
+          },
+          "implementations": {
+            "react-tailwind": "className='flex flex-col gap-2' role='navigation' aria-label='Main navigation'",
+            "vanilla": "class=\"nav-list flex flex-col\" role=\"navigation\" aria-label=\"Main navigation\""
+          }
+        },
+        {
+          "name": "Breadcrumb",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Breadcrumb trail with proper ARIA markup",
+          "accessibility": {
+            "aria": true,
+            "role": "navigation",
+            "aria_label": true
+          },
+          "implementations": {
+            "react-tailwind": "className='flex items-center gap-2 text-sm' role='navigation' aria-label='Breadcrumb'",
+            "vanilla": "class=\"breadcrumb flex\" role=\"navigation\" aria-label=\"Breadcrumb\""
+          }
+        },
+        {
+          "name": "Pagination",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Pagination controls with proper page indication",
+          "accessibility": {
+            "aria": true,
+            "aria_current": true,
+            "aria_label": true
+          },
+          "implementations": {
+            "react-tailwind": "className='flex items-center gap-2' aria-label='Pagination'",
+            "vanilla": "class=\"pagination flex\" aria-label=\"Pagination\""
+          }
+        }
+      ]
+    },
+    "data_display": {
+      "description": "Data presentation components",
+      "components": [
+        {
+          "name": "DataTable",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["linear_only", "print_first"],
+          "description": "Accessible data table with proper headers",
+          "accessibility": {
+            "aria": true,
+            "scope": true,
+            "th_elements": true,
+            "caption": true
+          },
+          "implementations": {
+            "react-tailwind": "className='w-full border-collapse' role='table'",
+            "vanilla": "class=\"data-table w-full border-collapse\" role=\"table\""
+          }
+        },
+        {
+          "name": "DefinitionList",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Key-value pairs using semantic dl/dt/dd",
+          "accessibility": {
+            "aria": false,
+            "semantic_html": true
+          },
+          "implementations": {
+            "react-tailwind": "className='grid grid-cols-[auto_1fr] gap-4'",
+            "vanilla": "class=\"definition-list grid\""
+          }
+        },
+        {
+          "name": "Badge",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Small status or count indicator",
+          "accessibility": {
+            "aria": true,
+            "aria_label": true
+          },
+          "implementations": {
+            "react-tailwind": "className='inline-flex items-center px-2 py-1 text-xs font-medium rounded'",
+            "vanilla": "class=\"badge inline-flex px-2 py-1 text-xs\""
+          }
+        },
+        {
+          "name": "TagList",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "List of tags with proper list semantics",
+          "accessibility": {
+            "aria": true,
+            "role": "list"
+          },
+          "implementations": {
+            "react-tailwind": "className='flex flex-wrap gap-2' role='list'",
+            "vanilla": "class=\"tag-list flex flex-wrap\" role=\"list\""
+          }
+        }
+      ]
+    },
+    "media": {
+      "description": "Image and media components",
+      "components": [
+        {
+          "name": "Image",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Image with proper alt and loading attributes",
+          "accessibility": {
+            "aria": false,
+            "alt_required": true,
+            "loading_lazy": true
+          },
+          "implementations": {
+            "react-tailwind": "className='max-w-full h-auto' alt='Descriptive text' loading='lazy'",
+            "vanilla": "class=\"image max-w-full\" src=\"...\" alt=\"Descriptive text\" loading=\"lazy\""
+          }
+        },
+        {
+          "name": "Figure",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Image with caption using semantic figure/figcaption",
+          "accessibility": {
+            "aria": false,
+            "semantic_html": true
+          },
+          "implementations": {
+            "react-tailwind": "className='figure' figurecaption text-sm text-slate-600 mt-2",
+            "vanilla": "class=\"figure\""
+          }
+        }
+      ]
+    },
+    "disclosure": {
+      "description": "Expandable/collapsible content components",
+      "components": [
+        {
+          "name": "Disclosure",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Expandable section with proper ARIA states",
+          "accessibility": {
+            "aria": true,
+            "aria_expanded": true,
+            "aria_controls": true
+          },
+          "implementations": {
+            "react-tailwind": "aria-expanded='{isOpen}' aria-controls='{panelId}'",
+            "vanilla": "aria-expanded=\"false\" aria-controls=\"panel-1\""
+          }
+        },
+        {
+          "name": "Tabs",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Tab panel with proper ARIA roles and states",
+          "accessibility": {
+            "aria": true,
+            "role": "tablist",
+            "aria_selected": true,
+            "aria_controls": true
+          },
+          "implementations": {
+            "react-tailwind": "role='tablist' aria-selected='{selected}' aria-controls='{panelId}'",
+            "vanilla": "role=\"tablist\" aria-selected=\"true\""
+          }
+        },
+        {
+          "name": "AlertDialog",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Modal dialog with focus trap and proper ARIA",
+          "accessibility": {
+            "aria": true,
+            "role": "alertdialog",
+            "aria_labelledby": true,
+            "aria_describedby": true,
+            "focus_trap": true
+          },
+          "implementations": {
+            "react-tailwind": "role='alertdialog' aria-labelledby='{titleId}' aria-describedby='{descId}'",
+            "vanilla": "role=\"alertdialog\" aria-labelledby=\"dialog-title\""
           }
         }
       ]

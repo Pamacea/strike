@@ -1,7 +1,6 @@
 {
-  "$schema": "./schemas/a11y.schema.json",
   "version": "2.0.0",
-  "description": "Accessibility checklist for smiteUI implementer validation",
+  "description": "Accessibility checklist for strike implementer validation",
 
   "checklist": {
     "semantic_structure": {
@@ -101,20 +100,27 @@
         {
           "id": "contrast_normal",
           "description": "Normal text contrast (WCAG AA: 4.5:1)",
-          "test": "Body text meets 4.5:1 contrast ratio",
-          "wcag_reference": "1.4.3"
+          "test": "Body text meets 4.5:1 contrast ratio - verify with automated tool",
+          "wcag_reference": "1.4.3",
+          "note": "WCAG AA requires 4.5:1 for normal text (below 18pt/24px or 14pt bold/20px)",
+          "automated_check": true,
+          "tools": ["axe-core", "pa11y", "WAVE"]
         },
         {
           "id": "contrast_large",
           "description": "Large text contrast (WCAG AA: 3:1)",
           "test": "Text 18pt+ or 14pt bold meets 3:1",
-          "wcag_reference": "1.4.3"
+          "wcag_reference": "1.4.3",
+          "note": "WCAG AA requires 3:1 for large text (18pt/24px or 14pt bold/20px and above)",
+          "automated_check": true
         },
         {
           "id": "contrast_ui",
           "description": "UI component contrast (WCAG AA: 3:1)",
           "test": "Borders, focus indicators meet 3:1",
-          "wcag_reference": "1.4.11"
+          "wcag_reference": "1.4.11",
+          "note": "WCAG AA requires 3:1 for UI components and graphical objects",
+          "automated_check": true
         },
         {
           "id": "not_color_only",
@@ -193,6 +199,27 @@
           "description": "No flashing content",
           "test": "Nothing flashes more than 3 times/second",
           "wcag_reference": "2.3.1"
+        },
+        {
+          "id": "animation_duration",
+          "description": "Animation duration limits",
+          "test": "Animations under 5 seconds, or user can disable",
+          "wcag_reference": "2.3.3",
+          "note": "Long animations should respect prefers-reduced-motion"
+        },
+        {
+          "id": "no_seizure_triggers",
+          "description": "No seizure-inducing patterns",
+          "test": "No rapid strobing, red flash sequences, or alternating patterns",
+          "wcag_reference": "2.3.1",
+          "note": "Check for 3 flashes/second limit and general flash/red flash thresholds"
+        },
+        {
+          "id": "safe_easing",
+          "description": "Safe easing functions",
+          "test": "Avoid jarring or bouncy easing that could cause discomfort",
+          "wcag_reference": "2.3.2",
+          "note": "Linear or ease-out preferred over ease-in-out for motion"
         }
       ]
     },
@@ -217,6 +244,100 @@
           "description": "Descriptive page title",
           "test": "Each page has unique, descriptive title",
           "wcag_reference": "2.4.2"
+        },
+        {
+          "id": "landmark_labels",
+          "description": "Landmarks have meaningful labels",
+          "test": "Navigation, main, and other landmarks have aria-label or unique heading",
+          "wcag_reference": "2.4.1",
+          "note": "Multiple landmarks need labels to distinguish them"
+        },
+        {
+          "id": "empty_state_described",
+          "description": "Empty states are announced",
+          "test": "Empty lists, tables, and containers have aria-label or text description",
+          "wcag_reference": "4.1.3",
+          "note": "Screen reader should know why content is empty"
+        },
+        {
+          "id": "live_region_priority",
+          "description": "Live regions use appropriate priority",
+          "test": "Status uses polite, errors use assertive, not both for same content",
+          "wcag_reference": "4.1.3",
+          "note": "Polite waits for user pause, assertive interrupts immediately"
+        },
+        {
+          "id": "dynamic_content_announced",
+          "description": "Dynamic content changes are announced",
+          "test": "New messages, errors, updates use aria-live or role='status/alert'",
+          "wcag_reference": "4.1.3"
+        },
+        {
+          "id": "focus_management_dialogs",
+          "description": "Dialog focus properly managed",
+          "test": "Focus moves into dialog, returns to trigger on close",
+          "wcag_reference": "2.4.3",
+          "note": "Test with actual screen reader to confirm focus trap"
+        }
+      ]
+    },
+    "forms_validation": {
+      "name": "Form Validation Accessibility",
+      "priority": "critical",
+      "checks": [
+        {
+          "id": "errors_announced_inline",
+          "description": "Inline errors announced with input",
+          "test": "Each error linked via aria-describedby to its input",
+          "wcag_reference": "3.3.1"
+        },
+        {
+          "id": "error_summary_visible",
+          "description": "Error summary at form top",
+          "test": "Summary with aria-live='assertive' lists all errors on submit",
+          "wcag_reference": "3.3.1"
+        },
+        {
+          "id": "validation_messages_clear",
+          "description": "Validation messages are specific",
+          "test": "Error explains what's wrong and how to fix",
+          "wcag_reference": "3.3.1"
+        },
+        {
+          "id": "required_explained",
+          "description": "Required fields clearly indicated",
+          "test": "Required attribute plus visible indicator before the label",
+          "wcag_reference": "3.3.2"
+        }
+      ]
+    },
+    "keyboard_traps": {
+      "name": "Keyboard Trap Prevention",
+      "priority": "critical",
+      "checks": [
+        {
+          "id": "modal_focus_trap",
+          "description": "Modals trap focus properly",
+          "test": "Tab cycles within modal, escape closes and returns focus",
+          "wcag_reference": "2.1.2"
+        },
+        {
+          "id": "custom_widgets_keyboard",
+          "description": "Custom widgets are keyboard accessible",
+          "test": "All custom components work with keyboard, not just mouse/touch",
+          "wcag_reference": "2.1.1"
+        },
+        {
+          "id": "no_focus_traps",
+          "description": "No accidental focus traps",
+          "test": "User can always tab out of any component",
+          "wcag_reference": "2.1.2"
+        },
+        {
+          "id": "focus_returns",
+          "description": "Focus returns after dismiss",
+          "test": "Closing menus, dialogs, dropdowns returns focus to trigger",
+          "wcag_reference": "2.4.3"
         }
       ]
     }

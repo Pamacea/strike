@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://smiteui.dev/schemas/build-result.schema.json",
-  "title": "SmiteUI Build Result",
+  "$id": "https://strike.dev/schemas/build-result.schema.json",
+  "title": "strike Build Result",
   "description": "Schema for build result from implementer with metrics and validation",
   "type": "object",
   "required": ["version", "spec_ref", "output", "metrics", "validation", "timestamp"],
@@ -47,7 +47,7 @@
           "properties": {
             "total": { "type": "integer" },
             "gzipped": { "type": "integer" },
-            "brotil": { "type": "integer" }
+            "brotli": { "type": "integer" }
           }
         },
         "component_count": { "type": "integer" },
@@ -90,6 +90,7 @@
       "properties": {
         "accessibility": {
           "type": "object",
+          "required": ["semantic_html", "aria_attributes", "keyboard_nav", "contrast_aa", "screen_reader"],
           "properties": {
             "semantic_html": { "type": "boolean" },
             "aria_attributes": { "type": "boolean" },

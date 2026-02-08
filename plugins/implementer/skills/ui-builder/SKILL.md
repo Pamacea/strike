@@ -1,8 +1,8 @@
-# UI Builder Skill v2.0
+# UI Builder Skill v2.1
 
 Build unique, thoughtful interfaces by following the enriched specification from the orchestrator.
 
-**New in v2.0:** Component registry, build metrics, accessibility-first validation, schema-validated output.
+**New in v2.1:** Integrated adversarial feedback, pattern extraction, improved learning loop, brotli typo fix.
 
 ---
 
@@ -34,7 +34,7 @@ Transform enriched specifications into complete UI implementations that:
 
 ### Phase 1: Analysis
 
-1. **Read enriched spec** from `.claude/.smiteUI/enriched-spec.md` or `.claude/.smiteUI/enriched-spec.json`
+1. **Read enriched spec** from `.claude/.strike/enriched-spec.md` or `.claude/.strike/enriched-spec.json`
 2. **Validate spec schema** — Ensure JSON structure is valid
 3. **Read anti-pattern blacklist** from the spec
 4. **Read constraints** from the spec with their scores
@@ -201,7 +201,7 @@ Collect and report these metrics in output.
   bundle_size: {
     total: number,              // Bytes
     gzipped: number,
-    brotli: number
+    brotli: number  // Fixed: was "brotil" in earlier versions
   },
   component_count: number,
   constraint_compliance: {
@@ -249,7 +249,7 @@ Collect and report these metrics in output.
 **React/Tailwind Output:**
 
 ```
-output/
+output/react-tailwind/
 ├── src/
 │   ├── components/
 │   │   ├── Button.tsx
@@ -259,21 +259,21 @@ output/
 │   ├── App.tsx
 │   ├── index.css
 │   └── index.tsx
-├── build-result.json       ← NEW: Metrics and validation
+├── build-result.json       ← Metrics and validation
 ├── package.json
 ├── tsconfig.json
-├── tailwind.config.js
-└── README.md
+└── tailwind.config.js
 ```
 
 **Vanilla Output:**
 
 ```
-output/
+output/vanilla/
 ├── index.html              # Self-contained
-├── build-result.json       ← NEW: Metrics and validation
-└── README.md
+└── build-result.json       ← Metrics and validation
 ```
+
+**NO README in output/** - Documentation goes in `.claude/.strike/` only.
 
 ---
 
@@ -303,17 +303,23 @@ All outputs must include `build-result.json` matching schema:
 
 ---
 
-## Documentation Requirements
+## Documentation in build-result.json
 
-Create a README that explains:
+All documentation goes into `build-result.json` in the `decisions` field:
 
-1. **Constraints applied** — What limitations guided the design
-2. **Anti-patterns avoided** — What clichés were consciously rejected
-3. **Design decisions** — Why specific choices were made
-4. **Accessibility compliance** — A11y features included
-5. **Build metrics** — Performance and quality scores
-6. **How to use** — Clear setup/run instructions
-7. **What makes it unique** — The core differentiator
+```json
+{
+  "decisions": [
+    { "aspect": "constraints", "rationale": "What limitations guided the design" },
+    { "aspect": "anti_patterns", "rationale": "What clichés were rejected" },
+    { "aspect": "design", "rationale": "Why specific choices were made" },
+    { "aspect": "a11y", "rationale": "Accessibility features included" },
+    { "aspect": "unique", "rationale": "The core differentiator" }
+  ]
+}
+```
+
+**NO README files in output/** - Keep it clean.
 
 ---
 
@@ -348,13 +354,12 @@ Create a README that explains:
 
 If spec is ambiguous:
 - Make reasonable assumptions
-- Document those assumptions in README
+- Document those assumptions in build-result.json
 - Prefer constraint over spec ambiguity
 
 If constraints conflict:
 - Constraint priority: Context > Technical > Structural > Color
-- Document conflict and resolution in README
-- Include in build-result decisions
+- Document conflict and resolution in build-result.json
 
 ---
 
@@ -434,4 +439,4 @@ And creates:
 
 ---
 
-*UI Builder v2.0 — Build unique, validate thoroughly, measure everything, document decisions*
+*UI Builder v2.1 — Build unique, validate thoroughly, measure everything, document decisions, learn from feedback*

@@ -1,7 +1,7 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://smiteui.dev/schemas/spec.schema.json",
-  "title": "SmiteUI Enriched Specification",
+  "$schema": "draft-07/schema#",
+  "$id": "spec.schema.json",
+  "title": "strike Enriched Specification",
   "description": "Schema for enriched UI specification passed from orchestrator to implementer",
   "type": "object",
   "required": ["version", "original_prompt", "analysis", "anti_patterns", "constraints", "enriched_brief", "metadata"],
@@ -66,9 +66,19 @@
         },
         "suggested_alternatives": {
           "type": "object",
+          "description": "Map of anti-pattern IDs to their safe alternatives",
+          "propertyNames": {
+            "pattern": "^[a-z_]+$"
+          },
           "additionalProperties": {
             "type": "array",
-            "items": { "type": "string" }
+            "minItems": 1,
+            "maxItems": 10,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            }
           }
         }
       }

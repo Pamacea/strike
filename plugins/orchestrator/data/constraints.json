@@ -1,6 +1,5 @@
 {
-  "$schema": "./constraints.schema.json",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Creative constraints library - Unexpected directions that force innovation beyond obvious solutions",
   
   "categories": {

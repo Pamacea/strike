@@ -2,10 +2,10 @@
 name: orchestrator
 description: "Generate unique UI by applying anti-patterns and creative constraints - Break the trends, create the unexpected"
 argument-hint: "[--analyze|--constraints|--full|--score|--validate] '<prompt>'"
-version: 2.0.0
+version: 2.1.0
 ---
 
-# /ui - Anti-Trend UI Orchestrator v2.0
+# /ui - Anti-Trend UI Orchestrator v2.1
 
 Transform generic UI prompts into unique, thoughtful interfaces by detecting anti-patterns and imposing creative constraints.
 
@@ -154,15 +154,15 @@ The enriched specification is passed to `/build` with:
 
 ## Output
 
-The orchestrator creates in `.claude/.smiteUI/`:
+The orchestrator creates in `.claude/.strike/`:
 
 | File | Purpose |
 |------|---------|
-| `.claude/.smiteUI/analysis.md` | Prompt analysis and detected patterns |
-| `.claude/.smiteUI/constraints.md` | Selected constraints with scores and rationale |
-| `.claude/.smiteUI/enriched-spec.json` | Validated JSON specification (NEW) |
-| `.claude/.smiteUI/enriched-spec.md` | Full brief for implementer (readable) |
-| `.claude/.smiteUI/anti-patterns.md` | Blacklist for implementer |
+| `.claude/.strike/analysis.md` | Prompt analysis and detected patterns |
+| `.claude/.strike/constraints.md` | Selected constraints with scores and rationale |
+| `.claude/.strike/enriched-spec.json` | Validated JSON specification (NEW) |
+| `.claude/.strike/enriched-spec.md` | Full brief for implementer (readable) |
+| `.claude/.strike/anti-patterns.md` | Blacklist for implementer |
 
 ---
 
@@ -181,7 +181,7 @@ Not to be contrarian for its own sake, but to push past the first obvious soluti
 
 ## Configuration
 
-Settings in `.claude/.smiteUI/config.json`:
+Settings in `.claude/.strike/config.json`:
 
 ```json
 {
@@ -225,17 +225,6 @@ All specs are validated against `schemas/spec.schema.json`:
 - Catches errors before delegation
 - Provides clear error messages
 
-### Lazy Pattern Loading
-
-For performance, anti-patterns are loaded lazily by category:
-```javascript
-const antiPatternsDB = {
-  ui_effects: await loadCategory('ui-effects.json'),
-  colors: await loadCategory('colors.json'),
-  // ... loaded only when needed
-}
-```
-
 ### Feedback Loop (NEW)
 
 Build results feed back into constraint selection:
@@ -245,4 +234,4 @@ Build results feed back into constraint selection:
 
 ---
 
-*Orchestrator v2.0 - Break patterns, create unexpected, learn from results*
+*Orchestrator v2.1 - Break patterns, create unexpected, challenge yourself, learn from results*

@@ -2,11 +2,11 @@
 description: "Build unique UI from enriched specifications with anti-pattern validation"
 ---
 
-# /build - UI Implementer v2.0
+# /build - UI Implementer v2.1
 
 Implement unique interfaces by following the enriched specification from the orchestrator.
 
-**New in v2.0:** Component registry, build metrics, accessibility-first validation, schema-validated output.
+**New in v2.1:** Integrated adversarial feedback, pattern extraction, improved learning loop, brotli typo fix.
 
 ---
 
@@ -28,7 +28,7 @@ From the orchestrator, you'll receive:
 
 ### Step 1: Read and Understand
 
-Read the enriched spec from `.claude/.smiteUI/enriched-spec.md` or `.claude/.smiteUI/enriched-spec.json`. Understand:
+Read the enriched spec from `.claude/.strike/enriched-spec.md` or `.claude/.strike/enriched-spec.json`. Understand:
 - The core intent behind the original request
 - The constraints you must follow (with their scores)
 - The anti-patterns you must avoid
@@ -92,7 +92,7 @@ Gather build metrics for output:
   bundle_size: {
     total: 45000,
     gzipped: 12000,
-    brotli: 9800
+    brotli: 9800  // Fixed: was "brotil" in earlier versions
   },
   component_count: 8,
   constraint_compliance: {
@@ -359,4 +359,4 @@ Create a README that explains:
 
 ---
 
-*Implementer v2.0 — Build unique, avoid the obvious, measure everything, document decisions*
+*Implementer v2.1 — Build unique, avoid the obvious, measure everything, document decisions, learn from feedback*

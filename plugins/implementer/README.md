@@ -1,6 +1,6 @@
-# Implementer v2.0
+# Implementer v2.1
 
-**UI implementation agent — Builds unique interfaces from enriched prompts with anti-pattern validation**
+**UI implementation agent — Builds unique interfaces from enriched prompts with anti-pattern validation and integrated orchestrator feedback**
 
 ---
 
@@ -33,7 +33,7 @@ Transform enriched specifications from the orchestrator into complete UI impleme
 
 ### Phase 1: Analysis
 
-1. **Read enriched spec** from `.claude/.smiteUI/enriched-spec.md`
+1. **Read enriched spec** from `.claude/.strike/enriched-spec.md`
 2. **Validate spec schema** — Ensure JSON structure is valid (NEW)
 3. **Read anti-pattern blacklist** from the spec
 4. **Read constraints** from the spec with their scores (NEW)
@@ -177,7 +177,7 @@ All outputs must include `build-result.json` with:
   bundle_size: {
     total: number,              // Bytes
     gzipped: number,
-    brotli: number
+    brotli: number  // Fixed: was "brotil" in earlier versions
   },
   component_count: number,
   constraint_compliance: {
@@ -352,4 +352,4 @@ And creates a complete, validated UI implementation.
 
 ---
 
-*Implementer v2.0 — Build unique, validate thoroughly, measure everything, document decisions*
+*Implementer v2.1 — Build unique, validate thoroughly, measure everything, document decisions, learn from feedback*

@@ -1,13 +1,12 @@
 {
   "name": "implementer",
   "description": "UI implementation agent - Builds unique interfaces from enriched prompts with anti-pattern validation",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "author": {
-    "name": "Pamacea",
-    "email": "[email protected]"
+    "name": "Pamacea"
   },
-  "homepage": "https://github.com/Pamacea/smiteUI/tree/main/plugins/implementer",
-  "repository": "https://github.com/Pamacea/smiteUI",
+  "homepage": "https://github.com/Pamacea/strike/tree/main/plugins/implementer",
+  "repository": "https://github.com/Pamacea/strike",
   "license": "MIT",
   "keywords": [
     "ui",

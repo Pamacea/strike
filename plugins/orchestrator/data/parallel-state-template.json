@@ -1,0 +1,49 @@
+{
+  "session_id": null,
+  "timestamp": null,
+  "updated_at": null,
+  "status": "initializing",
+  "user_prompt": "",
+  "orchestrator": {
+    "status": "pending",
+    "stage": null,
+    "progress": 0,
+    "output_files": [],
+    "anti_patterns": [],
+    "constraints": [],
+    "enriched_spec": null,
+    "error": null
+  },
+  "implementer": {
+    "status": "pending",
+    "stage": null,
+    "progress": 0,
+    "template": null,
+    "components_loaded": [],
+    "structure_ready": false,
+    "accessibility_checked": false,
+    "error": null
+  },
+  "coordination": {
+    "orchestrator_ready": false,
+    "implementer_ready": false,
+    "merged_spec": null,
+    "build_ready": false,
+    "merge_strategy": "orchestrator-first"
+  },
+  "build": {
+    "status": "pending",
+    "output_path": null,
+    "metrics": null,
+    "error": null
+  },
+  "metrics": {
+    "orchestrator_duration_ms": 0,
+    "implementer_duration_ms": 0,
+    "coordination_duration_ms": 0,
+    "build_duration_ms": 0,
+    "total_duration_ms": 0,
+    "parallel_speedup": 1.0
+  },
+  "messages": []
+}

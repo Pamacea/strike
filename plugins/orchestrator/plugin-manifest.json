@@ -1,7 +1,7 @@
 {
   "name": "orchestrator",
-  "version": "1.1.0",
-  "description": "Contextual orchestration agent - Analyzes prompts, applies anti-patterns, generates creative constraints",
+  "version": "2.3.0",
+  "description": "Contextual orchestration agent - Parallel execution with implementer, anti-patterns, creative constraints",
   "smite": "3.0.0",
   "core": "1.0.0",
   "depends": [],
@@ -10,10 +10,17 @@
     "prompt-analysis",
     "anti-pattern-detection",
     "constraint-generation",
-    "lazy-pattern-loading"
+    "parallel-coordination"
   ],
   "loadAfter": [],
-  "tags": ["orchestration", "anti-patterns", "creative-constraints", "prompt-enrichment", "lazy-loading"],
+  "integrations": {
+    "implementer": {
+      "supported": true,
+      "description": "Parallel execution - Orchestrator analysis runs while Implementer prepares",
+      "version": "2.3.0"
+    }
+  },
+  "tags": ["orchestration", "anti-patterns", "creative-constraints", "prompt-enrichment", "schema-validation", "parallel"],
   "author": "Pamacea",
   "license": "MIT"
 }

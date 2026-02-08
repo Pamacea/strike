@@ -1,28 +1,28 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "smiteUI",
-  "version": "2.0.0",
-  "description": "Anti-trend UI generation with contextual orchestration - Break the patterns, create the unexpected",
+  "name": "strike",
+  "version": "2.1.0",
+  "description": "Anti-trend UI generation with integrated adversarial mode, teaching, and auto-learning - Break the patterns, create the unexpected",
   "owner": {
     "name": "Pamacea",
-    "email": "[email protected]"
+    "contact": "https://github.com/Pamacea/strike/issues"
   },
   "metadata": {
-    "description": "smiteUI is a creative constraint system that prevents generic UI patterns. The orchestrator analyzes prompts, applies anti-patterns, and generates creative constraints before delegating to the implementer. Result: unique, thoughtful interfaces that avoid the tired trends of modern web design.",
+    "description": "strike v2.1 integrates three powerful modes directly into the orchestrator: adversarial challenge (always active), teaching explanations, and auto-learning from sessions. Based on Boris Cherny's multi-agent patterns.",
     "pluginRoot": "./plugins"
   },
   "plugins": [
     {
       "name": "orchestrator",
       "source": "./plugins/orchestrator",
-      "description": "Contextual orchestration agent - Analyzes prompts, applies anti-patterns, generates creative constraints with schema validation and scoring",
-      "version": "2.0.0",
+      "description": "Contextual orchestration agent with integrated adversarial mode, teaching, and learning - Analyzes prompts, applies anti-patterns, generates creative constraints, challenges decisions, explains reasoning",
+      "version": "2.1.0",
       "author": { "name": "Pamacea" },
       "category": "orchestration",
-      "tags": ["orchestration", "anti-patterns", "creative-constraints", "prompt-enrichment", "schema-validation", "scoring"],
-      "keywords": ["ui", "orchestrator", "anti-patterns", "constraints", "creative", "v2"],
-      "homepage": "https://github.com/Pamacea/smiteUI/tree/main/plugins/orchestrator",
-      "repository": "https://github.com/Pamacea/smiteUI",
+      "tags": ["orchestration", "anti-patterns", "creative-constraints", "prompt-enrichment", "scoring", "adversarial", "teaching", "learning"],
+      "keywords": ["ui", "orchestrator", "anti-patterns", "constraints", "creative", "challenge", "explain", "learn"],
+      "homepage": "https://github.com/Pamacea/strike/tree/main/plugins/orchestrator",
+      "repository": "https://github.com/Pamacea/strike",
       "license": "MIT"
     },
     {
@@ -33,9 +33,9 @@
       "author": { "name": "Pamacea" },
       "category": "implementation",
       "tags": ["implementation", "react", "vanilla", "tailwind", "ui-builder", "a11y", "metrics"],
-      "keywords": ["ui", "builder", "react", "tailwind", "vanilla", "implementation", "v2"],
-      "homepage": "https://github.com/Pamacea/smiteUI/tree/main/plugins/implementer",
-      "repository": "https://github.com/Pamacea/smiteUI",
+      "keywords": ["ui", "builder", "react", "tailwind", "vanilla", "implementation"],
+      "homepage": "https://github.com/Pamacea/strike/tree/main/plugins/implementer",
+      "repository": "https://github.com/Pamacea/strike",
       "license": "MIT"
     }
   ]

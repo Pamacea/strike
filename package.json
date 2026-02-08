@@ -1,10 +1,10 @@
 {
-  "name": "smiteui",
-  "version": "1.0.0",
+  "name": "strike",
+  "version": "2.1.0",
   "description": "Anti-trend UI generation with contextual orchestration - Break patterns, create unique",
   "author": "Pamacea",
   "license": "MIT",
-  "repository": "https://github.com/Pamacea/smiteUI",
+  "repository": "https://github.com/Pamacea/strike",
   "private": true,
   "workspaces": [
     "plugins/*"
@@ -13,7 +13,7 @@
     "dev": "echo 'Use /ui \"prompt\" in Claude Code to start'",
     "lint": "echo 'No lint configured - use project lint tools'",
     "typecheck": "echo 'No TypeScript - use project typecheck'",
-    "clean": "rm -rf .smiteUI plugins/*/output"
+    "clean": "rm -rf .strike plugins/*/output"
   },
   "keywords": [
     "ui",

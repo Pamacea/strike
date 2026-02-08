@@ -1,13 +1,13 @@
 ---
 description: "Generate unique UI by applying anti-patterns and creative constraints - Break trends, create the unexpected"
-argument-hint: "[--analyze|--constraints|--full|--score|--validate] '<prompt>'"
+argument-hint: "[--analyze|--constraints|--full|--score|--validate|--challenge|--explain|--learn] '<prompt>'"
 ---
 
-# /ui - Anti-Trend UI Orchestrator v2.0
+# /ui - Anti-Trend UI Orchestrator v2.1
 
 Transform generic UI prompts into unique, thoughtful interfaces by detecting anti-patterns and imposing creative constraints.
 
-**New in v2.0:** Schema validation, constraint scoring, conflict resolution, feedback loop.
+**New in v2.1:** Integrated adversarial mode, teaching explanations, and auto-learning.
 
 ---
 
@@ -27,8 +27,11 @@ When you say `/ui "make me a modern dashboard"`, this command:
 ## Usage
 
 ```bash
-# Full workflow (default)
+# Full workflow (default) - always includes adversarial challenge
 /ui "Create a dashboard for analytics"
+
+# Parallel mode - Orchestrator and Implementer run together
+/ui --parallel "Create a dashboard for analytics"
 
 # Just analyze prompt (don't build yet)
 /ui --analyze "A modern SaaS landing page"
@@ -39,14 +42,23 @@ When you say `/ui "make me a modern dashboard"`, this command:
 # Full build with all steps
 /ui --full "E-commerce product page"
 
-# Show constraint scoring details (NEW)
+# Show constraint scoring details
 /ui --score "Minimal blog layout"
 
-# Validate only, don't build (NEW)
+# Validate only, don't build
 /ui --validate "Portfolio site"
 
-# Include previous feedback (NEW)
+# Include previous feedback
 /ui --feedback=build-123 "Redesign my dashboard"
+
+# Skip adversarial challenge (use with caution)
+/ui --no-challenge "Trivial form"
+
+# Generate explanation diagram after build
+/ui --explain "Complex dashboard"
+
+# Learn from this session and update docs
+/ui --learn "Portfolio site"
 
 # Force tech stack
 /ui --stack=vanilla "Simple landing page"
@@ -170,14 +182,97 @@ The enriched specification is passed to `/build` with:
 
 | Flag | Description |
 |------|-------------|
+| `--parallel` | **NEW v2.3:** Run Orchestrator and Implementer in parallel |
+| `--no-parallel` | Disable parallel mode (use for simple prompts) |
 | `--analyze` | Only analyze prompt, show detected patterns, don't build |
 | `--constraints` | Show which constraints would be selected, don't build |
 | `--full` | Run complete workflow with verbose output |
 | `--stack=<react\|vanilla>` | Force specific tech stack for implementation |
 | `--strict` | Reject prompt if too many anti-patterns detected |
-| `--score` | Show constraint scoring details (NEW in v2.0) |
-| `--validate` | Run schema validation only, don't build (NEW in v2.0) |
-| `--feedback=<id>` | Include previous feedback in selection (NEW in v2.0) |
+| `--score` | Show constraint scoring details |
+| `--validate` | Run schema validation only, don't build |
+| `--feedback=<id>` | Include previous feedback in selection |
+| `--no-challenge` | Skip adversarial challenge step (use with caution) |
+| `--explain` | Generate explanation diagram after constraint selection |
+| `--learn` | Extract patterns from this session for future improvement |
+
+---
+
+## Integrated Modes
+
+### Adversarial Mode (Always Active)
+
+After selecting constraints, the orchestrator automatically challenges its own decisions:
+
+**What happens:**
+1. **Debate**: Generates 2-3 alternative constraint combinations
+2. **Comparison**: Scores each option side-by-side
+3. **Stress Test**: Identifies edge cases and potential issues
+4. **Refinement**: Adjusts selection based on findings
+
+**Output:**
+```markdown
+## Adversarial Review
+
+### Original Selection
+- paper_ink (score: 35)
+- architectural (score: 78)
+- print_first (score: 72)
+
+### Alternative Considered
+- warm_only + mechanical (score: 68)
+- monochrome_true + textual_first (score: 71)
+
+### Stress Test Findings
+- architectural: 3 edge cases identified
+- paper_ink: no issues found
+
+### Final Decision
+Original selection approved with safeguards for architectural edge cases.
+```
+
+### Teaching Mode (`--explain`)
+
+Generates visual explanations of the workflow:
+
+**What happens:**
+1. **Diagram**: ASCII/Mermaid workflow visualization
+2. **Step-by-step**: Detailed breakdown of scoring
+3. **Rationale**: Why each constraint was chosen
+4. **Examples**: What this looks like in practice
+
+**Output:**
+```markdown
+## Explanation Diagram
+
+PROMPT → ANALYZE → DETECT → SELECT → CHALLENGE → BUILD
+  │         │        │        │         │        │
+  ▼         ▼        ▼        ▼         ▼        ▼
+"modern"  glassmorphism  ❌cards  paper_ink  debate   UI
+dashboard  neon         ❌neon   warm      refined  built
+```
+
+### Learning Mode (`--learn`)
+
+Extracts patterns for continuous improvement:
+
+**What happens:**
+1. **Extract**: Success/failure patterns from this session
+2. **Store**: Save to `.claude/.strike/learning/history.json`
+3. **Update**: Optionally update project CLAUDE.md
+
+**Output:**
+```markdown
+## Learning Summary
+
+### Patterns Discovered
+- paper_ink constraint: 91% success rate (5 uses)
+- "modern" keyword: 82% leads to card-grid risk
+
+### Stored
+- Session patterns → learning/history.json
+- Ready to apply to future sessions
+```
 
 ---
 
@@ -271,7 +366,7 @@ Not to be contrarian for its own sake, but to push past the first obvious soluti
 
 ## Configuration
 
-Settings in `.claude/.smiteUI/config.json`:
+Settings in `.claude/.strike/config.json`:
 
 ```json
 {
@@ -297,15 +392,15 @@ Settings in `.claude/.smiteUI/config.json`:
 
 ## Output
 
-The orchestrator creates in `.claude/.smiteUI/`:
+The orchestrator creates in `.claude/.strike/`:
 
 | File | Purpose |
 |------|---------|
-| `.claude/.smiteUI/analysis.md` | Prompt analysis and detected patterns |
-| `.claude/.smiteUI/constraints.md` | Selected constraints with scores and rationale |
-| `.claude/.smiteUI/enriched-spec.json` | Validated JSON specification (NEW) |
-| `.claude/.smiteUI/enriched-spec.md` | Full brief for implementer (readable) |
-| `.claude/.smiteUI/anti-patterns.md` | Blacklist for implementer |
+| `.claude/.strike/analysis.md` | Prompt analysis and detected patterns |
+| `.claude/.strike/constraints.md` | Selected constraints with scores and rationale |
+| `.claude/.strike/enriched-spec.json` | Validated JSON specification (NEW) |
+| `.claude/.strike/enriched-spec.md` | Full brief for implementer (readable) |
+| `.claude/.strike/anti-patterns.md` | Blacklist for implementer |
 
 ---
 

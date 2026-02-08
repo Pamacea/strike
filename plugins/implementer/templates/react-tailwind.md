@@ -49,31 +49,34 @@ src/
 // Button.tsx
 import { cn } from '@/utils/cn'
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
   variant?: 'primary' | 'secondary' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
+  type?: 'button' | 'submit' | 'reset'
 }
 
-export function Button({ 
-  variant = 'primary', 
-  size = 'md', 
-  className, 
-  children, 
-  ...props 
+export function Button({
+  variant = 'primary',
+  size = 'md',
+  type = 'button', // Default to button to prevent form submission issues
+  className,
+  children,
+  ...props
 }: ButtonProps) {
   return (
     <button
+      type={type}
       className={cn(
-        'font-medium rounded-lg transition-colors focus:outline-none focus:ring-2',
+        'font-medium rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
         {
           'bg-blue-600 text-white hover:bg-blue-700': variant === 'primary',
           'bg-gray-200 text-gray-900 hover:bg-gray-300': variant === 'secondary',
           'text-gray-700 hover:bg-gray-100': variant === 'ghost',
         },
         {
-          'px-3 py-1.5 text-sm': size === 'sm',
-          'px-4 py-2': size === 'md',
-          'px-6 py-3 text-lg': size === 'lg',
+          'px-3 py-1.5 text-sm min-h-[44px]': size === 'sm', // WCAG 2.5.5 touch target
+          'px-4 py-2 min-h-[44px]': size === 'md',
+          'px-6 py-3 text-lg min-h-[48px]': size === 'lg',
         },
         className
       )}
@@ -102,21 +105,20 @@ export function Container({ children, className }: { children: React.ReactNode; 
 
 ```tsx
 // hooks/useWindowSize.ts
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 export function useWindowSize() {
   const [size, setSize] = useState({ width: 0, height: 0 })
 
-  useEffect(() => {
-    const updateSize = () => {
-      setSize({ width: window.innerWidth, height: window.innerHeight })
-    }
-    
-    window.addEventListener('resize', updateSize)
-    updateSize()
-    
-    return () => window.removeEventListener('resize', updateSize)
+  const updateSize = useCallback(() => {
+    setSize({ width: window.innerWidth, height: window.innerHeight })
   }, [])
+
+  useEffect(() => {
+    updateSize()
+    window.addEventListener('resize', updateSize)
+    return () => window.removeEventListener('resize', updateSize)
+  }, [updateSize])
 
   return size
 }
@@ -240,8 +242,8 @@ export function Counter() {
 // Lazy loading
 const Dashboard = React.lazy(() => import('./components/Dashboard'))
 
-// In render
-<Suspense fallback={<div>Loading...</div>}>
+// In render - accessible loading state
+<Suspense fallback={<div role="status" aria-live="polite" aria-busy="true">Loading...</div>}>
   <Dashboard />
 </Suspense>
 ```
