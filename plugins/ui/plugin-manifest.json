@@ -1,0 +1,30 @@
+{
+  "description": "Anti-trend UI generation - Orchestrator, builder, teams mode, and interactive step mode in one unified plugin",
+  "version": "1.1.0",
+  "author": {
+    "name": "Pamacea",
+    "contact": "https://github.com/Pamacea/strike/issues"
+  },
+  "skills": [
+    {
+      "name": "ui",
+      "description": "Frontend UI Orchestrator - Anti-trend UI generation with dynamic pattern detection, creative constraints, and adversarial self-challenge",
+      "path": "./skills/ui/SKILL.md"
+    },
+    {
+      "name": "step",
+      "description": "Interactive step mode - Pause at each phase for user review and adjustment",
+      "path": "./skills/step/SKILL.md"
+    },
+    {
+      "name": "teams",
+      "description": "Teams mode - Parallel multi-agent orchestration with Claude Code Agent Teams",
+      "path": "./skills/teams/SKILL.md"
+    },
+    {
+      "name": "build",
+      "description": "Build mode - Direct implementation from existing enriched specification",
+      "path": "./skills/build/SKILL.md"
+    }
+  ]
+}
