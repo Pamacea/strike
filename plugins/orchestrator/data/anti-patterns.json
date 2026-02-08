@@ -1,5 +1,5 @@
 {
-  "$schema": "../.claude/.smiteUI/anti-patterns.schema.json",
+  "$schema": "../.claude/.claude/.smiteUI/anti-patterns.schema.json",
   "ui_effects": {
     "description": "Overused visual effects that scream 'trendy 2020s'",
     "particle_canvas": {

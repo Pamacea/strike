@@ -1,0 +1,188 @@
+{
+  "$schema": "./schemas/registry.schema.json",
+  "version": "2.0.0",
+  "description": "Validated component registry for smiteUI implementer",
+  "last_updated": "2025-02-02",
+
+  "categories": {
+    "layout": {
+      "description": "Layout and structural components",
+      "components": [
+        {
+          "name": "Container",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Responsive container with max-width",
+          "implementations": {
+            "react-tailwind": "className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'",
+            "vanilla": "class=\"container max-w-7xl mx-auto px-4\""
+          }
+        },
+        {
+          "name": "Grid",
+          "anti_pattern_safe": false,
+          "anti_pattern_risk": "card_grid",
+          "constraint_compatibility": ["architectural", "linear_only"],
+          "description": "CSS Grid layout - use with constraint awareness",
+          "alternatives": ["Stack", "Room", "Flow"],
+          "implementations": {
+            "react-tailwind": "className='grid grid-cols-1 md:grid-cols-3 gap-6'",
+            "vanilla": "class=\"grid grid-cols-1 md:grid-cols-3 gap-6\""
+          }
+        },
+        {
+          "name": "Stack",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Vertical stack with gap - linear flow friendly",
+          "implementations": {
+            "react-tailwind": "className='flex flex-col gap-4'",
+            "vanilla": "class=\"stack flex flex-col gap-4\""
+          }
+        },
+        {
+          "name": "Room",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["architectural"],
+          "description": "Architectural room metaphor for sections",
+          "implementations": {
+            "react-tailwind": "className='room min-h-screen p-8 border-b border-slate-200'",
+            "vanilla": "class=\"room min-h-screen p-8 border-b border-slate-200\""
+          }
+        }
+      ]
+    },
+    "typography": {
+      "description": "Text and typography components",
+      "components": [
+        {
+          "name": "Heading",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Semantic heading with hierarchy",
+          "implementations": {
+            "react-tailwind": "className='text-3xl font-bold tracking-tight'",
+            "vanilla": "class=\"heading text-3xl font-bold\""
+          }
+        },
+        {
+          "name": "DisplayHeading",
+          "anti_pattern_safe": false,
+          "anti_pattern_risk": "giant_headlines",
+          "constraint_compatibility": ["print_first", "textual_first"],
+          "description": "Very large display text - use sparingly",
+          "implementations": {
+            "react-tailwind": "className='text-7xl font-black tracking-tighter'",
+            "vanilla": "class=\"display text-7xl font-black\""
+          }
+        },
+        {
+          "name": "Body",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Body text with readable line height",
+          "implementations": {
+            "react-tailwind": "className='text-base leading-relaxed text-slate-700'",
+            "vanilla": "class=\"body text-base leading-relaxed\""
+          }
+        }
+      ]
+    },
+    "actions": {
+      "description": "Interactive components",
+      "components": [
+        {
+          "name": "Button",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Standard button with proper states",
+          "accessibility": {
+            "keyboard": true,
+            "aria": true,
+            "focus_visible": true
+          },
+          "implementations": {
+            "react-tailwind": "className='px-4 py-2 bg-slate-900 text-white rounded hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400'",
+            "vanilla": "class=\"button px-4 py-2 bg-slate-900 text-white\""
+          }
+        },
+        {
+          "name": "LinkButton",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Link styled as button - maintains navigation semantics",
+          "accessibility": {
+            "keyboard": true,
+            "aria": false,
+            "focus_visible": true
+          },
+          "implementations": {
+            "react-tailwind": "className='inline-flex items-center px-4 py-2 border border-slate-300 rounded hover:bg-slate-50'",
+            "vanilla": "class=\"link-button inline-flex px-4 py-2 border\""
+          }
+        }
+      ]
+    },
+    "forms": {
+      "description": "Form and input components",
+      "components": [
+        {
+          "name": "Input",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Text input with proper label (no floating labels)",
+          "accessibility": {
+            "keyboard": true,
+            "aria": true,
+            "labels": true
+          },
+          "implementations": {
+            "react-tailwind": "className='w-full px-3 py-2 border border-slate-300 rounded focus:outline-none focus:ring-2 focus:ring-slate-400'",
+            "vanilla": "class=\"input w-full px-3 py-2 border\""
+          }
+        },
+        {
+          "name": "Label",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "Static label - not floating",
+          "accessibility": {
+            "for_attribute": true
+          },
+          "implementations": {
+            "react-tailwind": "className='block text-sm font-medium text-slate-700 mb-1'",
+            "vanilla": "class=\"label block text-sm font-medium\""
+          }
+        }
+      ]
+    },
+    "feedback": {
+      "description": "User feedback and status components",
+      "components": [
+        {
+          "name": "StatusMessage",
+          "anti_pattern_safe": true,
+          "constraint_compatibility": ["all"],
+          "description": "ARIA live region for status updates",
+          "accessibility": {
+            "aria": true,
+            "live_region": true
+          },
+          "implementations": {
+            "react-tailwind": "className='p-4 rounded role=\"status\" aria-live=\"polite\"'",
+            "vanilla": "class=\"status p-4 rounded\" role=\"status\" aria-live=\"polite\""
+          }
+        }
+      ]
+    }
+  },
+
+  "anti_pattern_alternatives": {
+    "card_grid": ["Stack", "Room", "Flow", "List"],
+    "hero_generic": ["Billboard", "Statement", "Introduction"],
+    "glassmorphism_cards": ["SolidCard", "BorderCard", "FlatCard"],
+    "floating_labels": ["StaticLabel", "TopLabel", "OutsideLabel"],
+    "rounded_everything": ["Sharp", "Mixed", "Angled"],
+    "bento_boxes": ["Sections", "Rooms", "Flow"]
+  }
+}

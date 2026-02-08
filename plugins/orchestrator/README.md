@@ -1,22 +1,28 @@
 ---
 name: orchestrator
-description: "Generate unique UI by applying anti-patterns and creative constraints - Break trends, create unexpected"
-argument-hint: "[--analyze|--constraints|--full] '<prompt>'"
+description: "Generate unique UI by applying anti-patterns and creative constraints - Break the trends, create the unexpected"
+argument-hint: "[--analyze|--constraints|--full|--score|--validate] '<prompt>'"
+version: 2.0.0
 ---
 
-# /ui - Anti-Trend UI Orchestrator
+# /ui - Anti-Trend UI Orchestrator v2.0
 
 Transform generic UI prompts into unique, thoughtful interfaces by detecting anti-patterns and imposing creative constraints.
 
-## 🎯 What This Does
+---
+
+## What This Does
 
 When you say `/ui "make me a modern dashboard"`, this command:
 
 1. **Analyzes your prompt** for trend-trap keywords ("modern", "sleek", "minimal")
 2. **Detects anti-patterns** you might fall into (glassmorphism, card grids, gradients)
 3. **Selects creative constraints** to push you in unexpected directions
-4. **Enriches your prompt** with specific, anti-trend guidance
-5. **Delegates to implementer** with enriched specification
+4. **Validates the specification** against JSON Schema (NEW in v2.0)
+5. **Enriches your prompt** with specific, anti-trend guidance
+6. **Delegates to implementer** with the validated specification
+
+---
 
 ## Usage
 
@@ -27,12 +33,23 @@ When you say `/ui "make me a modern dashboard"`, this command:
 # Just analyze prompt (don't build yet)
 /ui --analyze "A modern SaaS landing page"
 
-# See which constraints would be applied
+# See which constraints would be selected
 /ui --constraints "Sleek portfolio website"
 
 # Full build with all steps
 /ui --full "E-commerce product page"
+
+# Show constraint scoring details (NEW)
+/ui --score "Minimal blog layout"
+
+# Validate only, don't build (NEW)
+/ui --validate "Portfolio site"
+
+# Include previous feedback (NEW)
+/ui --feedback=build-123 "Redesign my dashboard"
 ```
+
+---
 
 ## How It Works
 
@@ -60,15 +77,18 @@ Based on your prompt, orchestrator identifies patterns to avoid:
 - **Typography**: Acid distortions, giant headlines, gradient text
 - **Components**: Glassmorphism, neumorphism, rounded everything
 
-Each pattern includes:
-- What it is
-- Why it's a problem
-- Severity (low/medium/high)
-- Better alternatives
+### Step 3: Constraint Selection (NEW Scoring System)
 
-### Step 3: Constraint Selection
+The orchestrator selects 2-4 creative constraints using a scoring system:
 
-The orchestrator selects 2-4 creative constraints:
+```
+constraintScore = {
+  creativity: 0-30,      // How unusual is this?
+  difficulty: 0-25,      // How hard to implement?
+  impact: 0-25,          // How much does it change the result?
+  synergy: 0-20         // How well does it work with other constraints?
+}
+```
 
 **Color Restrictions:**
 - Single color challenge
@@ -79,7 +99,7 @@ The orchestrator selects 2-4 creative constraints:
 - Architectural inspiration
 - Biological systems
 - Musical structure
-- Paper craft
+- Mechanical metaphors
 
 **Technical Constraints:**
 - CSS only
@@ -91,39 +111,29 @@ The orchestrator selects 2-4 creative constraints:
 - Screen reader first
 - Outdoor visibility
 
-### Step 4: Prompt Enrichment
+### Step 4: Schema Validation (NEW)
 
-Your prompt is transformed into a detailed specification:
+Your specification is validated against JSON Schema before delegation:
 
-```markdown
-## Original Intent
-[Your prompt]
+- All required fields present
+- Data types match schema
+- Enum values valid
+- Numeric ranges within bounds
 
-## Detected Anti-Patterns (AVOID)
-- ❌ [Pattern 1]
-- ❌ [Pattern 2]
-- ❌ [Pattern 3]
+### Step 5: Prompt Enrichment
 
-## Applied Constraints
-- ✅ [Constraint 1]
-- ✅ [Constraint 2]
-- ✅ [Constraint 3]
+Your prompt is transformed into a detailed specification.
 
-## Enriched Brief
-Create [project_type] that:
-- [Specific guidance 1]
-- [Specific guidance 2]
-- [Specific guidance 3]
-```
-
-### Step 5: Delegation
+### Step 6: Delegation to Implementer
 
 The enriched specification is passed to `/build` with:
 
 - Full anti-pattern blacklist
-- Selected constraint set
+- Selected constraint set with scores
 - Enriched prompt with specific guidance
 - Suggested alternatives for each anti-pattern
+- Validation status
+- Feedback loop reference
 
 ---
 
@@ -134,100 +144,44 @@ The enriched specification is passed to `/build` with:
 | `--analyze` | Only analyze prompt, show detected patterns, don't build |
 | `--constraints` | Show which constraints would be selected, don't build |
 | `--full` | Run complete workflow with verbose output |
-| `--stack=<react|vanilla>` | Force specific tech stack for implementation |
+| `--stack=<react\|vanilla>` | Force specific tech stack for implementation |
 | `--strict` | Reject prompt if too many anti-patterns detected |
-
-## Examples
-
-### Example 1: Dashboard Request
-
-```bash
-/ui "Modern analytics dashboard with real-time charts"
-```
-
-**Analysis:**
-- ⚠️ "Modern" triggers anti-pattern detection
-- ⚠️ "Dashboard" suggests card grids
-- ⚠️ "Charts" suggests generic data viz
-
-**Constraints Applied:**
-1. **Monochrome**: Black, white, one gray only
-2. **Architectural**: Room-based navigation
-3. **Print First**: Must be readable when printed
-
-**Result:** A dashboard that uses white space as architecture, numbers as typography, and feels like a well-designed annual report rather than another SaaS tool.
-
-### Example 2: Portfolio Request
-
-```bash
-/ui "Sleek portfolio for a creative developer"
-```
-
-**Analysis:**
-- 🚨 "Sleek" is high-risk trend bait
-- ⚠️ "Portfolio" suggests parallax galleries
-- ⚠️ "Creative developer" suggests glitch effects
-
-**Constraints Applied:**
-1. **ASCII Art**: Use only text characters
-2. **System Fonts**: No web fonts
-3. **Single File**: Everything in one HTML
-
-**Result:** A portfolio that looks like a beautifully formatted README, loads instantly, and actually showcases code thinking rather than hiding behind flashy effects.
-
-### Example 3: E-commerce Request
-
-```bash
-/ui "Product page for premium headphones"
-```
-
-**Analysis:**
-- ⚠️ "Premium" suggests dark mode + gradients
-- ⚠️ "Headphones" suggests Apple-style hero
-- ⚠️ "Product page" suggests parallax scrolling
-
-**Constraints Applied:**
-1. **Warm Only**: No blues, greens, or purples
-2. **Photography Principles**: Rule of thirds, depth of field
-3. **One-Handed Mobile**: Reachable with one thumb
-
-**Result:** A product page with earth tones, compositional balance, and an interaction model that feels intimate rather than performative.
+| `--score` | Show constraint scoring details (NEW in v2.0) |
+| `--validate` | Run schema validation only, don't build (NEW in v2.0) |
+| `--feedback=<id>` | Include previous feedback in selection (NEW in v2.0) |
 
 ---
 
-## Integration with Implementer
+## Output
 
-After enrichment, orchestrator calls:
+The orchestrator creates in `.claude/.smiteUI/`:
 
-```bash
-/build --from-spec="${enriched_spec}" --anti-patterns="${blacklist}" --constraints="${selected}"
-```
-
-The implementer receives:
-- The original prompt
-- Enriched specification
-- Anti-pattern blacklist (what to avoid)
-- Constraint requirements (what to include)
-- Template selection (react-tailwind or vanilla)
+| File | Purpose |
+|------|---------|
+| `.claude/.smiteUI/analysis.md` | Prompt analysis and detected patterns |
+| `.claude/.smiteUI/constraints.md` | Selected constraints with scores and rationale |
+| `.claude/.smiteUI/enriched-spec.json` | Validated JSON specification (NEW) |
+| `.claude/.smiteUI/enriched-spec.md` | Full brief for implementer (readable) |
+| `.claude/.smiteUI/anti-patterns.md` | Blacklist for implementer |
 
 ---
 
 ## Philosophy
 
 **Why anti-patterns?**
-Modern UI has converged on a narrow set of "safe" choices. Glassmorphism, card grids, neon gradients — they're not bad, they're just everywhere. When everything looks the same, nothing stands out.
+Modern UI has converged on a narrow set of "safe" choices. Glassmorphism, card grids, neon gradients — they're not bad, they're everywhere. When everything looks the same, nothing stands out.
 
 **Why constraints?**
 Limitations breed creativity. When you can't use gradients, you discover the power of typography. When you can't use images, you learn what CSS can really do. When you design for print, you discover true hierarchy.
 
 **The goal:**
-Not to be contrarian for its own sake, but to push past the first obvious solution and find something that actually fits the content, users, and context.
+Not to be contrarian for its own sake, but to push past the first obvious solution and find something that actually fits the content, the users, and the context.
 
 ---
 
 ## Configuration
 
-Settings in `.smiteUI/config.json`:
+Settings in `.claude/.smiteUI/config.json`:
 
 ```json
 {
@@ -237,23 +191,17 @@ Settings in `.smiteUI/config.json`:
     "strict_mode": false,
     "always_include": ["color_restrictions"],
     "prefer_categories": ["technical_constraints"],
-    "anti_pattern_severity_threshold": "medium"
+    "anti_pattern_severity_threshold": "medium",
+    "scoring_weights": {
+      "creativity": 0.3,
+      "difficulty": 0.25,
+      "impact": 0.25,
+      "synergy": 0.2
+    },
+    "feedback_learning": true
   }
 }
 ```
-
----
-
-## Output
-
-The orchestrator creates in `.smiteUI/`:
-
-| File | Purpose |
-|------|---------|
-| `.smiteUI/analysis.md` | Prompt analysis and detected patterns |
-| `.smiteUI/constraints.md` | Selected constraints with rationale |
-| `.smiteUI/enriched-spec.md` | Full specification for implementer |
-| `.smiteUI/anti-patterns.md` | Blacklist for implementer |
 
 ---
 
@@ -264,31 +212,37 @@ The orchestrator creates in `.smiteUI/`:
 3. **Trust the process** — The weird ideas often become the best ideas
 4. **Iterate** — If the first result isn't right, run again with different constraints
 5. **Learn from it** — Each constraint teaches you something about design
+6. **Provide feedback** — The system learns from what works and what doesn't
 
 ---
 
 ## Technical Notes
 
-### Schema Loading
+### Schema Validation
 
-Anti-patterns database is validated against JSON schema:
-- Path: `.claude/.smiteUI/anti-patterns.schema.json`
+All specs are validated against `schemas/spec.schema.json`:
 - Enables autocomplete and validation
+- Catches errors before delegation
+- Provides clear error messages
 
 ### Lazy Pattern Loading
 
 For performance, anti-patterns are loaded lazily by category:
 ```javascript
-// Pseudo-code showing the logic
 const antiPatternsDB = {
-  ui_effects: await loadCategory('ui_effects.json'),
+  ui_effects: await loadCategory('ui-effects.json'),
   colors: await loadCategory('colors.json'),
   // ... loaded only when needed
 }
 ```
 
-This prevents loading the full 12KB database on every command, keeping startup fast.
+### Feedback Loop (NEW)
+
+Build results feed back into constraint selection:
+- High compliance → increase constraint score
+- Violations → suggest different alternatives
+- User feedback → adjust weights
 
 ---
 
-*Orchestrator v1.1.0 - Break patterns, create unexpected*
+*Orchestrator v2.0 - Break patterns, create unexpected, learn from results*

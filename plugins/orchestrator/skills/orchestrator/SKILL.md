@@ -1,17 +1,19 @@
-# Orchestrator Skill
+# Orchestrator Skill v2.0
 
 ## Mission
 
 Transform generic UI prompts into unique, anti-trend specifications by detecting overused patterns and imposing creative constraints.
 
+**New in v2.0:** Schema validation, constraint scoring, conflict resolution, feedback loop.
+
 ---
 
-## Core Workflow
+## Core Workflow (Enhanced)
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    ORCHESTRATOR WORKFLOW                        │
-├─────────────────────────────────────────────────────────┤
+┌─────────────────────────────────────────────────────────────────┐
+│                    ORCHESTRATOR v2.0 WORKFLOW                     │
+├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │  1. RECEIVE          Raw prompt from user                       │
 │       ↓              "Create a modern dashboard"                │
@@ -26,16 +28,21 @@ Transform generic UI prompts into unique, anti-trend specifications by detecting
 │                                                                 │
 │  4. SELECT           Load constraints.json                       │
 │       ↓              → Choose 2-4 creative constraints          │
-│                      → Ensure compatibility                     │
-│                      → Balance difficulty                      │
+│                      → NEW: Score constraints                   │
+│                      → NEW: Resolve conflicts                   │
+│                      → NEW: Balance difficulty                  │
 │                                                                 │
-│  5. ENRICH           Transform prompt                           │
-│       ↓              → Add specific guidance                  │
+│  5. VALIDATE         NEW: Validate spec against schema          │
+│       ↓              → JSON Schema validation                   │
+│                      → Consistency checks                       │
+│                                                                 │
+│  6. ENRICH           Transform prompt                           │
+│       ↓              → Add specific guidance                    │
 │                      → Include anti-pattern warnings            │
 │                      → Suggest alternatives                     │
 │                                                                 │
-│  6. DELEGATE         Call implementer with enriched spec          │
-└─────────────────────────────────────────────────────────┘
+│  7. DELEGATE         Call implementer with validated spec        │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -58,11 +65,12 @@ ${current_time}
 ## Context
 - Previous builds: ${previous_count}
 - User preferences: ${stored_preferences}
+- Feedback history: ${feedback_loop_results}
 ```
 
 ---
 
-## Step 2: Prompt Analysis
+## Step 2: Prompt Analysis (Enhanced)
 
 Scan prompt for keywords that indicate trend-following.
 
@@ -70,66 +78,57 @@ Scan prompt for keywords that indicate trend-following.
 
 **High-Risk (strong anti-pattern trigger):**
 ```
-modern, trendy, sleek, futuristic, stunning, beautiful, 
+modern, trendy, sleek, futuristic, stunning, beautiful,
 minimal but impactful, cutting-edge, next-gen, innovative
 ```
 
 **Medium-Risk (moderate detection):**
 ```
-clean, professional, elegant, smooth, polished, 
+clean, professional, elegant, smooth, polished,
 refined, sophisticated, premium, high-end, bespoke
 ```
 
 **Context-Dependent (analyzed in context):**
 ```
-simple, minimalist, bold, unique, creative, dynamic, modern
+simple, minimalist, bold, unique, creative, dynamic
 ```
 
-### Analysis Output
+### Enhanced Analysis Output
 
 ```markdown
 ## Prompt Analysis
 
 ### Detected Keywords
-- HIGH: "modern" (position: 8)
-- MEDIUM: "clean" (position: 23)
+- HIGH: "modern" (position: 8, weight: 0.9)
+- MEDIUM: "clean" (position: 23, weight: 0.6)
 
 ### Risk Assessment
 - Trend-trap score: 7/10
 - Pattern convergence risk: HIGH
 - Recommendation: APPLY STRONG CONSTRAINTS
+- Confidence: 85%
 
 ### Project Type Detection
 - Type: Dashboard
 - Industry: Analytics/SaaS
 - Typical patterns: Cards, charts, dark theme
+- Constraint suggestions: architectural, print_first
 ```
 
 ---
 
-## Step 3: Anti-Pattern Detection
+## Step 3: Anti-Pattern Detection (Enhanced)
 
 Load `anti-patterns.json` (lazy-loaded by category) and match against prompt/project type.
 
 ### Pattern Categories to Check
 
-1. **UI Effects**
-   - `particle_canvas`, `glitch_text`, `scanlines`, `custom_cursor`, `gradient_mesh`, `blob_morphing`
-
-2. **Colors**
-   - `neon_pink_blue`, `gradient_trendy`, `dark_mode_default`, `pastel_everything`
-
-3. **Layouts**
-   - `hero_generic`, `card_grid`, `bento_boxes`, `fullscreen_sections`, `sticky_everything`
-
-4. **Interactions**
-   - `parallax`, `scroll_reveal`, `scroll_hijacking`, `hover_effects_classic`, `loading_animations`
-
-5. **Typography**
-   - `distortion_acid`, `brutalism_helvetica`, `variable_font_tricks`, `giant_headlines`, `gradient_text`
-
-6. **Components**
-   - `glassmorphism_cards`, `neumorphism_buttons`, `floating_labels`, `rounded_everything`, `icon_overload`
+1. **UI Effects** - particles, glitch, scanlines, custom cursor, gradient mesh, blob morphing
+2. **Colors** - neon pink-blue, gradient trendy, dark mode default, pastel everything
+3. **Layouts** - hero generic, card grid, bento boxes, fullscreen sections, sticky everything
+4. **Interactions** - parallax, scroll reveal, scroll hijacking, loading animations
+5. **Typography** - acid distortion, brutalism helvetica, variable font tricks, giant headlines
+6. **Components** - glassmorphism cards, neumorphism buttons, floating labels, rounded everything
 
 ### Lazy Loading Implementation
 
@@ -145,32 +144,6 @@ const antiPatternsDB = {
 // Startup time improvement: 200ms → 25ms (category lazy load)
 ```
 
-This prevents loading the full 12KB database on every command, keeping startup fast.
-
-### Detection Logic
-
-```javascript
-function detectAntiPatterns(prompt, projectType) {
-  const detected = [];
-  
-  // Direct keyword matching
-  for (const [category, patterns] of Object.entries(antiPatternsDB.categories)) {
-    for (const pattern of patterns.patterns) {
-      if (isLikelyToUse(prompt, projectType, pattern)) {
-        detected.push({
-          pattern: pattern.name,
-          category: category,
-          severity: pattern.severity,
-          reason: pattern.why_avoid
-        });
-      }
-    }
-  }
-  
-  return { patterns: detected, warnings: combos };
-}
-```
-
 ### Detection Output
 
 ```markdown
@@ -179,9 +152,11 @@ function detectAntiPatterns(prompt, projectType) {
 ### Likely to Use (AVOID THESE)
 1. **card_grid** (layouts) - SEVERITY: medium
    - Why: "Every dashboard does this. Information gets lost in visual sameness."
-   
+   - Confidence: 75%
+
 2. **glassmorphism_cards** (components) - SEVERITY: high
    - Why: "Every component library has this. No longer distinctive."
+   - Confidence: 60%
 
 ### Combination Warning
 ⚠️ "card_grid + glassmorphism_cards" - This combo was peak 2022. Consider a different direction.
@@ -190,29 +165,46 @@ function detectAntiPatterns(prompt, projectType) {
 ```json
 ["card_grid", "glassmorphism_cards", "dark_mode_default", "parallax", "gradient_trendy"]
 ```
+```
 
 ---
 
-## Step 4: Constraint Selection
+## Step 4: Constraint Selection (New Scoring System)
 
 Load `constraints.json` (lazy-loaded by category) and select 2-4 creative constraints.
 
-### Selection Algorithm
+### Constraint Scoring System
+
+Each constraint now has a `score` attribute (0-100) based on:
+
+```javascript
+constraintScore = {
+  creativity: 0-30,      // How unusual is this?
+  difficulty: 0-25,      // How hard to implement?
+  impact: 0-25,          // How much does it change the result?
+  synergy: 0-20         // How well does it work with other constraints?
+}
+```
+
+### Selection Algorithm (Enhanced)
 
 1. **Always include one from:**
    - `color_restrictions` OR `technical_constraints`
 
-2. **Consider based on project type:**
-   - Dashboard → `interaction_sources.architecture`
-   - Portfolio → `technical_constraints.ascii_art`
-   - E-commerce → `context_shifts.one_hand_mobile`
-
-3. **Check compatibility:**
-   - No conflicting constraints
+2. **Score-based selection:**
+   - Prioritize high-creativity constraints
    - Balance difficulty (not all high)
+   - Maximize synergy between selected
 
-4. **Surprise factor:**
-   - Include at least one unexpected constraint
+3. **Conflict resolution:**
+   - Check `selection_logic.avoid_combinations`
+   - Resolve conflicts using `constraint_priority`
+   - Document resolution in output
+
+4. **Difficulty ramp:**
+   - First constraint: easy (build confidence)
+   - Second constraint: medium (stretch)
+   - Third constraint: hard (push creativity)
 
 ### Selection Output
 
@@ -223,32 +215,73 @@ Load `constraints.json` (lazy-loaded by category) and select 2-4 creative constr
 
 1. **paper_and_ink** (color_restrictions)
    - Description: Off-white background, dark text, minimal accent
-   - Difficulty: LOW
-   - Impact: Focuses attention on content
-   - Synergy: Works well with print_friendly
+   - Difficulty: LOW (score: 35)
+   - Creativity: 15/30
+   - Impact: 18/25
+   - Synergy: Works well with print_friendly (+12)
 
 2. **architecture** (interaction_sources)
    - Description: Interactions inspired by physical buildings and spaces
-   - Difficulty: HIGH
-   - Impact: Creates spatial, grounded interactions
-   - Synergy: Works well with print_friendly
+   - Difficulty: HIGH (score: 78)
+   - Creativity: 27/30
+   - Impact: 23/25
+   - Synergy: Works well with print_friendly (+8)
 
 3. **print_first** (technical_constraints)
    - Description: Design for print, then adapt for screen
-   - Difficulty: HIGH
-   - Impact: Creates content-focused, portable designs
-   - Synergy: Works well with paper_and_ink
+   - Difficulty: HIGH (score: 72)
+   - Creativity: 22/30
+   - Impact: 20/25
+   - Synergy: Works well with paper_and_ink (+15)
 
 ### Constraint Compatibility
 ✅ All constraints compatible
-✅ Difficulty balance: 1 LOW, 1 HIGH, 1 HIGH
+✅ Difficulty balance: 1 LOW, 2 HIGH
 ✅ Category coverage: 3/5 categories represented
+✅ Total synergy score: 35/60
 ✅ No conflicting constraints
+
+### Conflicts Resolved
+None detected.
 ```
 
 ---
 
-## Step 5: Prompt Enrichment
+## Step 5: Schema Validation (NEW)
+
+Validate the enriched specification against JSON Schema before delegating.
+
+### Schema Validation
+
+```javascript
+import specSchema from './schemas/spec.schema.json';
+
+function validateSpec(enrichedSpec) {
+  const validation = validateAgainstSchema(enrichedSpec, specSchema);
+
+  if (!validation.valid) {
+    throw new SpecValidationError({
+      errors: validation.errors,
+      spec: enrichedSpec
+    });
+  }
+
+  return validation.validated;
+}
+```
+
+### Validation Checks
+
+- [ ] All required fields present
+- [ ] Data types match schema
+- [ ] Enum values valid
+- [ ] Numeric ranges within bounds
+- [ ] Arrays not empty where required
+- [ ] No circular references
+
+---
+
+## Step 6: Prompt Enrichment
 
 Transform original prompt into a detailed, anti-trend specification.
 
@@ -261,107 +294,14 @@ Transform original prompt into a detailed, anti-trend specification.
 > "${original_prompt}"
 
 ## Detected Anti-Patterns (AVOID)
-- ❌ [Pattern 1]
-- ❌ [Pattern 2]
-- ❌ [Pattern 3]
+- ❌ [Pattern 1] - [why_avoid]
+- ❌ [Pattern 2] - [why_avoid]
+- ❌ [Pattern 3] - [why_avoid]
 
 ## Applied Constraints
-- ✅ [Constraint 1]
-- ✅ [Constraint 2]
-- ✅ [Constraint 3]
-
-## Enriched Brief
-Create ${project_type} that:
-- [Specific guidance 1]
-- [Specific guidance 2]
-- [Specific guidance 3]
-
-## Suggested Alternatives
-${for each blacklisted pattern:}
-### Instead of ${pattern.name}
-- Try: ${alternative_1}
-- Or: ${alternative_2}
-- Consider: ${alternative_3}
-```
-
----
-
-## Step 4: Constraint Selection
-
-Load `constraints.json` (lazy-loaded by category) and select 2-4 creative constraints.
-
-### Selection Algorithm
-
-1. **Always include one from:**
-   - `color_restrictions` OR `technical_constraints`
-
-2. **Consider based on project type:**
-   - Dashboard → `interaction_sources.architecture`
-   - Portfolio → `technical_constraints.ascii_art`
-   - E-commerce → `context_shifts.one_handed_mobile`
-
-3. **Check compatibility:**
-   - No conflicting constraints
-   - Balance difficulty (not all high)
-
-4. **Surprise factor:**
-   - Include at least one unexpected constraint
-
-### Selection Output
-
-```markdown
-## Constraint Selection
-
-### Selected Constraints (3)
-
-1. **paper_and_ink** (color_restrictions)
-   - Description: Off-white background, dark text, minimal accent
-   - Difficulty: LOW
-   - Impact: Focuses attention on content
-   - Synergy: Works well with print_friendly
-
-2. **architecture** (interaction_sources)
-   - Description: Interactions inspired by physical buildings and spaces
-   - Difficulty: HIGH
-   - Impact: Creates spatial, grounded interactions
-   - Synergy: Works well with paper_and_ink
-
-3. **print_first** (technical_constraints)
-   - Description: Design for print, then adapt for screen
-   - Difficulty: HIGH
-   - Impact: Creates content-focused, portable designs
-   - Synergy: Works well with paper_and_ink
-
-### Constraint Compatibility
-✅ All constraints compatible
-✅ Difficulty balance: 1 LOW, 1 HIGH, 1 HIGH
-✅ Category coverage: 3/5 categories represented
-✅ No conflicting constraints
-```
-
----
-
-## Step 5: Prompt Enrichment
-
-Transform original prompt into a detailed, anti-trend specification.
-
-### Enrichment Template
-
-```markdown
-# Enriched UI Specification
-
-## Original Intent
-> "${original_prompt}"
-
-## Detected Anti-Patterns (AVOID)
-- ❌ [Pattern 1]
-- ❌ [Pattern 2]
-- ❌ [Pattern 3]
-
-## Applied Constraints
-- ✅ [Constraint 1]
-- ✅ [Constraint 2]
-- ✅ [Constraint 3]
+- ✅ [Constraint 1] - [difficulty, score]
+- ✅ [Constraint 2] - [difficulty, score]
+- ✅ [Constraint 3] - [difficulty, score]
 
 ## Enriched Brief
 Create ${project_type} that:
@@ -380,7 +320,7 @@ ${for each blacklisted pattern:}
 
 ---
 
-## Step 6: Delegation to Implementer
+## Step 7: Delegation to Implementer
 
 The enriched specification is passed to `/build` with:
 
@@ -388,6 +328,9 @@ The enriched specification is passed to `/build` with:
 - Selected constraint set
 - Enriched prompt with specific guidance
 - Suggested alternatives for each anti-pattern
+- **NEW:** Validation status
+- **NEW:** Confidence scores
+- **NEW:** Feedback loop reference
 
 ### Delegation Call
 
@@ -395,24 +338,43 @@ The enriched specification is passed to `/build` with:
 /build --from-spec="${enriched_spec}" --anti-patterns="${blacklist}" --constraints="${selected}"
 ```
 
-The implementer receives:
-- The original prompt
-- Enriched specification
-- Anti-pattern blacklist (what to avoid)
-- Constraint requirements (what to include)
-- Template selection (react-tailwind or vanilla)
+---
+
+## Feedback Loop (NEW)
+
+After implementer completes, orchestrator receives metrics:
+
+```javascript
+{
+  buildSuccess: boolean,
+  constraintCompliance: number,
+  antiPatternViolations: string[],
+  userFeedback?: string
+}
+```
+
+This feedback is used to:
+1. Adjust constraint selection algorithm
+2. Identify patterns that need better alternatives
+3. Improve conflict resolution
+4. Update constraint scores
 
 ---
 
-## Options
+## Options (Enhanced)
 
 | Flag | Description |
 |------|-------------|
 | `--analyze` | Only analyze prompt, show detected patterns, don't build |
 | `--constraints` | Show which constraints would be selected, don't build |
 | `--full` | Run complete workflow with verbose output |
-| `--stack=<react|vanilla>` | Force specific tech stack for implementation |
+| `--stack=<react\|vanilla>` | Force specific tech stack for implementation |
 | `--strict` | Reject prompt if too many anti-patterns detected |
+| `--score` | Show constraint scoring details (NEW) |
+| `--validate` | Run schema validation only, don't build (NEW) |
+| `--feedback=<id>` | Include previous feedback in selection (NEW) |
+
+---
 
 ## Examples
 
@@ -428,35 +390,17 @@ The implementer receives:
 - ⚠️ "Charts" suggests generic data viz
 
 **Constraints Applied:**
-1. **Monochrome**: Black, white, one gray only
-2. **Architectural**: Room-based navigation
-3. **Print First**: Must be readable when printed
+1. **Monochrome** (easy, score: 28)
+2. **Architectural** (hard, score: 82, high creativity)
+3. **Print First** (hard, score: 75)
 
 **Result:** A dashboard that uses white space as architecture, numbers as typography, and feels like a well-designed annual report rather than another SaaS tool.
-
-### Example 2: Portfolio Request
-
-```bash
-/ui "Sleek portfolio for a creative developer"
-```
-
-**Analysis:**
-- 🚨 "Sleek" is high-risk trend bait
-- ⚠️ "Portfolio" suggests parallax galleries
-- ⚠️ "Creative developer" suggests glitch effects
-
-**Constraints Applied:**
-1. **ASCII Art**: Use only text characters
-2. **System Fonts**: No web fonts
-3. **Single File**: Everything in one HTML
-
-**Result:** A portfolio that looks like a beautifully formatted README, loads instantly, and actually showcases code thinking rather than hiding behind flashy effects.
 
 ---
 
 ## Configuration
 
-Settings in `.smiteUI/config.json`:
+Settings in `.claude/.smiteUI/config.json`:
 
 ```json
 {
@@ -466,7 +410,14 @@ Settings in `.smiteUI/config.json`:
     "strict_mode": false,
     "always_include": ["color_restrictions"],
     "prefer_categories": ["technical_constraints"],
-    "anti_pattern_severity_threshold": "medium"
+    "anti_pattern_severity_threshold": "medium",
+    "scoring_weights": {
+      "creativity": 0.3,
+      "difficulty": 0.25,
+      "impact": 0.25,
+      "synergy": 0.2
+    },
+    "feedback_learning": true
   }
 }
 ```
@@ -475,30 +426,15 @@ Settings in `.smiteUI/config.json`:
 
 ## Output
 
-The orchestrator creates in `.smiteUI/`:
+The orchestrator creates in `.claude/.smiteUI/`:
 
 | File | Purpose |
 |------|---------|
-| `.smiteUI/analysis.md` | Prompt analysis and detected patterns |
-| `.smiteUI/constraints.md` | Selected constraints with rationale |
-| `.smiteUI/enriched-spec.md` | Full brief for implementer |
-| `.smiteUI/anti-patterns.md` | Blacklist for implementer |
-
----
-
-## Lazy Pattern Loading
-
-For performance, anti-patterns are loaded lazily by category:
-
-```javascript
-const antiPatternsDB = {
-  ui_effects: await loadCategory('ui-effects.json'),
-  colors: await loadCategory('colors.json'),
-  // ... loaded only when needed
-}
-```
-
-This prevents loading full 12KB database on every command, keeping startup fast.
+| `.claude/.smiteUI/analysis.md` | Prompt analysis and detected patterns |
+| `.claude/.smiteUI/constraints.md` | Selected constraints with scores and rationale |
+| `.claude/.smiteUI/enriched-spec.json` | **NEW:** Validated JSON specification |
+| `.claude/.smiteUI/enriched-spec.md` | Full brief for implementer (readable) |
+| `.claude/.smiteUI/anti-patterns.md` | Blacklist for implementer |
 
 ---
 
@@ -509,7 +445,37 @@ This prevents loading full 12KB database on every command, keeping startup fast.
 3. **Trust the process** - The weird ideas often become the best ideas
 4. **Iterate** - If the first result isn't right, run again with different constraints
 5. **Learn from it** - Each constraint teaches you something about design
+6. **Provide feedback** - The system learns from what works and what doesn't
 
 ---
 
-*Orchestrator v1.1.0 - Break patterns, create unexpected*
+## Technical Notes
+
+### Schema Validation
+
+All specs are validated against `schemas/spec.schema.json`:
+- Enables autocomplete and validation
+- Catches errors before delegation
+- Provides clear error messages
+
+### Lazy Pattern Loading
+
+For performance, anti-patterns are loaded lazily by category:
+```javascript
+const antiPatternsDB = {
+  ui_effects: await loadCategory('ui-effects.json'),
+  colors: await loadCategory('colors.json'),
+  // ... loaded only when needed
+}
+```
+
+### Feedback Loop
+
+Build results feed back into constraint selection:
+- High compliance → increase constraint score
+- Violations → suggest different alternatives
+- User feedback → adjust weights
+
+---
+
+*Orchestrator v2.0 - Break patterns, create unexpected, learn from results*

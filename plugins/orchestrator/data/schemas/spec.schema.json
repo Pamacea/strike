@@ -1,0 +1,158 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://smiteui.dev/schemas/spec.schema.json",
+  "title": "SmiteUI Enriched Specification",
+  "description": "Schema for enriched UI specification passed from orchestrator to implementer",
+  "type": "object",
+  "required": ["version", "original_prompt", "analysis", "anti_patterns", "constraints", "enriched_brief", "metadata"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Specification format version"
+    },
+    "original_prompt": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The user's original request"
+    },
+    "analysis": {
+      "type": "object",
+      "required": ["risk_score", "detected_keywords", "project_type"],
+      "properties": {
+        "risk_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Trend-trap risk score (0-10)"
+        },
+        "detected_keywords": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["keyword", "level", "position"],
+            "properties": {
+              "keyword": { "type": "string" },
+              "level": { "enum": ["high", "medium", "context"] },
+              "position": { "type": "integer" }
+            }
+          }
+        },
+        "project_type": {
+          "type": "string",
+          "enum": ["dashboard", "landing", "portfolio", "ecommerce", "blog", "app", "other"]
+        }
+      }
+    },
+    "anti_patterns": {
+      "type": "object",
+      "required": ["blacklist", "combinations", "suggested_alternatives"],
+      "properties": {
+        "blacklist": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of anti-pattern IDs to avoid"
+        },
+        "combinations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["patterns", "warning"],
+            "properties": {
+              "patterns": { "type": "array", "items": { "type": "string" } },
+              "warning": { "type": "string" }
+            }
+          }
+        },
+        "suggested_alternatives": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "required": ["selected", "compatibility_check", "difficulty_balance"],
+      "properties": {
+        "selected": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "category", "difficulty", "description"],
+            "properties": {
+              "name": { "type": "string" },
+              "category": {
+                "enum": ["color_restrictions", "interaction_sources", "technical_constraints", "context_shifts", "structural_constraints"]
+              },
+              "difficulty": { "enum": ["easy", "medium", "hard"] },
+              "description": { "type": "string" }
+            }
+          }
+        },
+        "compatibility_check": {
+          "type": "object",
+          "required": ["all_compatible", "conflicts"],
+          "properties": {
+            "all_compatible": { "type": "boolean" },
+            "conflicts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["constraint1", "constraint2", "resolution"],
+                "properties": {
+                  "constraint1": { "type": "string" },
+                  "constraint2": { "type": "string" },
+                  "resolution": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "difficulty_balance": {
+          "type": "object",
+          "required": ["easy", "medium", "hard", "total_score"],
+          "properties": {
+            "easy": { "type": "integer" },
+            "medium": { "type": "integer" },
+            "hard": { "type": "integer" },
+            "total_score": { "type": "number" }
+          }
+        }
+      }
+    },
+    "enriched_brief": {
+      "type": "object",
+      "required": ["core_directive", "color_guidance", "layout_guidance", "interaction_guidance", "technical_requirements"],
+      "properties": {
+        "core_directive": { "type": "string" },
+        "color_guidance": { "type": "string" },
+        "layout_guidance": { "type": "string" },
+        "interaction_guidance": { "type": "string" },
+        "technical_requirements": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["timestamp", "orchestrator_version", "config"],
+      "properties": {
+        "timestamp": { "type": "string", "format": "date-time" },
+        "orchestrator_version": { "type": "string" },
+        "config": {
+          "type": "object",
+          "properties": {
+            "min_constraints": { "type": "integer" },
+            "max_constraints": { "type": "integer" },
+            "strict_mode": { "type": "boolean" },
+            "stack": { "enum": ["react-tailwind", "vanilla", "auto"] }
+          }
+        }
+      }
+    }
+  }
+}

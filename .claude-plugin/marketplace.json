@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "smiteUI",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Anti-trend UI generation with contextual orchestration - Break the patterns, create the unexpected",
   "owner": {
     "name": "Pamacea",
@@ -15,12 +15,12 @@
     {
       "name": "orchestrator",
       "source": "./plugins/orchestrator",
-      "description": "Contextual orchestration agent - Analyzes prompts, applies anti-patterns, generates creative constraints",
-      "version": "1.0.0",
+      "description": "Contextual orchestration agent - Analyzes prompts, applies anti-patterns, generates creative constraints with schema validation and scoring",
+      "version": "2.0.0",
       "author": { "name": "Pamacea" },
       "category": "orchestration",
-      "tags": ["orchestration", "anti-patterns", "creative-constraints", "prompt-enrichment"],
-      "keywords": ["ui", "orchestrator", "anti-patterns", "constraints", "creative"],
+      "tags": ["orchestration", "anti-patterns", "creative-constraints", "prompt-enrichment", "schema-validation", "scoring"],
+      "keywords": ["ui", "orchestrator", "anti-patterns", "constraints", "creative", "v2"],
       "homepage": "https://github.com/Pamacea/smiteUI/tree/main/plugins/orchestrator",
       "repository": "https://github.com/Pamacea/smiteUI",
       "license": "MIT"
@@ -28,12 +28,12 @@
     {
       "name": "implementer",
       "source": "./plugins/implementer",
-      "description": "UI implementation agent - Builds unique interfaces from enriched prompts with anti-pattern validation",
-      "version": "1.0.0",
+      "description": "UI implementation agent - Builds unique interfaces from enriched prompts with anti-pattern validation, component registry, accessibility-first",
+      "version": "2.0.0",
       "author": { "name": "Pamacea" },
       "category": "implementation",
-      "tags": ["implementation", "react", "vanilla", "tailwind", "ui-builder"],
-      "keywords": ["ui", "builder", "react", "tailwind", "vanilla", "implementation"],
+      "tags": ["implementation", "react", "vanilla", "tailwind", "ui-builder", "a11y", "metrics"],
+      "keywords": ["ui", "builder", "react", "tailwind", "vanilla", "implementation", "v2"],
       "homepage": "https://github.com/Pamacea/smiteUI/tree/main/plugins/implementer",
       "repository": "https://github.com/Pamacea/smiteUI",
       "license": "MIT"

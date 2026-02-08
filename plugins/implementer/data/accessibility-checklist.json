@@ -1,0 +1,249 @@
+{
+  "$schema": "./schemas/a11y.schema.json",
+  "version": "2.0.0",
+  "description": "Accessibility checklist for smiteUI implementer validation",
+
+  "checklist": {
+    "semantic_structure": {
+      "name": "Semantic HTML Structure",
+      "priority": "critical",
+      "checks": [
+        {
+          "id": "semantic_heading",
+          "description": "Use proper heading hierarchy (h1-h6)",
+          "test": "Exactly one h1, headings in order, no skipped levels",
+          "wcag_reference": "1.3.1"
+        },
+        {
+          "id": "semantic_landmarks",
+          "description": "Use landmark elements (nav, main, article, section, aside, footer)",
+          "test": "Page has identifiable regions",
+          "wcag_reference": "1.3.1"
+        },
+        {
+          "id": "semantic_lists",
+          "description": "Use proper list elements (ul, ol, dl)",
+          "test": "Lists of items use list markup, not divs",
+          "wcag_reference": "1.3.1"
+        },
+        {
+          "id": "semantic_buttons",
+          "description": "Use button for actions, anchor for navigation",
+          "test": "Buttons are <button>, links are <a> with href",
+          "wcag_reference": "1.3.1"
+        }
+      ]
+    },
+    "keyboard_navigation": {
+      "name": "Keyboard Accessibility",
+      "priority": "critical",
+      "checks": [
+        {
+          "id": "tab_order",
+          "description": "Logical tab order",
+          "test": "Tab follows visual order, all interactive focusable",
+          "wcag_reference": "2.4.3"
+        },
+        {
+          "id": "focus_visible",
+          "description": "Visible focus indicator",
+          "test": "Focus state clearly visible (not just color change)",
+          "wcag_reference": "2.4.7"
+        },
+        {
+          "id": "keyboard_traps",
+          "description": "No keyboard traps",
+          "test": "User can tab in and out of all areas",
+          "wcag_reference": "2.1.2"
+        },
+        {
+          "id": "shortcuts",
+          "description": "Keyboard shortcuts documented",
+          "test": "Custom shortcuts documented and can be disabled",
+          "wcag_reference": "2.1.4"
+        }
+      ]
+    },
+    "aria_attributes": {
+      "name": "ARIA Attributes",
+      "priority": "high",
+      "checks": [
+        {
+          "id": "aria_labels",
+          "description": "Proper aria-labels on interactive elements",
+          "test": "Icon buttons have aria-label, landmark labels meaningful",
+          "wcag_reference": "2.4.6"
+        },
+        {
+          "id": "aria_live",
+          "description": "Live regions for dynamic content",
+          "test": "Status updates use aria-live or role='status'",
+          "wcag_reference": "4.1.3"
+        },
+        {
+          "id": "aria_hidden",
+          "description": "Proper use of aria-hidden",
+          "test": "Not used on focusable content, only decorative",
+          "wcag_reference": "4.1.2"
+        },
+        {
+          "id": "aria_expanded",
+          "description": "Expanded state on toggle elements",
+          "test": "Collapsible content has aria-expanded",
+          "wcag_reference": "4.1.2"
+        }
+      ]
+    },
+    "color_contrast": {
+      "name": "Color and Contrast",
+      "priority": "critical",
+      "checks": [
+        {
+          "id": "contrast_normal",
+          "description": "Normal text contrast (WCAG AA: 4.5:1)",
+          "test": "Body text meets 4.5:1 contrast ratio",
+          "wcag_reference": "1.4.3"
+        },
+        {
+          "id": "contrast_large",
+          "description": "Large text contrast (WCAG AA: 3:1)",
+          "test": "Text 18pt+ or 14pt bold meets 3:1",
+          "wcag_reference": "1.4.3"
+        },
+        {
+          "id": "contrast_ui",
+          "description": "UI component contrast (WCAG AA: 3:1)",
+          "test": "Borders, focus indicators meet 3:1",
+          "wcag_reference": "1.4.11"
+        },
+        {
+          "id": "not_color_only",
+          "description": "Don't rely on color alone",
+          "test": "Info conveyed with color also has non-color indicator",
+          "wcag_reference": "1.4.1"
+        }
+      ]
+    },
+    "images_media": {
+      "name": "Images and Media",
+      "priority": "high",
+      "checks": [
+        {
+          "id": "alt_text",
+          "description": "Meaningful alt text for images",
+          "test": "Informative images have alt, decorative alt=''",
+          "wcag_reference": "1.1.1"
+        },
+        {
+          "id": "alt_not_filename",
+          "description": "Alt text is descriptive, not filename",
+          "test": "Alt describes content/purpose, not 'image.jpg'",
+          "wcag_reference": "1.1.1"
+        },
+        {
+          "id": "media_controls",
+          "description": "Media has accessible controls",
+          "test": "Audio/video has controls, not autoplay",
+          "wcag_reference": "1.4.2"
+        }
+      ]
+    },
+    "forms": {
+      "name": "Form Accessibility",
+      "priority": "critical",
+      "checks": [
+        {
+          "id": "labels_associated",
+          "description": "Labels properly associated with inputs",
+          "test": "Each input has matching label via for/id",
+          "wcag_reference": "1.3.1"
+        },
+        {
+          "id": "required_indicated",
+          "description": "Required fields programmatically indicated",
+          "test": "Required attribute, not just visual asterisk",
+          "wcag_reference": "3.3.2"
+        },
+        {
+          "id": "errors_announced",
+          "description": "Errors announced to screen readers",
+          "test": "Error summary with aria-live, inline errors in aria-describedby",
+          "wcag_reference": "3.3.1"
+        },
+        {
+          "id": "instructions_available",
+          "description": "Form instructions available",
+          "test": "Format, constraints explained before input",
+          "wcag_reference": "3.3.2"
+        }
+      ]
+    },
+    "motion": {
+      "name": "Motion and Animation",
+      "priority": "medium",
+      "checks": [
+        {
+          "id": "prefers_reduced_motion",
+          "description": "Respects prefers-reduced-motion",
+          "test": "Animations respect user's motion preference",
+          "wcag_reference": "2.3.3"
+        },
+        {
+          "id": "no_flashing",
+          "description": "No flashing content",
+          "test": "Nothing flashes more than 3 times/second",
+          "wcag_reference": "2.3.1"
+        }
+      ]
+    },
+    "screen_reader": {
+      "name": "Screen Reader Experience",
+      "priority": "high",
+      "checks": [
+        {
+          "id": "content_order",
+          "description": "Content order makes sense when read",
+          "test": "Reading order matches visual order",
+          "wcag_reference": "1.3.2"
+        },
+        {
+          "id": "hidden_visual",
+          "description": "Screen reader only content available",
+          "test": "sr-only class used for visual-hidden content",
+          "wcag_reference": "1.3.1"
+        },
+        {
+          "id": "page_title",
+          "description": "Descriptive page title",
+          "test": "Each page has unique, descriptive title",
+          "wcag_reference": "2.4.2"
+        }
+      ]
+    }
+  },
+
+  "constraint_specific_overrides": {
+    "screen_reader_first": {
+      "priority_override": "all_critical",
+      "additional_checks": [
+        "Test with actual screen reader (NVDA/VoiceOver)",
+        "Verify all interactions work without mouse",
+        "Confirm visual content is appropriately described"
+      ]
+    },
+    "print_first": {
+      "additional_checks": [
+        "No hover-dependent information",
+        "All content available without interaction",
+        "Print styles hide unnecessary UI elements"
+      ]
+    },
+    "css_only": {
+      "additional_checks": [
+        "All functionality works without JavaScript",
+        "Form submissions use native browser behavior",
+        "State changes use CSS :checked or :focus"
+      ]
+    }
+  }
+}

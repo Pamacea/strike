@@ -1,8 +1,10 @@
-# smiteUI
+# smiteUI v2.0
 
 > **Anti-trend UI generation with contextual orchestration**
 
 Break patterns. Create unique. Build thoughtful interfaces.
+
+---
 
 ## What is smiteUI?
 
@@ -10,6 +12,10 @@ smiteUI is a creative constraint system for Claude Code that prevents generic UI
 
 1. **Orchestrator** — Analyzes your prompt, detects anti-patterns, applies creative constraints
 2. **Implementer** — Builds the UI from the enriched specification
+
+**New in v2.0:** Schema validation, constraint scoring, component registry, accessibility-first, build metrics.
+
+---
 
 ## Why This Exists
 
@@ -19,6 +25,8 @@ When everything looks the same, nothing stands out.
 
 The orchestrator is a guard against the obvious. It doesn't just build what you ask — it builds what you **should have asked for if you wanted something unique.**
 
+---
+
 ## Features
 
 ### Orchestrator (`/ui`)
@@ -27,6 +35,9 @@ The orchestrator is a guard against the obvious. It doesn't just build what you 
 - **Creative constraints** — 25+ constraint types (monochrome, ASCII, print-first...)
 - **Context-aware selection** — Constraints that fit the project, not random
 - **Prompt enrichment** — Transforms generic requests into specific briefs
+- **NEW: Schema validation** — JSON Schema validation for specifications
+- **NEW: Constraint scoring** — Creativity, difficulty, impact, synergy scores
+- **NEW: Feedback loop** — Learns from previous builds
 
 ### Implementer (`/build`)
 
@@ -34,6 +45,77 @@ The orchestrator is a guard against the obvious. It doesn't just build what you 
 - **Anti-pattern validation** — Checks implementation against blacklist
 - **Constraint compliance** — Ensures all creative boundaries are respected
 - **Template-driven** — Consistent structure, clean output
+- **NEW: Component registry** — Validated components with alternatives
+- **NEW: Build metrics** — Bundle size, compliance scores, timing
+- **NEW: Accessibility-first** — WCAG compliance, semantic HTML, keyboard navigation
+
+---
+
+## What's New in v2.0
+
+| Feature | Description |
+|---------|-------------|
+| **Schema Validation** | JSON schemas for specs and build results |
+| **Constraint Scoring** | Creativity, difficulty, impact, synergy (0-100) |
+| **Conflict Resolution** | Automatic resolution of conflicting constraints |
+| **Component Registry** | Validated components with anti-pattern alternatives |
+| **Accessibility Checklist** | 30+ checks across 8 categories |
+| **Build Metrics** | Time, bundle size, compliance, validation scores |
+| **Feedback Loop** | System learns from previous builds |
+| **New Flags** | `--score`, `--validate`, `--feedback=<id>` |
+
+---
+
+## Usage
+
+### In Claude Code
+
+```bash
+# Full UI generation
+/ui "Create a modern dashboard"
+
+# Just analyze prompt
+/ui --analyze "Sleek portfolio"
+
+# Show constraints to apply
+/ui --constraints "Product page"
+
+# Show constraint scoring details (NEW)
+/ui --score "Minimal blog layout"
+
+# Validate spec only (NEW)
+/ui --validate "Portfolio site"
+
+# Include previous feedback (NEW)
+/ui --feedback=build-123 "Redesign my dashboard"
+
+# Build from enriched spec
+/build
+```
+
+---
+
+## Output Files
+
+After `/ui` runs, it creates in `.claude/.smiteUI/`:
+
+| File | Content |
+|------|---------|
+| `analysis.md` | Prompt risk assessment |
+| `anti-patterns.md` | Detected patterns to avoid |
+| `constraints.md` | Selected constraints with scores |
+| `enriched-spec.md` | Full brief for implementer |
+| `enriched-spec.json` | Validated JSON specification (NEW) |
+
+After `/build` runs, it creates:
+
+| Path | Stack | Content |
+|------|-------|---------|
+| `./output/` | React/Tailwind | Component-based production app |
+| `./output/index.html` | Vanilla | Single-file instant prototype |
+| `./output/build-result.json` | Both | Metrics and validation (NEW) |
+
+---
 
 ## Anti-Patterns Database
 
@@ -50,6 +132,8 @@ Categories with severity levels:
 
 See full database: `plugins/orchestrator/data/anti-patterns.json`
 
+---
+
 ## Constraint Library
 
 Categories with difficulty levels:
@@ -60,44 +144,11 @@ Categories with difficulty levels:
 | Interaction Sources | Architectural, biological, musical, mechanical, textual | Medium-Hard |
 | Technical Constraints | CSS only, system fonts only, no images, single file, no animations, ASCII art | Easy-Hard |
 | Context Shifts | Print first, screen reader first, outdoor visible, slow connection, low energy | Medium-Hard |
+| Structural Constraints | Linear only, no headings, infinite scroll, component isolation, max width extreme | Easy-Hard |
 
 See full library: `plugins/orchestrator/data/constraints.json`
 
-## Usage
-
-### In Claude Code
-
-```bash
-# Full UI generation
-/ui "Create a modern dashboard"
-
-# Just analyze prompt
-/ui --analyze "Sleek portfolio"
-
-# Show constraints to apply
-/ui --constraints "Product page"
-
-# Build from enriched spec
-/build
-```
-
-### Output
-
-After `/ui` runs, it creates in `.smiteUI/`:
-
-| File | Content |
-|------|---------|
-| `analysis.md` | Prompt risk assessment |
-| `anti-patterns.md` | Detected patterns to avoid |
-| `constraints.md` | Selected constraints with rationale |
-| `enriched-spec.md` | Full brief for implementer |
-
-After `/build` runs, it creates:
-
-| Path | Stack | Content |
-|------|-------|---------|
-| `./output/` | React/Tailwind | Component-based production app |
-| `./output/index.html` | Vanilla | Single-file instant prototype |
+---
 
 ## Examples
 
@@ -115,9 +166,9 @@ After `/build` runs, it creates:
 - Hover animations everywhere
 
 **Applied Constraints:**
-- Paper & ink (off-white background, dark text)
-- Architectural (room-based navigation)
-- Print first
+- Paper & ink (off-white background, dark text) — score: 35
+- Architectural (room-based navigation) — score: 78
+- Print first — score: 72
 
 **Result:** A dashboard that uses white space as architecture, numbers as typography, and feels like a well-designed annual report rather than another SaaS tool.
 
@@ -134,12 +185,13 @@ After `/build` runs, it creates:
 - Gradient mesh backgrounds
 
 **Applied Constraints:**
-- ASCII art only
-- System fonts only
-- Single file
-- No images
+- ASCII art only — score: 65
+- System fonts only — score: 22
+- Single file — score: 18
 
 **Result:** A portfolio that looks like a beautifully formatted README, loads instantly, and actually showcases code thinking rather than hiding behind flashy effects.
+
+---
 
 ## Philosophy
 
@@ -151,6 +203,45 @@ Limitations breed creativity. When you can't use gradients, you discover the pow
 
 **The goal:**
 Not to be contrarian for its own sake, but to push past the first obvious solution and find something that actually fits the content, the users, and the context.
+
+---
+
+## Configuration
+
+Settings in `.claude/.smiteUI/config.json`:
+
+```json
+{
+  "orchestrator": {
+    "min_constraints": 2,
+    "max_constraints": 4,
+    "strict_mode": false,
+    "always_include": ["color_restrictions"],
+    "prefer_categories": ["technical_constraints"],
+    "anti_pattern_severity_threshold": "medium",
+    "scoring_weights": {
+      "creativity": 0.3,
+      "difficulty": 0.25,
+      "impact": 0.25,
+      "synergy": 0.2
+    },
+    "feedback_learning": true
+  }
+}
+```
+
+---
+
+## Documentation
+
+- [CLAUDE.md](CLAUDE.md) — Quick reference for users
+- [plugins/orchestrator/README.md](plugins/orchestrator/README.md) — Orchestrator documentation
+- [plugins/implementer/README.md](plugins/implementer/README.md) — Implementer documentation
+- [plugins/orchestrator/data/schemas/](plugins/orchestrator/data/schemas/) — JSON schemas
+- [plugins/implementer/data/component-registry.json](plugins/implementer/data/component-registry.json) — Component registry
+- [plugins/implementer/data/accessibility-checklist.json](plugins/implementer/data/accessibility-checklist.json) — A11y checklist
+
+---
 
 ## Installation
 
@@ -168,28 +259,7 @@ Or manually add to `.claude/plugins/`:
 git clone https://github.com/Pamacea/smiteUI ~/.claude/plugins/smiteUI
 ```
 
-## Configuration
-
-Settings in `.smiteUI/config.json`:
-
-```json
-{
-  "orchestrator": {
-    "min_constraints": 2,
-    "max_constraints": 4,
-    "strict_mode": false,
-    "always_include": ["color_restrictions"],
-    "prefer_categories": ["technical_constraints"],
-    "anti_pattern_severity_threshold": "medium"
-  }
-}
-```
-
-## Documentation
-
-- [CLAUDE.md](CLAUDE.md) — Quick reference for users
-- [plugins/orchestrator/README.md](plugins/orchestrator/README.md) — Orchestrator documentation
-- [plugins/implementer/commands/build.md](plugins/implementer/commands/build.md) — Implementer usage
+---
 
 ## License
 
@@ -197,4 +267,4 @@ MIT — See [LICENSE](LICENSE) for details.
 
 ---
 
-*Version*: 1.0.0 | *Author*: Pamacea | *Repository*: https://github.com/Pamacea/smiteUI
+*Version*: 2.0.0 | *Author*: Pamacea | *Repository*: https://github.com/Pamacea/smiteUI

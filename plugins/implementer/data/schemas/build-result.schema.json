@@ -1,0 +1,139 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://smiteui.dev/schemas/build-result.schema.json",
+  "title": "SmiteUI Build Result",
+  "description": "Schema for build result from implementer with metrics and validation",
+  "type": "object",
+  "required": ["version", "spec_ref", "output", "metrics", "validation", "timestamp"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "spec_ref": {
+      "type": "string",
+      "description": "Reference to the enriched spec used"
+    },
+    "output": {
+      "type": "object",
+      "required": ["stack", "path", "files"],
+      "properties": {
+        "stack": { "enum": ["react-tailwind", "vanilla"] },
+        "path": { "type": "string" },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "type", "size"],
+            "properties": {
+              "path": { "type": "string" },
+              "type": { "enum": ["component", "style", "script", "markup", "config"] },
+              "size": { "type": "integer" }
+            }
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["build_time", "bundle_size", "component_count", "constraint_compliance", "anti_pattern_violations"],
+      "properties": {
+        "build_time": {
+          "type": "number",
+          "description": "Build time in seconds"
+        },
+        "bundle_size": {
+          "type": "object",
+          "properties": {
+            "total": { "type": "integer" },
+            "gzipped": { "type": "integer" },
+            "brotil": { "type": "integer" }
+          }
+        },
+        "component_count": { "type": "integer" },
+        "constraint_compliance": {
+          "type": "object",
+          "required": ["score", "details"],
+          "properties": {
+            "score": { "type": "number", "minimum": 0, "maximum": 1 },
+            "details": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["constraint", "compliant", "notes"],
+                "properties": {
+                  "constraint": { "type": "string" },
+                  "compliant": { "type": "boolean" },
+                  "notes": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "anti_pattern_violations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["pattern", "severity", "context"],
+            "properties": {
+              "pattern": { "type": "string" },
+              "severity": { "enum": ["low", "medium", "high", "critical"] },
+              "context": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "required": ["accessibility", "performance", "quality"],
+      "properties": {
+        "accessibility": {
+          "type": "object",
+          "properties": {
+            "semantic_html": { "type": "boolean" },
+            "aria_attributes": { "type": "boolean" },
+            "keyboard_nav": { "type": "boolean" },
+            "contrast_aa": { "type": "boolean" },
+            "screen_reader": { "type": "boolean" }
+          }
+        },
+        "performance": {
+          "type": "object",
+          "properties": {
+            "lazy_load": { "type": "boolean" },
+            "minimal_deps": { "type": "boolean" },
+            "optimized_assets": { "type": "boolean" },
+            "no_memory_leaks": { "type": "boolean" }
+          }
+        },
+        "quality": {
+          "type": "object",
+          "properties": {
+            "code_consistent": { "type": "boolean" },
+            "naming_clear": { "type": "boolean" },
+            "no_dead_code": { "type": "boolean" },
+            "proper_comments": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "description": "Key design decisions and their rationale",
+      "items": {
+        "type": "object",
+        "required": ["aspect", "decision", "rationale"],
+        "properties": {
+          "aspect": { "type": "string" },
+          "decision": { "type": "string" },
+          "rationale": { "type": "string" }
+        }
+      }
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
