@@ -1,0 +1,42 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "smiteUI",
+  "version": "1.0.0",
+  "description": "Anti-trend UI generation with contextual orchestration - Break the patterns, create the unexpected",
+  "owner": {
+    "name": "Pamacea",
+    "email": "[email protected]"
+  },
+  "metadata": {
+    "description": "smiteUI is a creative constraint system that prevents generic UI patterns. The orchestrator analyzes prompts, applies anti-patterns, and generates creative constraints before delegating to the implementer. Result: unique, thoughtful interfaces that avoid the tired trends of modern web design.",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "orchestrator",
+      "source": "./plugins/orchestrator",
+      "description": "Contextual orchestration agent - Analyzes prompts, applies anti-patterns, generates creative constraints",
+      "version": "1.0.0",
+      "author": { "name": "Pamacea" },
+      "category": "orchestration",
+      "tags": ["orchestration", "anti-patterns", "creative-constraints", "prompt-enrichment"],
+      "keywords": ["ui", "orchestrator", "anti-patterns", "constraints", "creative"],
+      "homepage": "https://github.com/Pamacea/smiteUI/tree/main/plugins/orchestrator",
+      "repository": "https://github.com/Pamacea/smiteUI",
+      "license": "MIT"
+    },
+    {
+      "name": "implementer",
+      "source": "./plugins/implementer",
+      "description": "UI implementation agent - Builds unique interfaces from enriched prompts with anti-pattern validation",
+      "version": "1.0.0",
+      "author": { "name": "Pamacea" },
+      "category": "implementation",
+      "tags": ["implementation", "react", "vanilla", "tailwind", "ui-builder"],
+      "keywords": ["ui", "builder", "react", "tailwind", "vanilla", "implementation"],
+      "homepage": "https://github.com/Pamacea/smiteUI/tree/main/plugins/implementer",
+      "repository": "https://github.com/Pamacea/smiteUI",
+      "license": "MIT"
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+{
+  "$schema": "./constraints.schema.json",
+  "version": "1.0.0",
+  "description": "Creative constraints library - Unexpected directions that force innovation beyond obvious solutions",
+  
+  "categories": {
+    "color_restrictions": {
+      "description": "Color palettes that break from trendy defaults and force thoughtful design",
+      "constraints": [
+        {
+          "name": "monochrome_true",
+          "description": "Strict monochrome - one color plus black and white",
+          "examples": ["Black on white", "White on black", "Gray scale"],
+          "why_effective": "Forces typography, spacing, and structure to carry meaning. Fast load, timeless.",
+          "difficulty": "medium"
+        },
+        {
+          "name": "single_accent",
+          "description": "Neutral base (grayscale) with exactly ONE accent color",
+          "examples": ["Black + yellow", "Off-white + burnt orange", "Paper + deep blue"],
+          "why_effective": "Prevents color chaos. Accent gains meaning through rarity. Print-friendly.",
+          "difficulty": "easy"
+        },
+        {
+          "name": "warm_only",
+          "description": "No blues, purples, cyans - warm tones only",
+          "examples": ["Red, orange, yellow, brown palette", "Sepia tones", "Earth colors"],
+          "why_effective": "Breaks the 'tech = blue' default. Feels grounded and human.",
+          "difficulty": "medium"
+        },
+        {
+          "name": "paper_ink",
+          "description": "Paper backgrounds with ink colors (black, deep colors)",
+          "examples": ["Cream paper, black ink", "White paper, navy ink", "Yellowed paper, dark brown ink"],
+          "why_effective": "References print design. Readable. Reduces eye strain.",
+          "difficulty": "easy"
+        },
+        {
+          "name": "inverted_high_contrast",
+          "description": "Black background, white content only - pure contrast",
+          "examples": ["Terminal interfaces", "Newspaper negatives", "Dark mode without accents"],
+          "why_effective": "Maximum readability. No ambiguity about hierarchy. Works in bright light.",
+          "difficulty": "easy"
+        }
+      ]
+    },
+    
+    "interaction_sources": {
+      "description": "Unexpected domain inspirations that create fresh interaction models",
+      "constraints": [
+        {
+          "name": "architectural",
+          "description": "Navigation and structure inspired by buildings, circulation, and spatial design",
+          "examples": ["Room-based navigation", "Floor plan layouts", "Circulation paths as menus"],
+          "why_effective": "Web is already spatial - use real spatial thinking instead of abstract metaphors.",
+          "difficulty": "hard"
+        },
+        {
+          "name": "biological",
+          "description": "Interactions inspired by organisms, cells, and natural systems",
+          "examples": ["Growth-based reveals", "Cellular grids", "Respiration animations", "Metaphor: digestion"],
+          "why_effective": "Organic yet structured. Patterns exist for reasons, not just decoration.",
+          "difficulty": "hard"
+        },
+        {
+          "name": "musical_structure",
+          "description": "Rhythm, tempo, and musical structure applied to UI",
+          "examples": ["Beats per minute as interaction speed", "Phases as sections", "Counterpoint as layered info"],
+          "why_effective": "Tempo creates flow without animations. Time becomes a design element.",
+          "difficulty": "medium"
+        },
+        {
+          "name": "mechanical",
+          "description": "Machine, tools, and physical interactions as digital metaphors",
+          "examples": ["Gears as nav", "Levers as buttons", "Measurements as displays", "Tactile feedback"],
+          "why_effective": "Physical intuition transfers to digital. Feels solid and manipulable.",
+          "difficulty": "medium"
+        },
+        {
+          "name": "textual_first",
+          "description": "Typography IS the interaction, not just content",
+          "examples": ["Type reveals content", "Text changes indicate state", "No icons, only letters"],
+          "why_effective": "Text is fast, accessible, and flexible. Design = language.",
+          "difficulty": "easy"
+        }
+      ]
+    },
+    
+    "technical_constraints": {
+      "description": "Technology restrictions that force creativity through limitation",
+      "constraints": [
+        {
+          "name": "css_only",
+          "description": "No JavaScript except absolute essentials (form submission)",
+          "examples": ["CSS hover states", "Checkbox hacks", "Media queries only", ":focus-visible interactions"],
+          "why_effective": "Fastest possible. Works with scripts disabled. True progressive enhancement.",
+          "difficulty": "hard"
+        },
+        {
+          "name": "system_fonts_only",
+          "description": "No web fonts - only default system fonts",
+          "examples": ["San Francisco on Mac", "Segoe UI on Windows", "Roboto on Android"],
+          "why_effective": "Zero network request for fonts. Familiar. User's preferred rendering.",
+          "difficulty": "easy"
+        },
+        {
+          "name": "no_images",
+          "description": "No raster or vector images - everything via code",
+          "examples": ["CSS patterns", "SVG inline", "Emoji", "Typography only", "Generative graphics"],
+          "why_effective": "Instant load. Scalable. Design = implementation skill.",
+          "difficulty": "medium"
+        },
+        {
+          "name": "single_file",
+          "description": "All CSS, JS, HTML in one file - no imports",
+          "examples": ["Inline styles", "Internal scripts", "Data URIs if needed"],
+          "why_effective": "Zero network requests. Portable. Copy-paste deployable.",
+          "difficulty": "easy"
+        },
+        {
+          "name": "no_animations",
+          "description": "No transitions, animations, or transforms - instant changes",
+          "examples": ["Instant hover", "Instant page changes", "Scroll without momentum"],
+          "why_effective": "No motion sickness. Crisp. Focus on content, not effects.",
+          "difficulty": "easy"
+        },
+        {
+          "name": "ascii_art_only",
+          "description": "Visual elements created from text characters only",
+          "examples": ["ASCII logos", "Text-based graphics", "Box drawing characters", "Unicode art"],
+          "why_effective": "Terminal aesthetic. Works in any browser. Ultra-fast. Retro yet modern.",
+          "difficulty": "medium"
+        }
+      ]
+    },
+    
+    "context_shifts": {
+      "description": "Designing for unexpected contexts reveals what actually matters",
+      "constraints": [
+        {
+          "name": "print_first",
+          "description": "Must work perfectly when printed - no hover-dependent information",
+          "examples": ["Readable on paper", "No 'hover for more'", "Print-optimized hierarchy", "No infinite scroll"],
+          "why_effective": "Forces true hierarchy. Accessible. Documentation-friendly.",
+          "difficulty": "medium"
+        },
+        {
+          "name": "screen_reader_first",
+          "description": "Perfect experience without seeing - semantics, not visuals",
+          "examples": ["Semantic markup", "ARIA live regions", "Keyboard only navigation", "Audio descriptions"],
+          "why_effective": "Actually accessible, not 'accessible' checklist. Clean mental model.",
+          "difficulty": "hard"
+        },
+        {
+          "name": "outdoor_visible",
+          "description": "Readable in direct sunlight - high contrast, large touch targets",
+          "examples": ["Maximum contrast", "Large buttons", "No subtle states", "Bold typography"],
+          "why_effective": "Realistic usage scenario. Mobile usage in parks, waiting, public transport.",
+          "difficulty": "medium"
+        },
+        {
+          "name": "slow_connection",
+          "description": "Works on 2G or slower - minimal JS, progressive loading",
+          "examples": ["Core content loads first", "No blocking scripts", "Small total size", "No heavy assets"],
+          "why_effective": "Global audience. Doesn't punish users with bad connections. Resilient.",
+          "difficulty": "medium"
+        },
+        {
+          "name": "low_energy",
+          "description": "Dark mode default - OLED friendly, fewer pixels lit",
+          "examples": ["Black background", "No white-on-black", "OLED-optimized images", "Minimal animation"],
+          "why_effective": "Battery life. Eye strain. Dark mode as energy choice, not just preference.",
+          "difficulty": "easy"
+        }
+      ]
+    },
+    
+    "structural_constraints": {
+      "description": "Layout and structural rules that force unconventional organization",
+      "constraints": [
+        {
+          "name": "linear_only",
+          "description": "Strict linear flow - no grids, no sidebars, no simultaneous panels",
+          "examples": ["One column", "Top-to-bottom", "No parallel information", "Sequential disclosure"],
+          "why_effective": "Impossible to get lost. Clear reading order. Mobile-first by default.",
+          "difficulty": "easy"
+        },
+        {
+          "name": "no_headings",
+          "description": "No h1-h6 tags - structure via typography and spacing",
+          "examples": ["Size and weight only", "Vertical rhythm", "No semantic heading abuse", "Visual hierarchy sans headings"],
+          "why_effective": "Prevents heading spam. Forces genuine visual design. Flexible structure.",
+          "difficulty": "medium"
+        },
+        {
+          "name": "infinite_scroll",
+          "description": "Single page, no pagination, infinite vertical scroll only",
+          "examples": ["One long page", "No page breaks", "No 'view more'", "Scrollable narrative"],
+          "why_effective": "Like a story. Immersive. No navigation decisions, just consumption.",
+          "difficulty": "easy"
+        },
+        {
+          "name": "component_isolation",
+          "description": "Each component completely independent - no shared state, no layout coupling",
+          "examples": ["Self-contained cards", "Drop-in widgets", "No global CSS", "Scoped styles"],
+          "why_effective": "Modular. Portable. Testable. Prevents cascade failures.",
+          "difficulty": "hard"
+        },
+        {
+          "name": "max_width_extreme",
+          "description": "Very narrow content width - 30-40 characters max",
+          "examples": ["Narrow columns", "Single character per line", "Poetry layout", "Constrained reading"],
+          "why_effective": "Forces brevity. Intentional design choice. Like zines or old newspapers.",
+          "difficulty": "medium"
+        }
+      ]
+    }
+  },
+  
+  "selection_logic": {
+    "default_count": 3,
+    "max_count": 5,
+    "avoid_combinations": [
+      {
+        "constraint1": "monochrome_true",
+        "constraint2": "inverted_high_contrast",
+        "warning": "These are too similar. Choose one or neither."
+      },
+      {
+        "constraint1": "css_only",
+        "constraint2": "no_animations",
+        "warning": "This is the default state. Not adding value. Choose a meaningful constraint."
+      },
+      {
+        "constraint1": "print_first",
+        "constraint2": "slow_connection",
+        "warning": "Good but conservative. Add something that actually pushes creativity."
+      }
+    ],
+    "difficulty_ramp": {
+      "first_constraint": "easy",
+      "second_constraint": "medium",
+      "third_constraint": "hard"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "implementer",
+  "description": "UI implementation agent - Builds unique interfaces from enriched prompts with anti-pattern validation",
+  "version": "1.0.0",
+  "author": {
+    "name": "Pamacea",
+    "email": "[email protected]"
+  },
+  "homepage": "https://github.com/Pamacea/smiteUI/tree/main/plugins/implementer",
+  "repository": "https://github.com/Pamacea/smiteUI",
+  "license": "MIT",
+  "keywords": [
+    "ui",
+    "builder",
+    "react",
+    "tailwind",
+    "vanilla",
+    "implementation",
+    "anti-patterns"
+  ],
+  "commands": "./commands/",
+  "skills": "./skills/"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "orchestrator",
+  "description": "Contextual orchestration agent - Analyzes prompts, applies anti-patterns, generates creative constraints",
+  "version": "1.0.0",
+  "author": {
+    "name": "Pamacea",
+    "email": "[email protected]"
+  },
+  "homepage": "https://github.com/Pamacea/smiteUI/tree/main/plugins/orchestrator",
+  "repository": "https://github.com/Pamacea/smiteUI",
+  "license": "MIT",
+  "keywords": [
+    "orchestration",
+    "anti-patterns",
+    "creative-constraints",
+    "prompt-enrichment",
+    "ui",
+    "contextual"
+  ],
+  "commands": "./commands/",
+  "skills": "./skills/"
+}
