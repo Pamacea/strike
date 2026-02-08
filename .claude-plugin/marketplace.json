@@ -1,40 +1,26 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "strike",
-  "version": "2.1.0",
-  "description": "Anti-trend UI generation with integrated adversarial mode, teaching, and auto-learning - Break the patterns, create the unexpected",
+  "version": "1.1.0",
+  "description": "Anti-trend UI generation with integrated step mode - Break the patterns, create the unexpected",
   "owner": {
     "name": "Pamacea",
     "contact": "https://github.com/Pamacea/strike/issues"
   },
   "metadata": {
-    "description": "strike v2.1 integrates three powerful modes directly into the orchestrator: adversarial challenge (always active), teaching explanations, and auto-learning from sessions. Based on Boris Cherny's multi-agent patterns.",
+    "description": "strike v3.1 adds interactive step mode for user-controlled workflow with phase-by-phase approval.",
     "pluginRoot": "./plugins"
   },
   "plugins": [
     {
-      "name": "orchestrator",
-      "source": "./plugins/orchestrator",
-      "description": "Contextual orchestration agent with integrated adversarial mode, teaching, and learning - Analyzes prompts, applies anti-patterns, generates creative constraints, challenges decisions, explains reasoning",
-      "version": "2.1.0",
+      "name": "ui",
+      "source": "./plugins/ui",
+      "description": "Unified UI generation - Orchestrator, builder, teams mode, and interactive step mode in one. Anti-pattern detection, creative constraints, parallel agent execution.",
+      "version": "1.1.1",
       "author": { "name": "Pamacea" },
-      "category": "orchestration",
-      "tags": ["orchestration", "anti-patterns", "creative-constraints", "prompt-enrichment", "scoring", "adversarial", "teaching", "learning"],
-      "keywords": ["ui", "orchestrator", "anti-patterns", "constraints", "creative", "challenge", "explain", "learn"],
-      "homepage": "https://github.com/Pamacea/strike/tree/main/plugins/orchestrator",
-      "repository": "https://github.com/Pamacea/strike",
-      "license": "MIT"
-    },
-    {
-      "name": "implementer",
-      "source": "./plugins/implementer",
-      "description": "UI implementation agent - Builds unique interfaces from enriched prompts with anti-pattern validation, component registry, accessibility-first",
-      "version": "2.0.0",
-      "author": { "name": "Pamacea" },
-      "category": "implementation",
-      "tags": ["implementation", "react", "vanilla", "tailwind", "ui-builder", "a11y", "metrics"],
-      "keywords": ["ui", "builder", "react", "tailwind", "vanilla", "implementation"],
-      "homepage": "https://github.com/Pamacea/strike/tree/main/plugins/implementer",
+      "category": "ui-generation",
+      "tags": ["ui", "anti-trend", "anti-patterns", "creative-constraints", "orchestration", "implementation", "teams", "agent-teams", "interactive", "step-mode"],
+      "keywords": ["ui", "anti-patterns", "constraints", "creative", "teams", "build", "step", "agent-teams"],
       "repository": "https://github.com/Pamacea/strike",
       "license": "MIT"
     }

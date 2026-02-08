@@ -1,0 +1,9 @@
+{
+  "name": "ui",
+  "description": "Anti-trend UI generation - Orchestrator, builder, teams mode, and interactive step mode in one unified plugin",
+  "version": "1.1.0",
+  "author": {
+    "name": "Pamacea",
+    "contact": "https://github.com/Pamacea/strike/issues"
+  }
+}

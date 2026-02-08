@@ -1,4 +1,4 @@
-# Strike v2.3
+# Strike v1.1
 
 > **Anti-trend UI generation with parallel orchestration, dynamic pattern detection, demo mode, and visual flag feedback**
 
@@ -13,7 +13,7 @@ strike is a creative constraint system for Claude Code that prevents generic UI 
 1. **Orchestrator** — Analyzes prompts, detects anti-patterns (dynamic + static), applies creative constraints, displays Red/Green flag table
 2. **Implementer** — Builds the UI from the enriched specification
 
-**New in v2.3:**
+**New in v1.1:**
 - **Parallel mode (`--parallel`)** — Orchestrator analysis and Implementer preparation run simultaneously (8-17% faster)
 
 **v2.2 features:**
@@ -61,7 +61,7 @@ The orchestrator is a guard against the obvious. It doesn't just build what you 
 
 ---
 
-## What's New in v2.3
+## What's New in v1.1
 
 | Feature | Description |
 |---------|-------------|
@@ -110,7 +110,7 @@ The orchestrator is a guard against the obvious. It doesn't just build what you 
 # Full UI generation with deep analysis
 /ui "Create a modern dashboard"
 
-# Parallel mode - Orchestrator + Implementer run together (NEW v2.3)
+# Parallel mode - Orchestrator + Implementer run together (NEW v1.1)
 /ui --parallel "Create a modern dashboard"
 
 # Demo mode - lightweight, fast, fewer tokens
