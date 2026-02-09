@@ -1,5 +1,11 @@
 # Strike v1.1
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub release](https://img.shields.io/github/v/release/Pamacea/strike)](https://github.com/Pamacea/strike/releases/latest)
+[![CI](https://github.com/Pamacea/strike/actions/workflows/ci.yml/badge.svg)](https://github.com/Pamacea/strike/actions)
+
+
+
 > **Anti-trend UI generation with parallel orchestration, dynamic pattern detection, demo mode, and visual flag feedback**
 
 Break patterns. Create unique. Build thoughtful interfaces. Fast iterations when needed.
