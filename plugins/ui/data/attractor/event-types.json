@@ -1,0 +1,372 @@
+{
+  "title": "Strike Event Types Definition",
+  "version": "1.0.0",
+  "description": "Complete event type definitions for strike plugin observability",
+
+  "event_kinds": {
+    "SESSION_START": {
+      "description": "Session created and initialized",
+      "data": {
+        "session_id": "string",
+        "mode": "string | null",
+        "timestamp": "string",
+        "config": "object"
+      }
+    },
+
+    "SESSION_END": {
+      "description": "Session closed (includes final state)",
+      "data": {
+        "session_id": "string",
+        "final_state": "string",
+        "duration_ms": "number",
+        "total_turns": "number",
+        "completed_nodes": "string[]"
+      }
+    },
+
+    "PHASE_START": {
+      "description": "A phase began execution",
+      "data": {
+        "phase": "string",
+        "session_id": "string",
+        "timestamp": "string"
+      }
+    },
+
+    "PHASE_END": {
+      "description": "A phase completed execution",
+      "data": {
+        "phase": "string",
+        "session_id": "string",
+        "duration_ms": "number",
+        "success": "boolean",
+        "output_files": "string[]"
+      }
+    },
+
+    "USER_INPUT": {
+      "description": "User submitted input/prompt",
+      "data": {
+        "content": "string",
+        "timestamp": "string"
+      }
+    },
+
+    "ANALYSIS_START": {
+      "description": "Prompt analysis began",
+      "data": {
+        "prompt": "string",
+        "timestamp": "string"
+      }
+    },
+
+    "ANALYSIS_END": {
+      "description": "Prompt analysis completed",
+      "data": {
+        "prompt": "string",
+        "detected_keywords": "string[]",
+        "risk_assessment": "string",
+        "timestamp": "string"
+      }
+    },
+
+    "ANTI_PATTERNS_DETECTED": {
+      "description": "Anti-patterns detected in analysis",
+      "data": {
+        "patterns": {
+          "category": "string",
+          "pattern": "string",
+          "severity": "string",
+          "confidence": "number"
+        }[],
+        "total_count": "number",
+        "high_severity_count": "number"
+      }
+    },
+
+    "CONSTRAINTS_SELECTED": {
+      "description": "Constraints selected for this session",
+      "data": {
+        "constraints": {
+          "id": "string",
+          "name": "string",
+          "category": "string",
+          "score": "number",
+          "creativity": "number",
+          "difficulty": "number",
+          "impact": "number",
+          "synergy": "number"
+        }[],
+        "total_score": "number",
+        "categories_selected": "string[]"
+      }
+    },
+
+    "CONSTRAINT_SCORE_CALCULATED": {
+      "description": "Individual constraint score calculated",
+      "data": {
+        "constraint_id": "string",
+        "creativity": "number",
+        "difficulty": "number",
+        "impact": "number",
+        "synergy": "number",
+        "total": "number"
+      }
+    },
+
+    "CHALLENGE_START": {
+      "description": "Adversarial challenge phase began",
+      "data": {
+        "target_decision": "string",
+        "timestamp": "string"
+      }
+    },
+
+    "CHALLENGE_END": {
+      "description": "Adversarial challenge completed",
+      "data": {
+        "original_decision": "string",
+        "challenges_raised": "string[]",
+        "alternatives_proposed": {
+          "alternative": "string",
+          "rationale": "string"
+        }[],
+        "decision_modified": "boolean",
+        "final_decision": "string"
+      }
+    },
+
+    "SPEC_GENERATED": {
+      "description": "Enriched specification generated",
+      "data": {
+        "spec_file": "string",
+        "validation_passed": "boolean",
+        "schema_version": "string",
+        "feature_count": "number",
+        "constraint_count": "number"
+      }
+    },
+
+    "BUILD_START": {
+      "description": "Build phase began",
+      "data": {
+        "template": "string",
+        "spec_file": "string",
+        "output_dir": "string"
+      }
+    },
+
+    "BUILD_END": {
+      "description": "Build phase completed",
+      "data": {
+        "template": "string",
+        "success": "boolean",
+        "output_dir": "string",
+        "component_count": "number",
+        "bundle_size": "number | null",
+        "build_time_ms": "number"
+      }
+    },
+
+    "COMPONENT_LOADED": {
+      "description": "Component loaded from registry",
+      "data": {
+        "component_id": "string",
+        "name": "string",
+        "compatibility": "string[]",
+        "anti_pattern_risk": "string"
+      }
+    },
+
+    "ACCESSIBILITY_CHECK": {
+      "description": "Accessibility check performed",
+      "data": {
+        "check_type": "string",
+        "passed": "boolean",
+        "items_checked": "number",
+        "items_failed": "number",
+        "failures": {
+          "category": "string",
+          "description": "string",
+          "wcag_level": "string"
+        }[]
+      }
+    },
+
+    "VALIDATION_ERROR": {
+      "description": "Schema validation failed",
+      "data": {
+        "schema": "string",
+        "errors": {
+          "path": "string",
+          "message": "string",
+          "value": "any"
+        }[]
+      }
+    },
+
+    "ERROR": {
+      "description": "An error occurred",
+      "data": {
+        "phase": "string",
+        "error_type": "string",
+        "message": "string",
+        "stack_trace": "string | null",
+        "recoverable": "boolean"
+      }
+    },
+
+    "TOOL_CALL_START": {
+      "description": "Tool execution began (for subagents)",
+      "data": {
+        "tool_name": "string",
+        "call_id": "string",
+        "arguments": "object"
+      }
+    },
+
+    "TOOL_CALL_END": {
+      "description": "Tool execution finished",
+      "data": {
+        "call_id": "string",
+        "output": "string",
+        "error": "string | null",
+        "duration_ms": "number"
+      }
+    },
+
+    "STEERING_INJECTED": {
+      "description": "A steering message was added to history",
+      "data": {
+        "content": "string",
+        "timestamp": "string"
+      }
+    },
+
+    "LOOP_DETECTION": {
+      "description": "A loop pattern was detected",
+      "data": {
+        "pattern": "string",
+        "window_size": "number",
+        "message": "string"
+      }
+    },
+
+    "CHECKPOINT_SAVED": {
+      "description": "Checkpoint written to disk",
+      "data": {
+        "node_id": "string",
+        "checkpoint_file": "string",
+        "timestamp": "string"
+      }
+    },
+
+    "CHECKPOINT_LOADED": {
+      "description": "Checkpoint restored from disk",
+      "data": {
+        "checkpoint_file": "string",
+        "resumed_from_node": "string",
+        "timestamp": "string"
+      }
+    },
+
+    "HUMAN_INTERVIEW_START": {
+      "description": "Human interaction question presented",
+      "data": {
+        "question": "string",
+        "stage": "string",
+        "options": {
+          "key": "string",
+          "label": "string"
+        }[]
+      }
+    },
+
+    "HUMAN_INTERVIEW_END": {
+      "description": "Human interaction answer received",
+      "data": {
+        "question": "string",
+        "answer": "string",
+        "duration_ms": "number",
+        "timeout": "boolean"
+      }
+    },
+
+    "PARALLEL_START": {
+      "description": "Parallel execution block started",
+      "data": {
+        "branch_count": "number",
+        "branches": "string[]"
+      }
+    },
+
+    "PARALLEL_BRANCH_START": {
+      "description": "Parallel branch started",
+      "data": {
+        "branch": "string",
+        "index": "number"
+      }
+    },
+
+    "PARALLEL_BRANCH_END": {
+      "description": "Parallel branch completed",
+      "data": {
+        "branch": "string",
+        "index": "number",
+        "duration_ms": "number",
+        "success": "boolean"
+      }
+    },
+
+    "PARALLEL_END": {
+      "description": "All parallel branches completed",
+      "data": {
+        "duration_ms": "number",
+        "success_count": "number",
+        "failure_count": "number"
+      }
+    },
+
+    "METRICS_COLLECTED": {
+      "description": "Build metrics collected",
+      "data": {
+        "compliance_score": "number",
+        "a11y_score": "number",
+        "validation_score": "number",
+        "bundle_size_bytes": "number",
+        "build_time_ms": "number",
+        "components_used": "number"
+      }
+    }
+  },
+
+  "event_delivery": {
+    "description": "How events are delivered to consumers",
+    "methods": ["async_iterator", "callback", "file_log"],
+    "storage_path": ".claude/.strike/events.jsonl",
+    "format": "JSONL (one JSON object per line)"
+  },
+
+  "event_schema": {
+    "type": "object",
+    "properties": {
+      "kind": {
+        "type": "string",
+        "enum": ["SESSION_START", "SESSION_END", "PHASE_START", "PHASE_END", "USER_INPUT", "ANALYSIS_START", "ANALYSIS_END", "ANTI_PATTERNS_DETECTED", "CONSTRAINTS_SELECTED", "CONSTRAINT_SCORE_CALCULATED", "CHALLENGE_START", "CHALLENGE_END", "SPEC_GENERATED", "BUILD_START", "BUILD_END", "COMPONENT_LOADED", "ACCESSIBILITY_CHECK", "VALIDATION_ERROR", "ERROR", "TOOL_CALL_START", "TOOL_CALL_END", "STEERING_INJECTED", "LOOP_DETECTION", "CHECKPOINT_SAVED", "CHECKPOINT_LOADED", "HUMAN_INTERVIEW_START", "HUMAN_INTERVIEW_END", "PARALLEL_START", "PARALLEL_BRANCH_START", "PARALLEL_BRANCH_END", "PARALLEL_END", "METRICS_COLLECTED"]
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "session_id": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "data": {
+        "type": "object"
+      }
+    },
+    "required": ["kind", "timestamp", "session_id"]
+  }
+}

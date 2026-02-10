@@ -1,23 +1,26 @@
-# 🚀 strike v2.1 — Quick Reference
+# 🚀 strike v1.1.0 — Quick Reference
 
 ## 🎯 I'm here to...
 
-- **Generate unique UIs**: `/ui "prompt"` — Orchestrator with integrated adversarial, teaching, and learning
+- **Generate unique UIs**: `/ui "prompt"` — Orchestrator with Attractor workflow orchestration
 - **Build from specs**: `/build` — Takes enriched spec and creates UI
+- **Resume workflows**: `/ui --resume` — Auto-detects and resumes from checkpoint
 
 ---
 
 ## 🔍 Core Workflow
 
-**ENHANCED in v2.1 - All modes integrated into orchestrator:**
+**POWERED BY ATTRACTOR in v1.1.0 - Enterprise-grade workflow orchestration:**
 
+1. **DOT Workflow** — Define workflows in Graphviz DOT syntax
+2. **Event System** — Track everything with 30+ typed events
+3. **Checkpoint & Resume** — Crash recovery with state persistence
+4. **Human-in-the-Loop** — Approval gates for critical decisions
+5. **Parallel Execution** — Concurrent branch processing (2-3x faster)
+
+**Traditional flow (still supported):**
 1. **Orchestrator** — Analyzes prompt, detects anti-patterns, selects constraints
-2. **Self-Challenge** — Debates its own decisions, proposes alternatives
-3. **Explanation** — Generates diagrams when requested (--explain flag)
-4. **Learning** — Extracts patterns when requested (--learn flag)
-5. **Implementer** — Builds validated UI
-
-**Why integrated?** Cleaner UX, single entry point, all features work together seamlessly.
+2. **Implementer** — Builds validated UI
 
 ---
 
@@ -25,10 +28,12 @@
 
 | Command | Purpose | When to use |
 |---------|---------|-------------|
-| `/ui "prompt"` | Full UI generation with all enhancements | New UI projects |
+| `/ui "prompt"` | Full UI generation with Attractor orchestration | New UI projects |
+| `/ui --resume` | Resume from checkpoint (auto-detects interruption) | After crash/interruption |
+| `/ui --workflow=path.dot "prompt"` | Use custom DOT workflow | Custom workflows |
+| `/ui --step "prompt"` | Interactive with human approval gates | Critical projects |
 | `/ui --explain "prompt"` | Include diagram explanation | Understand the workflow |
 | `/ui --learn "prompt"` | Extract patterns from this session | Improve future results |
-| `/ui --no-challenge "prompt"` | Skip adversarial step (use with caution!) | Trivial requests |
 | `/build` | Implement from enriched spec | Build the UI |
 
 ---
@@ -36,8 +41,103 @@
 ## 📚 Documentation
 
 - **Marketplace**: `.claude-plugin/marketplace.json`
-- **Orchestrator**: `plugins/orchestrator/README.md`
-- **Implementer**: `plugins/implementer/README.md`
+- **Orchestrator**: `plugins/ui/README.md`
+- **Implementer**: `plugins/ui/README.md`
+- **Attractor Integration**: `plugins/ui/data/attractor/ATTRACTOR-INTEGRATION.md`
+- **DOT Grammar**: `plugins/ui/data/attractor/dot-grammar.md`
+
+---
+
+## 🎯 DOT Workflow Examples (NEW v1.1.0)
+
+### Simple Sequential Workflow
+
+```dot
+digraph SimpleWorkflow {
+  graph [goal="Generate unique UI"]
+
+  start [shape=Mdiamond]
+  analyze [shape=box, prompt="Analyze for trends"]
+  build [shape=box, prompt="Build UI"]
+  exit [shape=Msquare]
+
+  start -> analyze -> build -> exit
+}
+```
+
+### With Human Approval
+
+```dot
+digraph WithApproval {
+  start [shape=Mdiamond]
+  plan [shape=box, prompt="Create plan"]
+  review [shape=hexagon, label="Approve Plan?"]
+  execute [shape=box, prompt="Execute plan"]
+  exit [shape=Msquare]
+
+  start -> plan -> review
+  review -> execute [label="[A] Approve"]
+  review -> plan [label="[R] Revise"]
+  execute -> exit
+}
+```
+
+### Parallel Exploration
+
+```dot
+digraph Parallel {
+  start [shape=Mdiamond]
+  split [shape=component]
+  option_a [shape=box, class="creative"]
+  option_b [shape=box]
+  merge [shape=tripleoctagon]
+  select [shape=box]
+  exit [shape=Msquare]
+
+  start -> split
+  split -> option_a
+  split -> option_b
+  option_a -> merge
+  option_b -> merge
+  merge -> select -> exit
+}
+```
+
+---
+
+## 💾 Checkpoint & Resume (NEW v1.1.0)
+
+**Auto-save after each phase:**
+```bash
+# Checkpoint saved to .claude/.strike/checkpoint.json
+{
+  "version": "1.1.0",
+  "timestamp": "2025-02-10T10:30:00Z",
+  "current_node": "build",
+  "completed_nodes": ["start", "analyze"],
+  "context_values": { "user_prompt": "...", "constraints": [...] }
+}
+```
+
+**Resume after interruption:**
+```bash
+# Automatically detects checkpoint and resumes
+/ui --resume
+```
+
+---
+
+## 📊 Event System (NEW v1.1.0)
+
+**Track everything with 30+ typed events:**
+- `SESSION_START` - Session created and initialized
+- `PHASE_START` / `PHASE_END` - Phase boundaries
+- `ANTI_PATTERNS_DETECTED` - Patterns found to avoid
+- `CONSTRAINTS_SELECTED` - Constraints with scores
+- `CHECKPOINT_SAVED` / `CHECKPOINT_LOADED` - State persistence
+- `HUMAN_APPROVAL_REQUESTED` - Waiting for user input
+
+**Event log:** `.claude/.strike/events.jsonl`
 
 ---
 
@@ -87,7 +187,7 @@ The orchestrator has a comprehensive database of patterns to avoid:
 - ❌ Rounded everything
 - ❌ Icon overload
 
-See full database: `plugins/orchestrator/data/anti-patterns.json`
+See full database: `plugins/ui/data/core/anti-patterns.json`
 
 ---
 
@@ -131,7 +231,7 @@ The orchestrator selects from creative constraint categories:
 - Component isolation
 - Max width extreme
 
-See full library: `plugins/orchestrator/data/constraints.json`
+See full library: `plugins/ui/data/core/constraints.json`
 
 ---
 
@@ -166,6 +266,9 @@ When you run `/ui`, it creates in `.claude/.strike/`:
 | `constraints.md` | Selected constraints with scores |
 | `enriched-spec.md` | Full specification for implementer |
 | `enriched-spec.json` | Validated JSON specification |
+| `checkpoint.json` | Latest checkpoint (v1.1.0) |
+| `events.jsonl` | Event log (v1.1.0) |
+| `step-state.json` | Step mode state (if --step) |
 
 Then `/ui` creates in `./output/`:
 
@@ -181,7 +284,7 @@ Then `/ui` creates in `./output/`:
 
 ## 🧩 Component Registry (NEW v2.0)
 
-Reference `plugins/implementer/data/component-registry.json` for validated components.
+Reference `plugins/ui/data/core/component-registry.json` for validated components.
 
 ### Safe Components (All Constraints)
 - Container — Responsive container
@@ -211,7 +314,7 @@ All builds must pass the accessibility checklist:
 - [ ] Color contrast (WCAG AA: 4.5:1 for text)
 - [ ] Forms (labels associated, errors announced)
 
-See full checklist: `plugins/implementer/data/accessibility-checklist.json`
+See full checklist: `plugins/ui/data/core/accessibility-checklist.json`
 
 ---
 
@@ -299,19 +402,22 @@ Settings in `.claude/.strike/config.json`:
 
 ---
 
-## 🆕 What's New in v2.0
+## 🆕 What's New in v1.1.0
 
 | Feature | Description |
 |---------|-------------|
-| **Schema Validation** | JSON schemas for specs and build results |
-| **Constraint Scoring** | Creativity, difficulty, impact, synergy (0-100) |
-| **Conflict Resolution** | Automatic resolution of conflicting constraints |
-| **Component Registry** | Validated components with anti-pattern alternatives |
-| **Accessibility Checklist** | 30+ checks across 8 categories |
-| **Build Metrics** | Time, bundle size, compliance, validation scores |
-| **Feedback Loop** | System learns from previous builds |
-| **New Flags** | `--score`, `--validate`, `--feedback=<id>` |
+| **DOT Workflow Orchestration** | Define workflows in Graphviz DOT syntax |
+| **Event System** | 30+ typed event kinds for complete observability |
+| **Checkpoint & Resume** | Crash recovery with state persistence |
+| **Human-in-the-Loop** | Approval gates with WaitForHuman nodes |
+| **Parallel Execution** | Concurrent branch processing (2-3x faster) |
+| **Conditional Routing** | Smart workflow branching with 5-step edge selection |
+| **Model Stylesheet** | CSS-like LLM configuration |
+| **Context Fidelity** | 6 modes for conversation history management |
+| **Steering** | Mid-task message injection for dynamic redirection |
+| **Goal Gates** | Critical nodes that must succeed before exit |
+| **New Flags** | `--resume`, `--workflow=<path>`, `--step` |
 
 ---
 
-**Version**: 2.0.0 | **Last updated**: 2025-02-02 | **Docs**: `plugins/orchestrator/README.md`
+**Version**: 1.1.0 | **Last updated**: 2025-02-10 | **Powered by [Attractor](https://github.com/strongdm/attractor)**

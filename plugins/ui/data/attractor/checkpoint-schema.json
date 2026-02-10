@@ -1,0 +1,217 @@
+{
+  "title": "Strike Checkpoint Schema",
+  "version": "1.0.0",
+  "description": "Checkpoint data structure for strike workflow state persistence",
+
+  "checkpoint": {
+    "type": "object",
+    "required": ["version", "timestamp", "session_id", "current_node", "completed_nodes", "node_retries", "context_values", "logs"],
+    "properties": {
+      "version": {
+        "type": "string",
+        "description": "Checkpoint format version",
+        "pattern": "^\\d+\\.\\d+\\.\\d+$"
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "When this checkpoint was created"
+      },
+      "session_id": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Unique session identifier"
+      },
+      "current_node": {
+        "type": "string",
+        "description": "ID of the last completed node (phase)"
+      },
+      "completed_nodes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "IDs of all completed nodes in order"
+      },
+      "node_retries": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "integer"
+        },
+        "description": "Retry counter per node ID"
+      },
+      "context_values": {
+        "type": "object",
+        "description": "Serializable snapshot of the context (key-value store)"
+      },
+      "logs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Run log entries"
+      },
+      "events": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        },
+        "description": "Event log up to this checkpoint"
+      },
+      "metadata": {
+        "type": "object",
+        "properties": {
+          "user_prompt": {
+            "type": "string",
+            "description": "Original user prompt"
+          },
+          "mode": {
+            "type": "string",
+            "enum": ["full", "demo", "step", "team", "build"],
+            "description": "Execution mode"
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Flags passed to /ui command"
+          },
+          "start_time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Session start time"
+          },
+          "total_duration_ms": {
+            "type": "integer",
+            "description": "Total duration since session start"
+          }
+        }
+      },
+      "node_states": {
+        "type": "object",
+        "description": "Per-node state snapshots",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["pending", "in_progress", "completed", "failed", "skipped"]
+            },
+            "start_time": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "end_time": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "duration_ms": {
+              "type": "integer"
+            },
+            "output_files": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "error": {
+              "type": "string"
+            },
+            "data": {
+              "type": "object",
+              "description": "Node-specific data"
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "resume_behavior": {
+    "description": "How resume works when loading a checkpoint",
+    "steps": [
+      "1. Load checkpoint from {logs_root}/checkpoint.json",
+      "2. Restore context state from context_values",
+      "3. Restore completed_nodes to skip already-finished work",
+      "4. Restore retry counters from node_retries",
+      "5. Determine next node to execute (the one after current_node)",
+      "6. If previous node used full fidelity, degrade to summary:high for first resumed node",
+      "7. After degraded hop, subsequent nodes may use full fidelity again"
+    ]
+  },
+
+  "file_locations": {
+    "checkpoint_file": ".claude/.strike/checkpoint.json",
+    "node_checkpoints": ".claude/.strike/checkpoints/{node_id}.json",
+    "backup_pattern": ".claude/.strike/checkpoints/checkpoint-{timestamp}.json"
+  },
+
+  "example_checkpoint": {
+    "version": "1.0.0",
+    "timestamp": "2025-02-10T14:30:45.123Z",
+    "session_id": "550e8400-e29b-41d4-a716-446655440000",
+    "current_node": "enrich",
+    "completed_nodes": ["receive", "analyze", "detect_patterns", "select_constraints"],
+    "node_retries": {
+      "select_constraints": 0,
+      "enrich": 1
+    },
+    "context_values": {
+      "user_prompt": "Create a modern dashboard",
+      "detected_keywords": ["modern"],
+      "selected_constraints": ["monochrome", "textual_first"],
+      "anti_patterns": ["generic_hero", "card_grids"],
+      "fidelity_mode": "compact"
+    },
+    "logs": [
+      "[14:28:00] Session started",
+      "[14:28:05] Analysis complete: detected 1 high-risk keyword",
+      "[14:28:15] Constraints selected: monochrome, textual_first"
+    ],
+    "events": [
+      {
+        "kind": "SESSION_START",
+        "timestamp": "2025-02-10T14:28:00.000Z",
+        "session_id": "550e8400-e29b-41d4-a716-446655440000",
+        "data": {"mode": "full"}
+      }
+    ],
+    "metadata": {
+      "user_prompt": "Create a modern dashboard",
+      "mode": "full",
+      "flags": ["--explain"],
+      "start_time": "2025-02-10T14:28:00.000Z",
+      "total_duration_ms": 45123
+    },
+    "node_states": {
+      "analyze": {
+        "status": "completed",
+        "start_time": "2025-02-10T14:28:01.000Z",
+        "end_time": "2025-02-10T14:28:05.234Z",
+        "duration_ms": 4234,
+        "output_files": [".claude/.strike/analysis.md"],
+        "data": {
+          "keywords_found": ["modern"],
+          "risk_score": 7
+        }
+      },
+      "select_constraints": {
+        "status": "completed",
+        "start_time": "2025-02-10T14:28:10.000Z",
+        "end_time": "2025-02-10T14:28:15.567Z",
+        "duration_ms": 5567,
+        "output_files": [".claude/.strike/constraints.md"],
+        "data": {
+          "constraints_selected": 2,
+          "total_score": 85
+        }
+      },
+      "enrich": {
+        "status": "in_progress",
+        "start_time": "2025-02-10T14:28:20.000Z",
+        "retries": 1
+      }
+    }
+  }
+}

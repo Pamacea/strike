@@ -1,278 +1,240 @@
-# Strike v1.1
+# Strike v1.1.0
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub release](https://img.shields.io/github/v/release/Pamacea/strike)](https://github.com/Pamacea/strike/releases/latest)
 [![CI](https://github.com/Pamacea/strike/actions/workflows/ci.yml/badge.svg)](https://github.com/Pamacea/strike/actions)
+[![Attractor](https://img.shields.io/badge/Powered%20By-Attractor-blue.svg)](https://github.com/strongdm/attractor)
 
+> **Enterprise-grade UI generation with Attractor workflow orchestration, event observability, checkpoint/resume, and DOT graph workflows**
 
-
-> **Anti-trend UI generation with parallel orchestration, dynamic pattern detection, demo mode, and visual flag feedback**
-
-Break patterns. Create unique. Build thoughtful interfaces. Fast iterations when needed.
-
----
-
-## What is strike?
-
-strike is a creative constraint system for Claude Code that prevents generic UI patterns. It works in **two phases** with **optional parallel execution**:
-
-1. **Orchestrator** — Analyzes prompts, detects anti-patterns (dynamic + static), applies creative constraints, displays Red/Green flag table
-2. **Implementer** — Builds the UI from the enriched specification
-
-**New in v1.1:**
-- **Parallel mode (`--parallel`)** — Orchestrator analysis and Implementer preparation run simultaneously (8-17% faster)
-
-**v2.2 features:**
-- **Dynamic anti-pattern generation** — Creates NEW patterns from semantic keywords (futuriste, nuageux, mélancolique...)
-- **Demo mode (`--demo`)** — Lightweight v1-style workflow for fast iterations, fewer tokens
-- **Red/Green flag table** — Visual feedback showing patterns to avoid (🔴) and constraints applied (🟢)
-
-**v2.1 features:** Adversarial challenge, teaching explanations, auto-learning.
+Break patterns. Create unique. Build thoughtful interfaces. Iterate instantly.
 
 ---
 
-## Why This Exists
+## What is Strike?
 
-Modern web design has converged on a narrow set of "safe" choices. Glassmorphism, card grids, neon gradients, parallax scrolling — they're not bad, they're everywhere.
+**Strike** is a creative constraint system for Claude Code that prevents generic UI patterns through **Attractor-powered workflow orchestration**. It combines:
 
-When everything looks the same, nothing stands out.
+1. **Orchestrator** — Analyzes prompts, detects anti-patterns (dynamic + static), applies creative constraints
+2. **Implementer** — Builds the UI from enriched specification
+3. **Attractor Engine** — DOT-based workflow orchestration with events, checkpoints, and resilience
 
-The orchestrator is a guard against the obvious. It doesn't just build what you ask — it builds what you **should have asked for if you wanted something unique.**
+**New in v1.1.0 - Attractor Edition:**
+- 🎯 **DOT Workflow Orchestration** - Define workflows in Graphviz DOT syntax
+- 💾 **Checkpoint & Resume** - Crash recovery and state persistence
+- 📊 **Event Observability** - 30+ typed events for complete tracking
+- 👤 **Human-in-the-Loop** - Approval gates and interactive workflows
+- 🚀 **Parallel Execution** - Concurrent branch processing
+- 🔀 **Conditional Routing** - Smart workflow branching
+- 🎨 **Model Stylesheet** - CSS-like LLM configuration
+- 💬 **Steering** - Mid-task dynamic redirection
 
 ---
 
-## Features
+## Why Strike Exists
 
-### Orchestrator (`/ui` - Enhanced in v2.1)
+Modern web design has converged on a narrow set of "safe" choices. Glassmorphism, card grids, neon gradients, parallax scrolling — they're not bad, they're **everywhere**.
 
-- **Anti-pattern detection** — 40+ patterns to avoid (particles, glitch, neon...)
-- **Creative constraints** — 25+ constraint types (monochrome, ASCII, print-first...)
-- **Context-aware selection** — Constraints that fit the project, not random
-- **Prompt enrichment** — Transforms generic requests into specific briefs
-- **Schema validation** — JSON Schema validation for specifications
-- **Constraint scoring** — Creativity, difficulty, impact, synergy scores
-- **Adversarial mode** — Always-active challenge of its own decisions (NEW)
-- **Teaching mode** — Generates diagrams and explanations (NEW)
-- **Auto-learning** — Extracts patterns from sessions (NEW)
+**Strike is the guard against the obvious.** It doesn't just build what you ask — it builds what you **should have asked for** if you wanted something unique.
+
+---
+
+## 🚀 Key Features
+
+### Orchestrator (`/ui`)
+
+- **Dynamic anti-pattern detection** — 40+ static + unlimited generated patterns
+- **Creative constraint engine** — 25+ constraint types with scoring (creativity, difficulty, impact, synergy)
+- **Context-aware selection** — Constraints that fit your project, not random
+- **Schema validation** — JSON Schema for specs and build results
+- **Adversarial mode** — Challenges its own decisions and proposes alternatives
+- **Teaching mode** — Generates diagrams and explanations
+- **Auto-learning** — Extracts patterns from successful sessions
+- **Teams mode** — Parallel multi-agent execution (2-3x faster)
 
 ### Implementer (`/build`)
 
-- **Two stacks** — React/Tailwind for production, Vanilla for prototypes
+- **Two stacks** — React/Tailwind (production) or Vanilla (prototype)
 - **Anti-pattern validation** — Checks implementation against blacklist
-- **Constraint compliance** — Ensures all creative boundaries are respected
-- **Template-driven** — Consistent structure, clean output
+- **Constraint compliance** — Respects all creative boundaries
 - **Component registry** — Validated components with alternatives
+- **Accessibility-first** — WCAG AA compliance, semantic HTML, keyboard nav
 - **Build metrics** — Bundle size, compliance scores, timing
-- **Accessibility-first** — WCAG compliance, semantic HTML, keyboard navigation
 
----
+### Attractor Engine (NEW v4.0)
 
-## What's New in v1.1
-
-| Feature | Description |
-|---------|-------------|
-| **Parallel Mode** | `--parallel` flag runs Orchestrator + Implementer simultaneously (8-17% faster) |
-| **Shared State Protocol** | `.claude/.strike/parallel-state.json` for agent coordination |
-| **Coordination Phase** | Merges orchestrator output with implementer preparation |
-
-## What's New in v2.2
-
-| Feature | Description |
-|---------|-------------|
-| **Dynamic Anti-Patterns** | Generates NEW patterns from semantic keywords, not just static DB |
-| **Demo Mode** | `--demo` flag for lightweight v1-style workflow (faster, fewer tokens) |
-| **Red/Green Flag Table** | Visual feedback displayed by default (🔴 avoid, 🟢 apply) |
-| **Subfolder Output** | `output/react-tailwind/` and `output/vanilla/` for cleaner builds |
-| **No README in Output** | Documentation in `.claude/.strike/` and `build-result.json` only |
-
-## What's New in v2.1
-
-| Feature | Description |
-|---------|-------------|
-| **Integrated Adversarial** | Always-active challenge mode debates and stress-tests decisions |
-| **Integrated Teaching** | `--explain` flag generates diagrams and explanations |
-| **Integrated Learning** | `--learn` flag extracts patterns from sessions |
-| **Boris Cherny Patterns** | Multi-agent workflow within single orchestrator |
-| **No Separate Plugins** | All features unified into orchestrator/implementer |
-
-## What's New in v2.0
-
-| Feature | Description |
-|---------|-------------|
-| **Schema Validation** | JSON schemas for specs and build results |
-| **Constraint Scoring** | Creativity, difficulty, impact, synergy (0-100) |
-| **Component Registry** | Validated components with anti-pattern alternatives |
-| **Accessibility Checklist** | 30+ checks across 8 categories |
-| **Build Metrics** | Bundle size, compliance scores, timing |
+- **DOT workflows** — Declarative graph-based pipelines
+- **Event system** — Complete observability with 30+ event types
+- **Checkpoints** — Auto-save after each phase, resume on interruption
+- **Human gates** — Pause for approval at critical points
+- **Parallel execution** — Run multiple branches concurrently
+- **Conditional routing** — Smart branching based on outcomes
+- **Model stylesheet** — Optimize LLM usage with CSS-like config
+- **Context fidelity** — Control conversation history management
+- **Steering** — Inject messages mid-execution
 
 ---
 
 ## Usage
 
-### In Claude Code
+### Basic UI Generation
 
 ```bash
-# ===== ORCHESTRATOR =====
-# Full UI generation with deep analysis
-/ui "Create a modern dashboard"
+# Full workflow with deep analysis
+/ui "Create a modern SaaS dashboard"
 
-# Parallel mode - Orchestrator + Implementer run together (NEW v1.1)
-/ui --parallel "Create a modern dashboard"
+# Demo mode - lightweight and fast
+/ui --demo "Quick portfolio site"
 
-# Demo mode - lightweight, fast, fewer tokens
-/ui --demo "Quick portfolio"
+# Teams mode - parallel multi-agent execution (2-3x faster)
+export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
+/ui --team "E-commerce platform with billing"
 
-# Just analyze prompt
-/ui --analyze "Sleek portfolio"
-
-# Show constraints to apply
-/ui --constraints "Product page"
-
-# ===== IMPLEMENTER =====
-# Build from enriched spec
-/build
+# Build from existing spec
+/ui --build
 ```
 
-**Red/Green Flag Table** (shown by default in all modes):
+### Attractor Mode
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│  🔴 RED FLAGS - Patterns to AVOID                                          │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  ❌ card_grid                 Every dashboard does this                     │
-│  ❌ glassmorphism_cards       Overused since 2022                          │
-└─────────────────────────────────────────────────────────────────────────────┘
+```bash
+# Resume from checkpoint (auto-detects interruption)
+/ui --resume
 
-┌─────────────────────────────────────────────────────────────────────────────┐
-│  🟢 GREEN FLAGS - Selected Constraints                                     │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  ✅ paper_and_ink             Crisp print aesthetic                        │
-│  ✅ architectural             Spatial, grounded structure                   │
-└─────────────────────────────────────────────────────────────────────────────┘
+# Use custom DOT workflow
+/ui --workflow=".claude/.strike/my-workflow.dot" "Create landing page"
+
+# With human approval gates
+/ui --step "Complex application with reviews"
 ```
 
----
+### Analysis Only
 
-## Output Files
+```bash
+# Just analyze prompt, show patterns
+/ui --analyze "Futuristic portfolio"
 
-After `/ui` runs, it creates in `.claude/.strike/`:
+# Show constraints to be applied
+/ui --constraints "Minimalist blog"
 
-| File | Content |
-|------|---------|
-| `analysis.md` | Prompt risk assessment |
-| `anti-patterns.md` | Detected patterns to avoid |
-| `constraints.md` | Selected constraints with scores |
-| `enriched-spec.md` | Full brief for implementer |
-| `enriched-spec.json` | Validated JSON specification |
-
-After `/build` runs, it creates in `./output/`:
-
-| Path | Stack | Content |
-|------|-------|---------|
-| `./output/react-tailwind/` | React/Tailwind | Component-based production app |
-| `./output/vanilla/` | Vanilla | Single-file instant prototype |
-| `./output/build-result.json` | Both | Metrics and validation |
-
-**Note:** No README in output/ - documentation stays in `.claude/.strike/`. Images folder created only if needed.
+# Validate existing spec
+/ui --validate
+```
 
 ---
 
-## Anti-Patterns Database
+## Output Structure
 
-Categories with severity levels:
+### Orchestrator Output (`.claude/.strike/`)
 
-| Category | Patterns | Severity |
-|----------|----------|----------|
-| UI Effects | Particles, glitch, scanlines, custom cursor, gradient mesh, blob morphing | High |
-| Colors | Neon pink-blue, trendy gradients, dark-mode default, pastel everything | Medium |
-| Layouts | Generic hero, card grids, bento boxes, fullscreen sections, sticky everything | High |
-| Interactions | Parallax, scroll reveal, scroll hijack, loading animations | High |
-| Typography | Acid distortion, brutalism helvetica, variable font tricks, giant headlines | Medium |
-| Components | Glassmorphism, neumorphism, floating labels, rounded everything, icon overload | High |
+```
+.claude/.strike/
+├── analysis.md              # Prompt risk assessment
+├── anti-patterns.md         # Detected patterns to avoid
+├── constraints.md           # Selected constraints with scores
+├── enriched-spec.md         # Full brief for implementer
+├── enriched-spec.json       # Validated JSON specification
+├── checkpoint.json          # Latest checkpoint (v4.0)
+├── events.jsonl             # Event log (v4.0)
+└── step-state.json          # Step mode state (if --step)
+```
 
-See full database: `plugins/orchestrator/data/anti-patterns.json`
+### Implementer Output (`./output/`)
 
----
-
-## Constraint Library
-
-Categories with difficulty levels:
-
-| Category | Constraint Types | Difficulty |
-|----------|-----------------|------------|
-| Color Restrictions | Monochrome, single accent, warm only, paper & ink, inverted contrast | Easy-Medium |
-| Interaction Sources | Architectural, biological, musical, mechanical, textual | Medium-Hard |
-| Technical Constraints | CSS only, system fonts only, no images, single file, no animations, ASCII art | Easy-Hard |
-| Context Shifts | Print first, screen reader first, outdoor visible, slow connection, low energy | Medium-Hard |
-| Structural Constraints | Linear only, no headings, infinite scroll, component isolation, max width extreme | Easy-Hard |
-
-See full library: `plugins/orchestrator/data/constraints.json`
+```
+./output/
+├── react-tailwind/          # Production app
+│   ├── src/
+│   ├── package.json
+│   └── ...
+└── vanilla/                  # Prototype
+    ├── index.html
+    └── ...
+```
 
 ---
 
-## Examples
+## DOT Workflow Examples
 
-### Example 1: "Modern analytics dashboard"
+### Simple Sequential Workflow
 
-**Analysis:**
-- "Modern" → High risk (trendy colors, glassmorphism)
-- "Dashboard" → High risk (card grids, generic hero)
-- "Analytics" → Medium risk (charts, data viz)
+```dot
+digraph SimpleWorkflow {
+  graph [goal="Generate unique UI"]
 
-**Detected Anti-Patterns:**
-- Card grid layout
-- Glassmorphism cards
-- Dark theme with neon accents
-- Hover animations everywhere
+  start [shape=Mdiamond]
+  analyze [shape=box, prompt="Analyze for trends"]
+  build [shape=box, prompt="Build UI"]
+  exit [shape=Msquare]
 
-**Applied Constraints:**
-- Paper & ink (off-white background, dark text) — score: 35
-- Architectural (room-based navigation) — score: 78
-- Print first — score: 72
+  start -> analyze -> build -> exit
+}
+```
 
-**Result:** A dashboard that uses white space as architecture, numbers as typography, and feels like a well-designed annual report rather than another SaaS tool.
+### With Human Approval
 
-### Example 2: "Sleek portfolio"
+```dot
+digraph WithApproval {
+  start [shape=Mdiamond]
+  plan [shape=box, prompt="Create plan"]
+  review [shape=hexagon, label="Approve Plan?"]
+  execute [shape=box, prompt="Execute plan"]
+  exit [shape=Msquare]
 
-**Analysis:**
-- "Sleek" → High risk (gradients, dark mode, smooth animations)
-- "Portfolio" → Medium risk (parallax, gallery grid, large images)
+  start -> plan -> review
+  review -> execute [label="[A] Approve"]
+  review -> plan [label="[R] Revise"]
+  execute -> exit
+}
+```
 
-**Detected Anti-Patterns:**
-- Parallax scrolling
-- Hero section with large image
-- Smooth scroll hijacking
-- Gradient mesh backgrounds
+### Conditional Routing
 
-**Applied Constraints:**
-- ASCII art only — score: 65
-- System fonts only — score: 22
-- Single file — score: 18
+```dot
+digraph Conditional {
+  test [shape=box]
+  gate [shape=diamond]
+  deploy [shape=box]
+  fix [shape=box]
 
-**Result:** A portfolio that looks like a beautifully formatted README, loads instantly, and actually showcases code thinking rather than hiding behind flashy effects.
+  test -> gate
+  gate -> deploy [condition="outcome=success"]
+  gate -> fix [condition="outcome!=success"]
+  fix -> test
+}
+```
 
----
+### Parallel Exploration
 
-## Philosophy
+```dot
+digraph Parallel {
+  start [shape=Mdiamond]
+  split [shape=component]
+  option_a [shape=box, class="creative"]
+  option_b [shape=box]
+  merge [shape=tripleoctagon]
+  select [shape=box]
+  exit [shape=Msquare]
 
-**Why anti-patterns?**
-Modern UI has converged on a narrow set of "safe" choices. When everything looks the same, nothing stands out.
-
-**Why constraints?**
-Limitations breed creativity. When you can't use gradients, you discover the power of typography. When you can't use images, you learn what CSS can really do. When you design for print, you discover true hierarchy.
-
-**The goal:**
-Not to be contrarian for its own sake, but to push past the first obvious solution and find something that actually fits the content, the users, and the context.
+  start -> split
+  split -> option_a
+  split -> option_b
+  option_a -> merge
+  option_b -> merge
+  merge -> select -> exit
+}
+```
 
 ---
 
 ## Configuration
 
-Settings in `.claude/.strike/config.json`:
+### Strike Configuration
+
+`.claude/.strike/config.json`:
 
 ```json
 {
-  "orchestrator": {
+  "ui": {
     "min_constraints": 2,
     "max_constraints": 4,
     "strict_mode": false,
@@ -286,34 +248,129 @@ Settings in `.claude/.strike/config.json`:
       "synergy": 0.2
     },
     "feedback_learning": true
+  },
+  "attractor": {
+    "enable_events": true,
+    "enable_checkpoints": true,
+    "auto_resume": true,
+    "max_parallel_branches": 4,
+    "checkpoint_interval": "auto",
+    "event_log_path": ".claude/.strike/events.jsonl"
   }
 }
 ```
 
 ---
 
+## Options
+
+| Flag | Description |
+|------|-------------|
+| `--step` | Interactive workflow - pause at each phase for review |
+| `--build` | Build from existing spec (skip orchestration) |
+| `--team` | Teams mode for parallel multi-agent execution |
+| `--demo` | Lightweight mode - faster, fewer tokens |
+| `--analyze` | Only analyze prompt, don't build |
+| `--constraints` | Show constraints to be applied |
+| `--full` | Run complete workflow with verbose output |
+| `--stack=<react|vanilla>` | Force specific tech stack |
+| `--strict` | Reject prompt if too many anti-patterns |
+| `--score` | Show constraint scoring details |
+| `--validate` | Run schema validation only |
+| `--explain` | Generate explanation diagrams |
+| `--learn` | Extract patterns from session |
+| `--feedback=<id>` | Include previous feedback |
+| `--no-challenge` | Skip adversarial challenge |
+| `--resume` | Resume from checkpoint (NEW v4.0) |
+| `--workflow=<path>` | Use custom DOT workflow (NEW v4.0) |
+
+---
+
 ## Documentation
 
 - [CLAUDE.md](CLAUDE.md) — Quick reference for users
-- [plugins/orchestrator/README.md](plugins/orchestrator/README.md) — Orchestrator documentation
-- [plugins/implementer/README.md](plugins/implementer/README.md) — Implementer documentation
-- [plugins/orchestrator/data/schemas/](plugins/orchestrator/data/schemas/) — JSON schemas
-- [plugins/implementer/data/component-registry.json](plugins/implementer/data/component-registry.json) — Component registry
-- [plugins/implementer/data/accessibility-checklist.json](plugins/implementer/data/accessibility-checklist.json) — A11y checklist
+- [CHANGELOG.md](CHANGELOG.md) — Version history and changes
+- [plugins/ui/data/attractor/ATTRACTOR-INTEGRATION.md](plugins/ui/data/attractor/ATTRACTOR-INTEGRATION.md) — Complete Attractor API guide
+
+---
+
+## Philosophy
+
+**Why anti-patterns?** Modern UI has converged. When everything looks the same, nothing stands out.
+
+**Why constraints?** Limitations breed creativity. When you can't use gradients, you discover typography. When you can't use images, you learn what CSS can do.
+
+**The goal:** Not to be contrarian, but to push past the first obvious solution and find something that actually fits the content, users, and context.
+
+---
+
+## Anti-Patterns Database
+
+| Category | Patterns | Severity |
+|----------|----------|----------|
+| UI Effects | Particles, glitch, scanlines, custom cursor, gradient mesh, blob morphing | High |
+| Colors | Neon pink-blue, trendy gradients, dark-mode default, pastel everything | Medium |
+| Layouts | Generic hero, card grids, bento boxes, fullscreen sections, sticky everything | High |
+| Interactions | Parallax, scroll reveal, scroll hijack, loading animations | High |
+| Typography | Acid distortion, brutalism helvetica, variable font tricks, giant headlines | Medium |
+| Components | Glassmorphism, neumorphism, floating labels, rounded everything, icon overload | High |
+
+---
+
+## Constraint Library
+
+| Category | Examples | Difficulty |
+|----------|----------|------------|
+| Color Restrictions | Monochrome, single accent, warm only, paper & ink, inverted contrast | Easy-Medium |
+| Interaction Sources | Architectural, biological, musical, mechanical, textual | Medium-Hard |
+| Technical Constraints | CSS only, system fonts only, no images, single file, no animations, ASCII art | Easy-Hard |
+| Context Shifts | Print first, screen reader first, outdoor visible, slow connection, low energy | Medium-Hard |
+| Structural Constraints | Linear only, no headings, infinite scroll, component isolation, max width extreme | Easy-Hard |
+
+---
+
+## Examples
+
+### Example 1: "Modern analytics dashboard"
+
+**Analysis:**
+- "Modern" → High risk (trendy colors, glassmorphism)
+- "Dashboard" → High risk (card grids, generic hero)
+- "Analytics" → Medium risk (charts, data viz)
+
+**Applied Constraints:**
+- Paper & ink (off-white, dark text) — score: 35
+- Architectural (room-based navigation) — score: 78
+- Print first — score: 72
+
+**Result:** A dashboard that uses white space as architecture, numbers as typography, and feels like a well-designed annual report.
+
+### Example 2: "Sleek portfolio"
+
+**Analysis:**
+- "Sleek" → High risk (gradients, dark mode, animations)
+- "Portfolio" → Medium risk (parallax, gallery grid)
+
+**Applied Constraints:**
+- ASCII art only — score: 65
+- System fonts only — score: 22
+- Single file — score: 18
+
+**Result:** A portfolio that looks like a beautifully formatted README, loads instantly, and showcases code thinking.
 
 ---
 
 ## Installation
 
-This is a Claude Code marketplace plugin. Install it via Claude Code's marketplace system:
+Via Claude Code marketplace:
 
 ```bash
-# In Claude Code, open the marketplace
+# In Claude Code, open marketplace
 # Search for "strike"
 # Click install
 ```
 
-Or manually add to `.claude/plugins/`:
+Manual installation:
 
 ```bash
 git clone https://github.com/Pamacea/strike ~/.claude/plugins/strike
@@ -327,4 +384,6 @@ MIT — See [LICENSE](LICENSE) for details.
 
 ---
 
-*Version*: 2.3.0 | *Author*: Pamacea | *Repository*: https://github.com/Pamacea/strike
+*Version*: 4.0.0 | *Author*: Pamacea | *Repository*: https://github.com/Pamacea/strike
+
+**Powered by [Attractor](https://github.com/strongdm/attractor) - DOT-based workflow orchestration for AI pipelines**

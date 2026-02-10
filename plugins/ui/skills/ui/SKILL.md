@@ -1,25 +1,33 @@
 ---
 name: ui
-description: Frontend UI Orchestrator Skill - Parallel multi-agent orchestration with Claude Code Agent Teams
-version: 1.1.0
+description: Frontend UI Orchestrator Skill - Attractor-powered workflow orchestration with events, checkpoints, and DOT graphs
+version: 4.0.0
 ---
 
-# UI Orchestrator Skill v3.0
+# UI Orchestrator Skill v4.0 - Attractor Edition
 
 ## Mission
 
-Transform generic UI prompts into unique, anti-trend specifications by detecting overused patterns, **generating new prompt-specific anti-patterns dynamically**, imposing creative constraints, and integrating adversarial self-challenge.
+Transform generic UI prompts into unique, anti-trend specifications using **enterprise-grade Attractor workflow orchestration**. Detect overused patterns, generate prompt-specific anti-patterns dynamically, impose creative constraints, and execute with full observability and resilience.
 
-**New in v3.0:**
-- **Unified plugin** - Orchestrator and Builder in one
-- **Teams mode (`--team`)** - Parallel multi-agent execution with Claude Code Agent Teams
-- **Build flag (`--build`)** - Direct implementation from existing spec
+## 🎉 What's New in v4.0
 
-**v2.3 features:**
-- **Dynamic anti-pattern generation** - Creates NEW patterns from semantic keywords
-- **Demo mode (`--demo`)** - Lightweight, fast workflow with fewer tokens (v1-style)
+**Major upgrade - Full Attractor integration:**
+- 🎯 **DOT Workflow Orchestration** - Define workflows in Graphviz DOT syntax
+- 💾 **Checkpoint & Resume** - Crash recovery and state persistence
+- 📊 **Event Observability** - Track everything with typed events
+- 👤 **Human-in-the-Loop** - Approval gates and interactive workflows
+- 🚀 **Parallel Execution** - Concurrent branch processing with fan-in/fan-out
+- 🔀 **Conditional Routing** - Smart workflow branching with conditions
+- 🎨 **Model Stylesheet** - CSS-like LLM configuration
+- 💬 **Steering** - Mid-task injection for dynamic redirection
 
-**v2.1 features:** Integrated adversarial mode, self-challenge with alternatives, diagram explanations, pattern extraction.
+**Previous v3.0 features:**
+- Unified plugin (orchestrator + builder)
+- Teams mode (`--team`) for parallel multi-agent execution
+- Build flag (`--build`) for direct implementation
+- Dynamic anti-pattern generation
+- Demo mode (`--demo`) for lightweight workflows
 
 ---
 
@@ -412,14 +420,228 @@ The orchestrator creates in `.claude/.strike/`:
 
 ---
 
+## 🚀 Attractor Mode - DOT Workflow Orchestration (NEW v4.0)
+
+### Overview
+
+Strike v4.0 introduces **Attractor mode** - a powerful new way to define and execute workflows using Graphviz DOT syntax. This enables:
+
+- **Declarative workflow definitions** - Visual, version-controllable pipelines
+- **Checkpoint & resume** - Recover from crashes and interruptions
+- **Event observability** - Track every phase with typed events
+- **Human-in-the-loop** - Pause for user approval at critical points
+- **Parallel execution** - Run multiple branches concurrently
+- **Conditional routing** - Smart branching based on outcomes
+
+### Activation
+
+```bash
+# Use Attractor mode (default in v4.0)
+/ui "Create a unique dashboard"
+
+# With DOT workflow definition
+/ui --workflow=".claude/.strike/workflow.dot" "Modern SaaS app"
+
+# Resume from checkpoint
+/ui --resume
+
+# Teams mode with Attractor
+export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
+/ui --team "E-commerce platform"
+```
+
+### DOT Workflow Example
+
+```dot
+digraph AntiTrendWorkflow {
+  graph [goal="Generate unique anti-trend UI"]
+
+  start [shape=Mdiamond]
+  analyze [shape=box, prompt="Analyze prompt for trends"]
+  patterns [shape=box, prompt="Detect anti-patterns"]
+  constraints [shape=box, prompt="Select constraints"]
+  approve [shape=hexagon, label="Approve?"]
+  build [shape=box, prompt="Build UI", goal_gate=true]
+  exit [shape=Msquare]
+
+  start -> analyze -> patterns -> constraints -> approve
+  approve -> build [label="[A] Approve"]
+  approve -> constraints [label="[M] Modify"]
+  build -> exit
+}
+```
+
+### Conditional Routing
+
+```dot
+digraph ConditionalFlow {
+  validate [shape=box]
+  gate [shape=diamond]
+  deploy [shape=box]
+  fix [shape=box]
+
+  validate -> gate
+  gate -> deploy [condition="outcome=success && context.tests_passed=true"]
+  gate -> fix [condition="outcome!=success"]
+  fix -> validate
+}
+```
+
+### Parallel Execution
+
+```dot
+digraph ParallelExploration {
+  start [shape=Mdiamond]
+  split [shape=component]
+  option_a [shape=box, class="creative"]
+  option_b [shape=box]
+  merge [shape=tripleoctagon]
+  best [shape=box]
+  exit [shape=Msquare]
+
+  start -> split
+  split -> option_a
+  split -> option_b
+  option_a -> merge
+  option_b -> merge
+  merge -> best -> exit
+}
+```
+
+### Human Gates
+
+```dot
+digraph WithApproval {
+  plan [shape=box]
+  review [shape=hexagon, label="Review Plan?"]
+  execute [shape=box]
+
+  plan -> review
+  review -> execute [label="[A] Approve"]
+  review -> plan [label="[R] Revise"]
+}
+```
+
+---
+
+## 📊 Event System (NEW v4.0)
+
+All phases emit typed events for observability:
+
+### Key Events
+
+- `SESSION_START` / `SESSION_END` - Session lifecycle
+- `PHASE_START` / `PHASE_END` - Phase execution
+- `ANALYSIS_START` / `ANALYSIS_END` - Analysis phase
+- `ANTI_PATTERNS_DETECTED` - Patterns found
+- `CONSTRAINTS_SELECTED` - Constraints chosen
+- `BUILD_START` / `BUILD_END` - Build phase
+- `ACCESSIBILITY_CHECK` - A11y validation
+- `CHECKPOINT_SAVED` / `CHECKPOINT_LOADED` - State persistence
+- `ERROR` - Errors with context
+
+### Using Events
+
+```javascript
+// Events are emitted automatically during workflow
+// Check .claude/.strike/events.jsonl for full log
+
+// Session stats are available
+const stats = emitter.getStats();
+console.log(`Total events: ${stats.total}`);
+console.log(`By kind:`, stats.byKind);
+```
+
+---
+
+## 💾 Checkpoint & Resume (NEW v4.0)
+
+### Automatic Checkpoints
+
+Strike automatically saves checkpoints after each phase:
+
+```json
+// .claude/.strike/checkpoint.json
+{
+  "version": "1.0.0",
+  "timestamp": "2025-02-10T14:30:45.123Z",
+  "session_id": "uuid",
+  "current_node": "enrich",
+  "completed_nodes": ["analyze", "detect_patterns", "select_constraints"],
+  "context_values": {
+    "user_prompt": "...",
+    "detected_keywords": ["modern"],
+    "selected_constraints": ["monochrome"]
+  },
+  "node_states": {
+    "analyze": {
+      "status": "completed",
+      "duration_ms": 4234,
+      "output_files": [".claude/.strike/analysis.md"]
+    }
+  }
+}
+```
+
+### Resume from Interruption
+
+```bash
+# Workflow was interrupted - resume automatically
+/ui --resume
+
+# Or it resumes automatically on next run
+/ui "Continue the work"
+```
+
+### Manual Checkpoint Control
+
+```bash
+# List checkpoints
+ls .claude/.strike/checkpoints/
+
+# Load specific checkpoint
+/ui --checkpoint=".claude/.strike/checkpoints/checkpoint-1234567890.json"
+```
+
+---
+
+## 🎯 Model Stylesheet (NEW v4.0)
+
+Optimize LLM usage with CSS-like configuration:
+
+```javascript
+// In config.json or per-workflow
+{
+  "model_stylesheet": "
+    * { llm_model: claude-sonnet-4-5; }
+    .creative { llm_model: claude-opus-4-6; reasoning_effort: high; }
+    #critical_review { llm_model: gpt-5.2; }
+  "
+}
+```
+
+### Selector Types
+
+- `*` - Universal (all nodes)
+- `.classname` - Class selector
+- `#nodeid` - ID selector
+
+### Specificity
+
+ID (2) > Class (1) > Universal (0)
+
+---
+
 ## Best Practices
 
-1. **Be honest about your prompt** - Don't game system by avoiding trigger words
-2. **Embrace constraints** - They're not limitations, they're liberation
-3. **Trust the process** - The weird ideas often become the best ideas
-4. **Use teams for complex projects** - Enable teams mode for 2-3x speedup
-5. **Iterate** - If the first result isn't right, run again with different constraints
-6. **Learn from it** - Each constraint teaches you something about design
+1. **Use Teams mode** - Enable `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` for 2-3x speedup
+2. **Embrace constraints** - They're liberation, not limitation
+3. **Trust the process** - The weird ideas become the best ideas
+4. **Iterate with checkpoints** - Resume and adjust as needed
+5. **Use human gates** - Get approval on critical decisions
+6. **Monitor events** - Track progress in real-time
+7. **Optimize costs** - Use stylesheets for smart LLM selection
+8. **Leverage parallelism** - Run explorations concurrently
 
 ---
 
@@ -449,4 +671,48 @@ Settings in `.claude/.strike/config.json`:
 
 ---
 
-*UI Orchestrator v3.0 - Dynamic anti-pattern generation, teams mode, unified plugin*
+## Configuration
+
+Settings in `.claude/.strike/config.json`:
+
+```json
+{
+  "ui": {
+    "min_constraints": 2,
+    "max_constraints": 4,
+    "strict_mode": false,
+    "always_include": ["color_restrictions"],
+    "prefer_categories": ["technical_constraints"],
+    "anti_pattern_severity_threshold": "medium",
+    "scoring_weights": {
+      "creativity": 0.3,
+      "difficulty": 0.25,
+      "impact": 0.25,
+      "synergy": 0.2
+    },
+    "feedback_learning": true
+  },
+  "attractor": {
+    "enable_events": true,
+    "enable_checkpoints": true,
+    "auto_resume": true,
+    "max_parallel_branches": 4
+  }
+}
+```
+
+---
+
+## 📖 Attractor API Reference
+
+See `plugins/ui/data/attractor/ATTRACTOR-INTEGRATION.md` for complete documentation of:
+- Event system API
+- Checkpoint service API
+- DOT grammar reference
+- Workflow engine API
+- Node handlers
+- All feature integrations
+
+---
+
+*UI Orchestrator v4.0 - Attractor Edition: Event-driven workflows, checkpoint/resume, DOT orchestration, teams mode, dynamic anti-pattern generation*
