@@ -1,0 +1,324 @@
+{
+  "name": "strike-ui-patterns",
+  "version": "1.5.0",
+  "type": "ui-patterns",
+  "description": "Registry of validated UI patterns for anti-trend, unique design",
+  "metadata": {
+    "author": "Pamacea",
+    "license": "MIT",
+    "created": "2025-02-19T00:00:00Z",
+    "updated": "2025-02-19T00:00:00Z"
+  },
+  "items": [
+    {
+      "id": "typography-hierarchy",
+      "name": "Typography-Only Hierarchy",
+      "description": "Using only typography size, weight, and spacing to create visual hierarchy without decorative elements, borders, or backgrounds. Pure typographic design.",
+      "category": "layout",
+      "tags": ["typography", "minimal", "accessibility", "readability"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "medium",
+        "creativity": 22,
+        "difficultyScore": 15,
+        "impact": 18,
+        "synergy": 15,
+        "totalScore": 70,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Long-form Article",
+          "description": "Article layout with clear heading hierarchy and generous whitespace"
+        },
+        {
+          "title": "Documentation Site",
+          "description": "Technical documentation using only typography for structure"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs"]
+    },
+    {
+      "id": "single-column-focus",
+      "name": "Single Column Focus",
+      "description": "Strict single-column layout with maximum width constraints. No multi-column grids, no sidebars. Pure vertical rhythm.",
+      "category": "layout",
+      "tags": ["minimal", "readability", "focus", "mobile-first"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "easy",
+        "creativity": 15,
+        "difficultyScore": 8,
+        "impact": 12,
+        "synergy": 10,
+        "totalScore": 45,
+        "accessibility": "WCAG-AAA"
+      },
+      "examples": [
+        {
+          "title": "Blog Post",
+          "description": "Focused reading experience with 65ch max width"
+        },
+        {
+          "title": "Landing Page",
+          "description": "Single column narrative flow"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs", "remix", "vite"]
+    },
+    {
+      "id": "brutalist-grid",
+      "name": "Brutalist Grid",
+      "description": "Visible grid lines, raw borders, no shadows or rounded corners. Structure is exposed, not hidden. Technical and honest.",
+      "category": "layout",
+      "tags": ["brutalist", "grid", "technical", "honest"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "medium",
+        "creativity": 25,
+        "difficultyScore": 18,
+        "impact": 20,
+        "synergy": 16,
+        "totalScore": 79,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Data Table",
+          "description": "Clear grid structure with visible borders"
+        },
+        {
+          "title": "Dashboard",
+          "description": "Information-dense grid layout"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs"]
+    },
+    {
+      "id": "asymmetric-rhythm",
+      "name": "Asymmetric Rhythm",
+      "description": "Break the grid with asymmetric layouts and unexpected spacing. Creates visual interest through imbalance rather than symmetry.",
+      "category": "layout",
+      "tags": ["asymmetric", "dynamic", "editorial", "magazine"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "hard",
+        "creativity": 28,
+        "difficultyScore": 22,
+        "impact": 23,
+        "synergy": 18,
+        "totalScore": 91,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Magazine Layout",
+          "description": "Editorial design with asymmetric columns"
+        },
+        {
+          "title": "Portfolio",
+          "description": "Dynamic grid breaking traditional layouts"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla"]
+    },
+    {
+      "id": "monochrome-complex",
+      "name": "Monochrome Complexity",
+      "description": "Single color with value variations only. No hue changes. Creates sophistication through depth and contrast.",
+      "category": "color",
+      "tags": ["monochrome", "minimal", "sophisticated", "elegant"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "medium",
+        "creativity": 20,
+        "difficultyScore": 14,
+        "impact": 16,
+        "synergy": 14,
+        "totalScore": 64,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Black & White Portfolio",
+          "description": "High contrast monochrome design"
+        },
+        {
+          "title": "Architectural Site",
+          "description": "Single color with opacity variations"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs", "remix", "vite"]
+    },
+    {
+      "id": "system-ymbols",
+      "name": "System Symbols",
+      "description": "Use only unicode characters and system font symbols. No icon libraries, no SVG files. Pure text-based iconography.",
+      "category": "components",
+      "tags": ["minimal", "native", "fast", "no-dependencies"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "easy",
+        "creativity": 18,
+        "difficultyScore": 10,
+        "impact": 14,
+        "synergy": 12,
+        "totalScore": 54,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Navigation",
+          "description": "Unicode symbols for menu items"
+        },
+        {
+          "title": "Action Buttons",
+          "description": "Text-based actions with symbolic characters"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs", "remix", "vite"]
+    },
+    {
+      "id": "print-first",
+      "name": "Print-First Design",
+      "description": "Design for static output first. Assume no interactivity, no hover states, no animations. Like a magazine.",
+      "category": "approach",
+      "tags": ["print", "static", "editorial", "permanent"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "medium",
+        "creativity": 24,
+        "difficultyScore": 16,
+        "impact": 19,
+        "synergy": 15,
+        "totalScore": 74,
+        "accessibility": "WCAG-AAA"
+      },
+      "examples": [
+        {
+          "title": "Article",
+          "description": "Content that works when printed"
+        },
+        {
+          "title": "Report",
+          "description": "Document-style layout"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs", "remix", "vite"]
+    },
+    {
+      "id": "raw-html",
+      "name": "Raw HTML Semantics",
+      "description": "Use semantic HTML elements without any styling hooks. No divs, no classes. Pure document structure.",
+      "category": "technical",
+      "tags": ["semantic", "accessible", "raw", "purist"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "medium",
+        "creativity": 16,
+        "difficultyScore": 12,
+        "impact": 15,
+        "synergy": 13,
+        "totalScore": 56,
+        "accessibility": "WCAG-AAA"
+      },
+      "examples": [
+        {
+          "title": "Article",
+          "description": "<article>, <section>, <h1>-<h6> only"
+        },
+        {
+          "title": "Documentation",
+          "description": "Semantic HTML with user-agent styles"
+        }
+      ],
+      "compatibility": ["vanilla", "react-tailwind", "nextjs", "remix", "vite"]
+    },
+    {
+      "id": "vertical-rhythm",
+      "name": "Strict Vertical Rhythm",
+      "description": "All spacing follows a baseline grid (e.g., 8px or 1.5em). Consistent vertical spacing creates harmony.",
+      "category": "layout",
+      "tags": ["rhythm", "grid", "harmonious", "consistent"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "medium",
+        "creativity": 14,
+        "difficultyScore": 11,
+        "impact": 13,
+        "synergy": 11,
+        "totalScore": 49,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Blog",
+          "description": "1.5em line-height, 1.5em margins"
+        },
+        {
+          "title": "UI Components",
+          "description": "8px grid system"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs", "remix", "vite"]
+    },
+    {
+      "id": "micro-interactions",
+      "name": "Micro-Interactions Only",
+      "description": "No page transitions, no scroll animations. Only essential feedback: focus rings, button states, form validation.",
+      "category": "interaction",
+      "tags": ["minimal", "accessible", "fast", "essential"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "easy",
+        "creativity": 12,
+        "difficultyScore": 8,
+        "impact": 11,
+        "synergy": 10,
+        "totalScore": 41,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Form",
+          "description": "Focus, valid, invalid states only"
+        },
+        {
+          "title": "Buttons",
+          "description": "Hover, active, focus states"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs", "remix", "vite"]
+    }
+  ]
+}

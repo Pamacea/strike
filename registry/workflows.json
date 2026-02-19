@@ -1,0 +1,124 @@
+{
+  "name": "strike-workflows",
+  "version": "1.5.0",
+  "type": "workflows",
+  "description": "Pre-built DOT workflows for common UI generation scenarios",
+  "metadata": {
+    "author": "Pamacea",
+    "license": "MIT",
+    "created": "2025-02-19T00:00:00Z",
+    "updated": "2025-02-19T00:00:00Z"
+  },
+  "items": [
+    {
+      "id": "quick-sequential",
+      "name": "Quick Sequential",
+      "description": "Fast straight-through workflow for simple UI generation. No pauses, no approval gates.",
+      "category": "simple",
+      "tags": ["fast", "simple", "no-approval"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "easy",
+        "estimatedTime": "5-10 min"
+      },
+      "dot": "digraph QuickSequential {\n  graph [goal=\"Generate UI quickly\"]\n  start [shape=Mdiamond]\n  analyze [shape=box, prompt=\"Analyze prompt for anti-patterns\"]\n  constrain [shape=box, prompt=\"Select creative constraints\"]\n  build [shape=box, prompt=\"Build the UI\"]\n  exit [shape=Msquare]\n\n  start -> analyze -> constrain -> build -> exit\n}",
+      "examples": [
+        {
+          "title": "Simple Component",
+          "description": "Button, card, or form element"
+        }
+      ]
+    },
+    {
+      "id": "with-approval",
+      "name": "Step-by-Step Approval",
+      "description": "Pause at each phase for user review and approval. Interactive workshop style.",
+      "category": "interactive",
+      "tags": ["approval", "interactive", "review"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "medium",
+        "estimatedTime": "15-20 min"
+      },
+      "dot": "digraph WithApproval {\n  graph [goal=\"Generate UI with approval gates\"]\n  start [shape=Mdiamond]\n  analyze [shape=box, prompt=\"Analyze prompt\"]\n  analyze_review [shape=hexagon, label=\"Review Analysis?\"]\n  constrain [shape=box, prompt=\"Select constraints\"]\n  constrain_review [shape=hexagon, label=\"Review Constraints?\"]\n  build [shape=box, prompt=\"Build UI\"]\n  exit [shape=Msquare]\n\n  start -> analyze -> analyze_review\n  analyze_review -> constrain [label=\"[A] Approve\"]\n  analyze_review -> analyze [label=\"[R] Revise\"]\n  constrain -> constrain_review\n  constrain_review -> build [label=\"[A] Approve\"]\n  constrain_review -> constrain [label=\"[R] Revise\"]\n  build -> exit\n}",
+      "examples": [
+        {
+          "title": "Complex Feature",
+          "description": "Multi-component feature with stakeholder review"
+        }
+      ]
+    },
+    {
+      "id": "parallel-exploration",
+      "name": "Parallel Exploration",
+      "description": "Generate multiple design directions in parallel, then merge and select best approach.",
+      "category": "parallel",
+      "tags": ["parallel", "exploration", "creative"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "hard",
+        "estimatedTime": "20-30 min"
+      },
+      "dot": "digraph ParallelExploration {\n  graph [goal=\"Explore multiple directions\"]\n  start [shape=Mdiamond]\n  analyze [shape=box, prompt=\"Analyze prompt\"]\n  split [shape=component]\n  option_a [shape=box, class=\"creative\", prompt=\"Direction A: Typography-focused\"]\n  option_b [shape=box, class=\"creative\", prompt=\"Direction B: Layout-focused\"]\n  option_c [shape=box, class=\"creative\", prompt=\"Direction C: Color-focused\"]\n  merge [shape=tripleoctagon]\n  select [shape=box, prompt=\"Select best approach\"]\n  build [shape=box, prompt=\"Build selected approach\"]\n  exit [shape=Msquare]\n\n  start -> analyze -> split\n  split -> option_a\n  split -> option_b\n  split -> option_c\n  option_a -> merge\n  option_b -> merge\n  option_c -> merge\n  merge -> select -> build -> exit\n}",
+      "examples": [
+        {
+          "title": "Landing Page",
+          "description": "Explore 3 creative directions"
+        }
+      ]
+    },
+    {
+      "id": "adaptive-retry",
+      "name": "Adaptive with Retry",
+      "description": "Build UI, validate, and if anti-patterns detected, retry with different constraints.",
+      "category": "adaptive",
+      "tags": ["adaptive", "retry", "quality-gate"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "medium",
+        "estimatedTime": "15-25 min"
+      },
+      "dot": "digraph AdaptiveRetry {\n  graph [goal=\"Ensure quality with retries\"]\n  start [shape=Mdiamond]\n  analyze [shape=box, prompt=\"Analyze prompt\"]\n  constrain [shape=box, prompt=\"Select constraints\"]\n  build [shape=box, prompt=\"Build UI\"]\n  validate [shape=diamond, label=\"Valid?\"]\n  reconstrain [shape=box, prompt=\"Adjust constraints\"]\n  exit [shape=Msquare]\n\n  start -> analyze -> constrain -> build -> validate\n  validate -> exit [label=\"No anti-patterns\"]\n  validate -> reconstrain [label=\"Anti-patterns found\"]\n  reconstrain -> build\n}",
+      "examples": [
+        {
+          "title": "Production UI",
+          "description": "Ensure no anti-patterns before finalizing"
+        }
+      ]
+    },
+    {
+      "id": "teaching-mode",
+      "name": "Teaching Mode",
+      "description": "Generate explanations and diagrams at each phase. Educational workflow.",
+      "category": "educational",
+      "tags": ["teaching", "explanation", "diagrams"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "medium",
+        "estimatedTime": "20-30 min"
+      },
+      "dot": "digraph TeachingMode {\n  graph [goal=\"Teach the process\"]\n  start [shape=Mdiamond]\n  analyze [shape=box, prompt=\"Analyze and explain\"]\n  explain_analysis [shape=box, prompt=\"Explain anti-pattern detection\"]\n  constrain [shape=box, prompt=\"Select and explain constraints\"]\n  explain_scoring [shape=box, prompt=\"Explain constraint scoring\"]\n  build [shape=box, prompt=\"Build and explain decisions\"]\n  diagram [shape=box, prompt=\"Generate explanation diagram\"]\n  exit [shape=Msquare]\n\n  start -> analyze -> explain_analysis -> constrain -> explain_scoring -> build -> diagram -> exit\n}",
+      "examples": [
+        {
+          "title": "Learning Session",
+          "description": "Understand how strike works"
+        }
+      ]
+    }
+  ]
+}

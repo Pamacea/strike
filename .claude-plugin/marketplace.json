@@ -1,26 +1,26 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "strike",
-  "version": "1.1.0",
-  "description": "Anti-trend UI generation with integrated step mode - Break the patterns, create the unexpected",
+  "version": "1.5.0",
+  "description": "Creative constraint marketplace and UI generation - Anti-trend UI with patterns, constraints, and workflows",
   "owner": {
     "name": "Pamacea",
     "contact": "https://github.com/Pamacea/strike/issues"
   },
   "metadata": {
-    "description": "strike v3.1 adds interactive step mode for user-controlled workflow with phase-by-phase approval.",
+    "description": "strike v1.5.0 - Marketplace with UI patterns, constraints, and workflows registries",
     "pluginRoot": "./plugins"
   },
   "plugins": [
     {
       "name": "ui",
       "source": "./plugins/ui",
-      "description": "Unified UI generation - Orchestrator, builder, teams mode, and interactive step mode in one. Anti-pattern detection, creative constraints, parallel agent execution.",
-      "version": "1.1.1",
+      "description": "Unified UI generation with orchestrator, builder, teams mode, step mode, and marketplace integration. Anti-pattern detection, creative constraints, parallel agent execution.",
+      "version": "1.5.0",
       "author": { "name": "Pamacea" },
       "category": "ui-generation",
-      "tags": ["ui", "anti-trend", "anti-patterns", "creative-constraints", "orchestration", "implementation", "teams", "agent-teams", "interactive", "step-mode"],
-      "keywords": ["ui", "anti-patterns", "constraints", "creative", "teams", "build", "step", "agent-teams"],
+      "tags": ["ui", "anti-trend", "anti-patterns", "creative-constraints", "orchestration", "implementation", "teams", "agent-teams", "interactive", "step-mode", "marketplace"],
+      "keywords": ["ui", "anti-patterns", "constraints", "creative", "teams", "build", "step", "agent-teams", "marketplace", "patterns", "workflows"],
       "repository": "https://github.com/Pamacea/strike",
       "license": "MIT"
     }

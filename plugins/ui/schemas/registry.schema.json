@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Pamacea/strike/registry.schema.json",
+  "title": "Strike Registry Schema",
+  "description": "Schema for Strike registries (patterns, constraints, workflows)",
+  "type": "object",
+  "required": ["name", "version", "type", "items"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Registry name"
+    },
+    "version": {
+      "type": "string",
+      "description": "Registry version (semver)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["ui-patterns", "constraints", "anti-patterns", "workflows"],
+      "description": "Registry type"
+    },
+    "description": {
+      "type": "string",
+      "description": "Registry description"
+    },
+    "items": {
+      "type": "array",
+      "description": "Registry items",
+      "items": { "$ref": "#/definitions/registryItem" }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "author": { "type": "string" },
+        "license": { "type": "string" },
+        "created": { "type": "string", "format": "date-time" },
+        "updated": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "definitions": {
+    "registryItem": {
+      "type": "object",
+      "required": ["id", "name", "category"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier (kebab-case)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name"
+        },
+        "description": {
+          "type": "string",
+          "description": "What this item does"
+        },
+        "category": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "version": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string",
+          "default": "MIT"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "difficulty": {
+              "type": "string",
+              "enum": ["easy", "medium", "hard"]
+            },
+            "creativity": { "type": "number", "minimum": 0, "maximum": 30 },
+            "difficultyScore": { "type": "number", "minimum": 0, "maximum": 25 },
+            "impact": { "type": "number", "minimum": 0, "maximum": 25 },
+            "synergy": { "type": "number", "minimum": 0, "maximum": 20 },
+            "totalScore": { "type": "number", "minimum": 0, "maximum": 100 }
+          }
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "description": { "type": "string" },
+              "image": { "type": "string", "format": "uri" },
+              "code": { "type": "string" },
+              "demo": { "type": "string", "format": "uri" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

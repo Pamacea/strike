@@ -1,0 +1,273 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Pamacea/strike/marketplace.schema.json",
+  "title": "Strike Marketplace Schema",
+  "description": "Schema for Strike plugin marketplace and registries",
+  "type": "object",
+  "required": ["name", "version", "plugins"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Marketplace identifier",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "version": {
+      "type": "string",
+      "description": "Marketplace version (semver)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Marketplace description"
+    },
+    "owner": {
+      "type": "object",
+      "description": "Marketplace owner information",
+      "properties": {
+        "name": { "type": "string" },
+        "contact": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "description": { "type": "string" },
+        "pluginRoot": { "type": "string" },
+        "registryRoot": { "type": "string" }
+      }
+    },
+    "plugins": {
+      "type": "array",
+      "description": "Available plugins",
+      "items": { "$ref": "#/definitions/plugin" }
+    },
+    "registries": {
+      "type": "array",
+      "description": "Available registries",
+      "items": { "$ref": "#/definitions/registry" }
+    }
+  },
+  "definitions": {
+    "plugin": {
+      "type": "object",
+      "required": ["name", "source", "version"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Plugin identifier",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "source": {
+          "type": "string",
+          "description": "Plugin source path or GitHub reference"
+        },
+        "description": {
+          "type": "string",
+          "description": "Plugin description (1-2 sentences)"
+        },
+        "version": {
+          "type": "string",
+          "description": "Plugin version (semver)",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "author": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "core",
+            "ui-generation",
+            "pattern-library",
+            "constraint-library",
+            "anti-pattern-detection",
+            "workflow-orchestration",
+            "accessibility",
+            "animation",
+            "teams"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "keywords": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "repository": {
+          "type": "string",
+          "format": "uri"
+        },
+        "license": {
+          "type": "string",
+          "default": "MIT"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Required plugin dependencies"
+        },
+        "marketplace": {
+          "type": "object",
+          "properties": {
+            "featured": { "type": "boolean" },
+            "downloads": { "type": "integer", "minimum": 0 },
+            "stars": { "type": "integer", "minimum": 0 },
+            "rating": { "type": "number", "minimum": 0, "maximum": 5 }
+          }
+        }
+      }
+    },
+    "registry": {
+      "type": "object",
+      "required": ["name", "type", "source"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Registry identifier"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["ui-patterns", "constraints", "anti-patterns", "workflows"]
+        },
+        "source": {
+          "type": "string",
+          "description": "Registry file path"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "description": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/registryItem" }
+        }
+      }
+    },
+    "registryItem": {
+      "type": "object",
+      "required": ["id", "name", "category"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique item identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description"
+        },
+        "category": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "version": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string",
+          "default": "MIT"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "difficulty": {
+              "type": "string",
+              "enum": ["easy", "medium", "hard"]
+            },
+            "creativity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 30,
+              "description": "Creativity score (0-30)"
+            },
+            "difficulty": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 25,
+              "description": "Difficulty score (0-25)"
+            },
+            "impact": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 25,
+              "description": "Impact score (0-25)"
+            },
+            "synergy": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 20,
+              "description": "Synergy score (0-20)"
+            },
+            "totalScore": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Total constraint score"
+            },
+            "accessibility": {
+              "type": "string",
+              "enum": ["WCAG-A", "WCAG-AA", "WCAG-AAA"]
+            },
+            "bundleSize": {
+              "type": "string"
+            }
+          }
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "description": { "type": "string" },
+              "image": { "type": "string", "format": "uri" },
+              "code": { "type": "string" },
+              "demo": { "type": "string", "format": "uri" }
+            }
+          }
+        },
+        "compatibility": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["react-tailwind", "vanilla", "nextjs", "remix", "vite"]
+          }
+        }
+      }
+    }
+  }
+}

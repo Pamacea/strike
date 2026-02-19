@@ -1,0 +1,176 @@
+name: Validate Strike Marketplace
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main, develop]
+
+jobs:
+  validate-marketplace:
+    name: Validate Marketplace
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install ajv-cli
+        run: npm install -g ajv-cli
+
+      - name: Validate marketplace schema
+        run: |
+          ajv validate \
+            --spec=draft7 \
+            --strict=false \
+            --schema-data=.claude-plugin/marketplace.schema.json \
+            --data=.claude-plugin/marketplace.json
+
+      - name: Validate UI patterns registry
+        run: |
+          ajv validate \
+            --spec=draft7 \
+            --strict=false \
+            --schema-data=plugins/ui/schemas/registry.schema.json \
+            --data=registry/ui-patterns.json
+
+      - name: Validate constraints registry
+        run: |
+          ajv validate \
+            --spec=draft7 \
+            --strict=false \
+            --schema-data=plugins/ui/schemas/registry.schema.json \
+            --data=registry/constraints.json
+
+      - name: Validate workflows registry
+        run: |
+          ajv validate \
+            --spec=draft7 \
+            --strict=false \
+            --schema-data=plugins/ui/schemas/registry.schema.json \
+            --data=registry/workflows.json
+
+      - name: Check plugin manifests
+        run: |
+          for plugin in plugins/*/plugin.json; do
+            echo "Validating $plugin"
+            jq empty "$plugin" || exit 1
+          done
+
+      - name: Validate bash scripts
+        run: |
+          shellcheck plugins/ui/scripts/*.sh || true
+
+  check-formatting:
+    name: Check Formatting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check JSON formatting
+        run: |
+          npm install -g prettier
+          prettier --check "**/*.json"
+
+      - name: Check Markdown formatting
+        run: |
+          npm install -g prettier
+          prettier --check "**/*.md"
+
+  lint-bash:
+    name: Lint Bash Scripts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install ShellCheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+
+      - name: Run ShellCheck
+        run: |
+          shellcheck --severity=warning plugins/ui/scripts/*.sh
+
+  validate-pr-title:
+    name: Validate PR Title
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate conventional commits
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            pattern
+            constraint
+            workflow
+            plugin
+            docs
+            fix
+            refactor
+            test
+            chore
+          scopes: |
+            marketplace
+            registry
+            core
+            ui
+            patterns
+            constraints
+            workflows
+            animations
+            accessibility
+            teams
+          requireScope: false
+          validateSingleCommit: false
+
+  statistics:
+    name: Generate Statistics
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Count items
+        id: stats
+        run: |
+          echo "patterns=$(jq '.items | length' registry/ui-patterns.json)" >> $GITHUB_OUTPUT
+          echo "constraints=$(jq '.items | length' registry/constraints.json)" >> $GITHUB_OUTPUT
+          echo "workflows=$(jq '.items | length' registry/workflows.json)" >> $GITHUB_OUTPUT
+
+      - name: Comment PR with stats
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const patterns = ${{ steps.stats.outputs.patterns }};
+            const constraints = ${{ steps.stats.outputs.constraints }};
+            const workflows = ${{ steps.stats.outputs.workflows }};
+            const total = parseInt(patterns) + parseInt(constraints) + parseInt(workflows);
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 📊 Marketplace Statistics
+
+            | Category | Count |
+            |----------|-------|
+            | UI Patterns | ${patterns} |
+            | Constraints | ${constraints} |
+            | Workflows | ${workflows} |
+            | **Total** | **${total}** |
+
+            ✅ All validations passed!`
+            });

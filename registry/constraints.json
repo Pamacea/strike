@@ -1,0 +1,484 @@
+{
+  "name": "strike-constraints",
+  "version": "1.5.0",
+  "type": "constraints",
+  "description": "Registry of creative constraints for unique UI generation",
+  "metadata": {
+    "author": "Pamacea",
+    "license": "MIT",
+    "created": "2025-02-19T00:00:00Z",
+    "updated": "2025-02-19T00:00:00Z"
+  },
+  "items": [
+    {
+      "id": "paper-ink",
+      "name": "Paper & Ink",
+      "description": "Off-white background (#F5F5DC) with near-black text (#1A1A1A). Mimics printed material. High contrast, warm, classic.",
+      "category": "color-restrictions",
+      "tags": ["print", "minimal", "readability", "classic", "warm"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "easy",
+        "creativity": 12,
+        "difficultyScore": 8,
+        "impact": 10,
+        "synergy": 13,
+        "totalScore": 43,
+        "colors": ["#F5F5DC", "#1A1A1A", "#4A4A4A"],
+        "contrast": "high",
+        "mood": "classic",
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Long-form Article",
+          "description": "Readability-focused content layout"
+        },
+        {
+          "title": "Documentation",
+          "description": "Technical writing with print aesthetic"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs", "remix", "vite"]
+    },
+    {
+      "id": "architectural",
+      "name": "Architectural",
+      "description": "UI as physical space. 'Rooms' are sections, 'doors' are navigation, 'windows' are content areas. Spatial metaphors guide layout.",
+      "category": "interaction-sources",
+      "tags": ["spatial", "structural", "metaphor", "room-based"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "hard",
+        "creativity": 26,
+        "difficultyScore": 20,
+        "impact": 22,
+        "synergy": 17,
+        "totalScore": 85,
+        "metaphor": "architecture",
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Portfolio",
+          "description": "Navigate through rooms of work"
+        },
+        {
+          "title": "Documentation",
+          "description": "Building metaphor for information architecture"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs"]
+    },
+    {
+      "id": "css-only",
+      "name": "CSS Only",
+      "description": "No JavaScript for UI. Pure CSS interactions (hover, focus, :target, :checked). Progressive enhancement, works without JS.",
+      "category": "technical-constraints",
+      "tags": ["no-js", "progressive", "accessible", "fast"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "medium",
+        "creativity": 18,
+        "difficultyScore": 14,
+        "impact": 16,
+        "synergy": 14,
+        "totalScore": 62,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Tabs",
+          "description": ":target or :radio for tabs"
+        },
+        {
+          "title": "Accordion",
+          "description": ":checked for collapsible sections"
+        }
+      ],
+      "compatibility": ["vanilla", "react-tailwind", "nextjs"]
+    },
+    {
+      "id": "system-fonts",
+      "name": "System Fonts Only",
+      "description": "Use only user's system font stack. No web fonts, no Google Fonts. Native, fast, and familiar.",
+      "category": "technical-constraints",
+      "tags": ["performance", "native", "fast", "no-requests"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "easy",
+        "creativity": 10,
+        "difficultyScore": 6,
+        "impact": 8,
+        "synergy": 9,
+        "totalScore": 33,
+        "fontStack": "system-ui, -apple-system, sans-serif",
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Blog",
+          "description": "Content-focused with system fonts"
+        },
+        {
+          "title": "Web App",
+          "description": "Native-feeling interface"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs", "remix", "vite"]
+    },
+    {
+      "id": "monochrome-true",
+      "name": "True Monochrome",
+      "description": "Single hue only. No color changes, only brightness/lightness variations. Absolute color discipline.",
+      "category": "color-restrictions",
+      "tags": ["monochrome", "disciplined", "minimal", "single-color"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "medium",
+        "creativity": 19,
+        "difficultyScore": 13,
+        "impact": 15,
+        "synergy": 13,
+        "totalScore": 60,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Portfolio",
+          "description": "Single color with lightness variations"
+        },
+        {
+          "title": "Brand Site",
+          "description": "Strict monochrome with brand color"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs", "remix", "vite"]
+    },
+    {
+      "id": "no-images",
+      "name": "No Images",
+      "description": "Zero images. No JPEG, PNG, SVG, or WebP. Use CSS shapes, text, unicode, and layout instead.",
+      "category": "technical-constraints",
+      "tags": ["no-media", "css-only", "fast", "creative"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "medium",
+        "creativity": 23,
+        "difficultyScore": 17,
+        "impact": 19,
+        "synergy": 16,
+        "totalScore": 75,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Portfolio",
+          "description": "CSS art and typography only"
+        },
+        {
+          "title": "Data Viz",
+          "description": "Pure CSS charts and graphs"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs"]
+    },
+    {
+      "id": "screen-reader-first",
+      "name": "Screen Reader First",
+      "description": "Design for screen readers, then add visual layer. ARIA labels, semantic HTML, logical reading order. Accessibility as primary constraint.",
+      "category": "context-shifts",
+      "tags": ["a11y", "inclusive", "semantic", "screen-reader"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "medium",
+        "creativity": 17,
+        "difficultyScore": 15,
+        "impact": 20,
+        "synergy": 15,
+        "totalScore": 67,
+        "accessibility": "WCAG-AAA"
+      },
+      "examples": [
+        {
+          "title": "Form",
+          "description": "Fully accessible with complete ARIA"
+        },
+        {
+          "title": "Navigation",
+          "description": "Screen reader optimized menus"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs", "remix", "vite"]
+    },
+    {
+      "id": "single-file",
+      "name": "Single File",
+      "description": "Entire UI in one HTML file. Inline CSS, inline JS. Self-contained, shareable, permanent.",
+      "category": "technical-constraints",
+      "tags": ["self-contained", "shareable", "simple", "portable"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "easy",
+        "creativity": 14,
+        "difficultyScore": 9,
+        "impact": 12,
+        "synergy": 11,
+        "totalScore": 46,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Portfolio",
+          "description": "One-file site with everything inline"
+        },
+        {
+          "title": "Tool",
+          "description": "Self-contained utility page"
+        }
+      ],
+      "compatibility": ["vanilla"]
+    },
+    {
+      "id": "biological",
+      "name": "Biological Systems",
+      "description": "Growth patterns, organic shapes, branching structures. Nature's algorithms inform UI.",
+      "category": "interaction-sources",
+      "tags": ["organic", "natural", "growth", "branching"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "hard",
+        "creativity": 28,
+        "difficultyScore": 23,
+        "impact": 24,
+        "synergy": 19,
+        "totalScore": 94,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Data Tree",
+          "description": "Branching navigation like a tree"
+        },
+        {
+          "title": "Growth Chart",
+          "description": "Organic data visualization"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla"]
+    },
+    {
+      "id": "musical-structure",
+      "name": "Musical Structure",
+      "description": "Rhythm, repetition, variation, harmony. Musical composition principles applied to UI.",
+      "category": "interaction-sources",
+      "tags": ["rhythm", "harmony", "musical", "composition"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "hard",
+        "creativity": 27,
+        "difficultyScore": 22,
+        "impact": 23,
+        "synergy": 18,
+        "totalScore": 90,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Landing Page",
+          "description": "Rhythmic scrolling with musical structure"
+        },
+        {
+          "title": "Presentation",
+          "description": "Theme and variation in content"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs"]
+    },
+    {
+      "id": "linear-only",
+      "name": "Linear Only",
+      "description": "No branching navigation. Single path through content. Like a book, not a website.",
+      "category": "structural-constraints",
+      "tags": ["linear", "narrative", "focused", "simple"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "easy",
+        "creativity": 16,
+        "difficultyScore": 10,
+        "impact": 13,
+        "synergy": 12,
+        "totalScore": 51,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Story",
+          "description": "Linear narrative experience"
+        },
+        {
+          "title": "Tutorial",
+          "description": "Step-by-step guided flow"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs", "remix", "vite"]
+    },
+    {
+      "id": "ascii-art",
+      "name": "ASCII Art Only",
+      "description": "Visual elements created with text characters only. No graphics, just creative typography and unicode.",
+      "category": "technical-constraints",
+      "tags": ["ascii", "text-based", "creative", "retro"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "medium",
+        "creativity": 25,
+        "difficultyScore": 19,
+        "impact": 21,
+        "synergy": 17,
+        "totalScore": 82,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Portfolio",
+          "description": "ASCII art headers and dividers"
+        },
+        {
+          "title": "Terminal UI",
+          "description": "Command-line aesthetic"
+        }
+      ],
+      "compatibility": ["vanilla", "react-tailwind"]
+    },
+    {
+      "id": "mechanical",
+      "name": "Mechanical Metaphors",
+      "description": "Switches, levers, dials, gears. Industrial design language for digital interfaces.",
+      "category": "interaction-sources",
+      "tags": ["industrial", "mechanical", "tangible", "physical"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "medium",
+        "creativity": 24,
+        "difficultyScore": 18,
+        "impact": 20,
+        "synergy": 16,
+        "totalScore": 78,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Dashboard",
+          "description": "Gauge and control panel aesthetic"
+        },
+        {
+          "title": "Settings",
+          "description": "Physical switch toggles"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs"]
+    },
+    {
+      "id": "max-width-extreme",
+      "name": "Max Width Extreme",
+      "description": "Extreme width constraint (e.g., 320px or 1920px). Push layout to its limits.",
+      "category": "structural-constraints",
+      "tags": ["extreme", "constraint", "narrow", "wide"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "medium",
+        "creativity": 21,
+        "difficultyScore": 16,
+        "impact": 17,
+        "synergy": 14,
+        "totalScore": 68,
+        "accessibility": "WCAG-AA"
+      },
+      "examples": [
+        {
+          "title": "Mobile-Only Desktop",
+          "description": "320px width on all screens"
+        },
+        {
+          "title": "Single Row",
+          "description": "Extremely wide single-row layout"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs", "remix", "vite"]
+    },
+    {
+      "id": "outdoor-visible",
+      "name": "Outdoor Visible",
+      "description": "High contrast, large text, bold shapes. Must be readable in direct sunlight.",
+      "category": "context-shifts",
+      "tags": ["high-contrast", "large", "bold", "readable"],
+      "version": "1.5.0",
+      "author": "Pamacea",
+      "license": "MIT",
+      "dependencies": [],
+      "metadata": {
+        "difficulty": "easy",
+        "creativity": 13,
+        "difficultyScore": 9,
+        "impact": 14,
+        "synergy": 12,
+        "totalScore": 48,
+        "accessibility": "WCAG-AAA"
+      },
+      "examples": [
+        {
+          "title": "Kiosk Display",
+          "description": "Large text, high contrast interface"
+        },
+        {
+          "title": "Transit Info",
+          "description": "Sunlight-readable information display"
+        }
+      ],
+      "compatibility": ["react-tailwind", "vanilla", "nextjs", "remix", "vite"]
+    }
+  ]
+}
