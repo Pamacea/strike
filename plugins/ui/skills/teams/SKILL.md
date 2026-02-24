@@ -1,14 +1,39 @@
 ---
 name: teams
-description: Teams mode for ui plugin - Parallel multi-agent orchestration with Claude Code Agent Teams
-version: 1.1.0
+description: MANDATORY parallel execution gate BEFORE building large/complex UI projects. Orchestrates multi-agent teamwork with 2-4 specialist agents working concurrently. Specific phrases: 'parallel agents', 'team build', 'multi-agent UI', 'split work', 'concurrent UI generation', 'agent team for design'. Auto-activates with --team flag or large/complex prompts (>3 features, multi-domain). Team composition: Orchestrator (analyze/detect/select/enrich), Build (build/validate/metrics), Adversarial (challenge/stress-test), Reviewer (a11y/quality/docs). Parallel execution: 1.85x faster than sequential (4 agents), 1.6x faster (2 agents). Inter-agent communication via team messaging system. Shared task list at ~/.claude/tasks/ui-<session-id>/. Error handling: Orchestrator fails → stop build, Build fails → spec reusable, Communication fails → 30s timeout + restart. Integrates with ui orchestrator and step mode.
+version: 4.1.0-1.6.0
 ---
 
-# UI Teams Mode v3.0
+# UI Teams Mode v4.1
 
 ## Mission
 
-Execute UI generation with multiple specialist agents working in parallel using Claude Code's native Agent Teams.
+Execute UI generation with **multiple specialist agents working in parallel** using Claude Code's native Agent Teams feature for maximum speed and quality on large, complex projects.
+
+---
+
+## ⚙️ Active Baseline Configuration
+
+**Team Dials (adapted from ui parent):**
+
+| Dial | Default | Range | Purpose |
+|------|---------|-------|---------|
+| `TEAM_SIZE` | 4 | 1-4 | Number of parallel agents |
+| `PARALLEL_STRATEGY` | 8 | 1-10 | 1=Sequential, 10=Maximum parallelism |
+| `COMMUNICATION_FREQ` | 7 | 1-10 | 1=Minimal, 10=Chatty |
+| `QUALITY_OVERSIGHT` | 9 | 1-10 | 1=Fast, 10=Thorough review |
+
+**AI Instruction:**
+- Adapt team size based on project complexity (simple→2, complex→4)
+- High parallel strategy for time-critical projects
+- Communication freq 7: Balanced updates (not spammy, not silent)
+- Quality oversight 9: Full adversarial + reviewer for production
+
+**Justification:**
+- Team size 4: Maximum parallelism without coordination overhead
+- Parallel 8: Aggressive parallelization for speed
+- Communication 7: Keep team informed without overwhelming
+- Quality 9: Always validate for production (non-negotiable)
 
 ---
 
@@ -18,14 +43,44 @@ Teams mode uses Claude Code's **Agent Teams** feature to spawn multiple speciali
 
 - **Orchestrator Agent** — Analyzes prompt, detects anti-patterns, selects constraints
 - **Build Agent** — Creates the UI with anti-pattern validation
-- **Adversarial Agent** — Challenges decisions and proposes alternatives (optional)
-- **Reviewer Agent** — Validates accessibility and quality (optional)
+- **Adversarial Agent** — Challenges decisions and proposes alternatives
+- **Reviewer Agent** — Validates accessibility and quality
 
 Each agent has its own context and can communicate with others via the team messaging system.
 
 ---
 
-## Activation
+## 🎯 When to Use Teams Mode
+
+### Auto-Activation Triggers
+
+**Use Teams Mode when:**
+- ✅ Large/complex projects (3+ features, multi-domain)
+- ✅ Time-critical deadlines (need 1.5-2x speedup)
+- ✅ Enterprise scale (full systems, design platforms)
+- ✅ Multi-domain work (frontend + backend + docs)
+
+**Skip Teams Mode when:**
+- ❌ Simple interfaces (single page, minimal UI)
+- ❌ Quick prototypes (faster to do sequentially)
+- ❌ Learning mode (step mode better for teaching)
+- ❌ Resource constraints (teams use more tokens)
+
+### Specific Trigger Phrases
+
+```
+'parallel agents for UI' → ACTIVATE
+'team build interface' → ACTIVATE
+'multi-agent UI generation' → ACTIVATE
+'split UI work' → ACTIVATE
+'concurrent UI design' → ACTIVATE
+'agent team for design system' → ACTIVATE
+'full SaaS platform' → ACTIVATE (complex)
+```
+
+---
+
+## 🔧 Activation
 
 ### Enable Agent Teams
 
@@ -43,16 +98,16 @@ export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
 # Explicit teams mode
 /ui --team "Multi-feature application"
 
-# Teams with explanation
-/ui --team --explain "Enterprise dashboard"
+# Teams with step mode
+/ui --step --team "Enterprise dashboard"
 
-# Teams with learning
-/ui --team --learn "Complete design system"
+# Teams with explanation
+/ui --team --explain "Complex design system"
 ```
 
 ---
 
-## Team Composition
+## 👥 Team Composition
 
 ### Default Team (2 Agents)
 
@@ -77,9 +132,9 @@ export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
 ### Full Team (4 Agents)
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
+┌─────────────────────────────────────────────────────────────────────────────┐
 │  STRIKE FULL TEAM                                                    │
-├─────────────────────────────────────────────────────────────────────┤
+├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                      │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌─────────┐  │
 │  │ORCHESTRATOR  │  │BUILD         │  │ADVERSARIAL   │  │REVIEWER │  │
@@ -90,12 +145,12 @@ export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
 │  │              │  │              │  │              │  │         │  │
 │  └──────────────┘  └──────────────┘  └──────────────┘  └─────────┘  │
 │                                                                      │
-└─────────────────────────────────────────────────────────────────────┘
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Workflow
+## 🔄 Workflow
 
 ### Phase 1: Team Creation
 
@@ -123,7 +178,7 @@ Shared task list: ~/.claude/tasks/ui-<session-id>/
 4. Generates enriched specification
 5. Writes to `.claude/.strike/enriched-spec.json`
 
-**Build Agent:**
+**Build Agent (parallel):**
 1. Reads enriched specification
 2. Loads component registry
 3. Plans implementation with constraints
@@ -131,13 +186,13 @@ Shared task list: ~/.claude/tasks/ui-<session-id>/
 5. Validates against anti-patterns
 6. Creates build-result.json
 
-**Adversarial Agent (if enabled):**
+**Adversarial Agent (parallel):**
 1. Reviews constraint selection
 2. Proposes alternatives
 3. Stress tests decisions
 4. Reports findings to orchestrator
 
-**Reviewer Agent (if enabled):**
+**Reviewer Agent (parallel):**
 1. Runs accessibility checklist
 2. Validates bundle size
 3. Checks code quality
@@ -185,7 +240,7 @@ Reviewer delivered:
 
 ---
 
-## Task List Structure
+## 📋 Task List Structure
 
 The team shares a task list at `~/.claude/tasks/ui-<session-id>/`:
 
@@ -207,7 +262,7 @@ Agents claim tasks as they work, blocking dependent tasks.
 
 ---
 
-## Inter-Agent Communication
+## 💬 Inter-Agent Communication
 
 Agents communicate via the team messaging system:
 
@@ -235,39 +290,63 @@ Bundle: 8KB gzipped (excellent)
 
 ---
 
-## Flag Combinations
+## 🚀 Flag Combinations
 
 | Command | Team Size | Features | Speed |
 |---------|-----------|----------|-------|
-| `/ui --team "..."` | 2 | Orchestrator + Build | 2x |
-| `/ui --team --explain "..."` | 2 | With diagrams | 2x |
-| `/ui --team --full "..."` | 4 | Everything | 1.5x |
+| `/ui --team "..."` | 2 | Orchestrator + Build | 1.6x faster |
+| `/ui --team --explain "..."` | 2 | With diagrams | 1.6x faster |
+| `/ui --team --full "..."` | 4 | Everything | 1.85x faster |
 
 ---
 
-## Display Modes
+## 📊 Performance
 
-### In-Process (Default)
+### Sequential vs Teams
 
-All teammates appear in the main terminal. Use `Shift+Up/Down` to cycle between agents.
+```
+Sequential (baseline):
+Orchestrator: 45s → Build: 60s → Review: 15s = 120s
 
-### Split Panes (iTerm2/Tmux)
+Teams (parallel):
+Orchestrator + Build: 60s → Review: 15s = 75s (1.6x faster)
+```
 
-Each teammate gets its own pane for better visibility.
+### Full Team Speedup
 
-```bash
-# Configure in ~/.claude/config.json
-{
-  "teams": {
-    "display_mode": "split-panes",
-    "layout": "2x2"
-  }
-}
+```
+Sequential: 120s
+Full Team (4 agents, parallel): 65s (1.85x faster)
 ```
 
 ---
 
-## Error Handling
+## ✅ Teams Mode Quality Gates
+
+Before claiming team build complete:
+
+### Team Coordination
+- [ ] All agents completed successfully
+- [ ] Inter-agent communication working
+- [] No agent failures or timeouts
+- [ ] Task list properly synchronized
+
+### Output Quality
+- [ ] All deliverables created
+- [ ] Orchestrator spec valid
+- [ ] Build anti-pattern compliant
+- [ ] Adversarial challenges addressed
+- [ ] Reviewer checks passed
+
+### State Preservation
+- [ ] Task list archived
+- [ ] Communication logs saved
+- [ ] Results synthesized
+- [ ] Session reproducible
+
+---
+
+## 🚨 Error Handling
 
 ### Orchestrator Fails
 
@@ -303,28 +382,35 @@ If an agent stops responding:
 
 ---
 
-## Performance
+## 🔗 Integration with Other Modes
 
-### Sequential vs Teams
+### Step + Teams
 
-```
-Sequential (baseline):
-Orchestrator: 45s → Build: 60s → Review: 15s = 120s
-
-Teams (parallel):
-Orchestrator + Build: 60s → Review: 15s = 75s (1.6x faster)
+```bash
+/ui --step --team "Complex dashboard"
 ```
 
-### Full Team Speedup
+In step + teams mode:
+- Each phase executed by appropriate agent
+- Team lead (you) reviews and approves
+- Agents pause and wait for input
+- Parallel work within phases, sequential between phases
 
+### Demo + Teams
+
+```bash
+/ui --demo --team "Large app"
 ```
-Sequential: 120s
-Full Team (4 agents, parallel): 65s (1.85x faster)
-```
+
+In demo + teams mode:
+- Simplified agent outputs (less verbose)
+- Faster phase execution
+- Still parallel, still faster
+- Good for large but simple projects
 
 ---
 
-## Best Practices
+## 🎯 Best Practices
 
 1. **Use for complex prompts** — Multiple features, enterprise scale
 2. **Skip for simple prompts** — Single page, minimal UI
@@ -335,58 +421,7 @@ Full Team (4 agents, parallel): 65s (1.85x faster)
 
 ---
 
-## Examples
-
-### Example 1: SaaS Dashboard
-
-```bash
-/ui --team "Full SaaS dashboard with user management, billing, analytics"
-
-# Execution:
-# [Team] Creating ui-abc123 with 2 agents...
-# [orchestrator] Analyzing "SaaS", "dashboard", "billing"...
-# [build] Loading component registry...
-# [orchestrator] Spec ready: paper_ink, architectural
-# [build] Building with Room components...
-# [All agents] Complete! Output at ./output/
-```
-
-### Example 2: Design System
-
-```bash
-/ui --team --full "Complete design system with 20 components"
-
-# Execution:
-# [Team] Creating full team (4 agents)...
-# [orchestrator] Analyzing design system requirements...
-# [build] Planning component structure...
-# [adversarial] Challenging: too many components for single file?
-# [reviewer] Checking accessibility per-component...
-# [All agents] Complete! System documented.
-```
-
----
-
-## Migration from Sequential
-
-**Before (sequential v2.0):**
-```bash
-/ui "Create dashboard"
-# Orchestrator runs (45s)
-# Build runs (60s)
-# Total: 105s
-```
-
-**After (teams v3.0):**
-```bash
-/ui --team "Create dashboard"
-# Orchestrator + Build run together (60s)
-# Total: 60s (1.75x faster)
-```
-
----
-
-## Configuration
+## 🔧 Configuration
 
 ### Team Settings
 
@@ -435,4 +470,61 @@ Full Team (4 agents, parallel): 65s (1.85x faster)
 
 ---
 
-*UI Teams Mode v3.0 — Parallel multi-agent orchestration*
+## 🔗 Integration with Other Skills
+
+**Requires:**
+- **ui** (parent orchestrator) - Teams mode is a ui sub-skill
+
+**Complements:**
+- **step** - Step mode can be combined with teams mode
+- **verification-before-completion** - Final verification before done
+
+---
+
+## 📋 Quick Reference
+
+### Team Activation
+```bash
+export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
+/ui --team "complex project"
+```
+
+### Team Composition
+```
+2 agents: Orchestrator + Build (default)
+4 agents: + Adversarial + Reviewer (full)
+```
+
+### Speedup
+```
+2 agents: 1.6x faster
+4 agents: 1.85x faster
+```
+
+### Task List
+```
+~/.claude/tasks/ui-<session-id>/
+```
+
+---
+
+## 📊 Migration from Sequential
+
+**Before (sequential v3.0):**
+```bash
+/ui "Create dashboard"
+# Orchestrator runs (45s)
+# Build runs (60s)
+# Total: 105s
+```
+
+**After (teams v4.1):**
+```bash
+/ui --team "Create dashboard"
+# Orchestrator + Build run together (60s)
+# Total: 60s (1.75x faster)
+```
+
+---
+
+*UI Teams Mode v4.1 - Parallel multi-agent orchestration for complex UI projects*

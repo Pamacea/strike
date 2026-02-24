@@ -1,16 +1,17 @@
-# 🚀 strike v1.1.0 — Quick Reference
+# 🚀 strike v1.6.0 — Quick Reference
 
 ## 🎯 I'm here to...
 
-- **Generate unique UIs**: `/ui "prompt"` — Orchestrator with Attractor workflow orchestration
-- **Build from specs**: `/build` — Takes enriched spec and creates UI
+- **Generate unique UIs**: `/ui "prompt"` — Orchestrator with 100 anti-patterns + baseline dials
+- **Step mode**: `/ui --step "prompt"` — Interactive workshop with user control (LEARNING_MODE: 8)
+- **Teams mode**: `/ui --team "prompt"` — Parallel agents (1.6x-1.85x faster)
 - **Resume workflows**: `/ui --resume` — Auto-detects and resumes from checkpoint
 
 ---
 
 ## 🔍 Core Workflow
 
-**POWERED BY ATTRACTOR in v1.1.0 - Enterprise-grade workflow orchestration:**
+**POWERED BY ATTRACTOR in v1.6.0 - Quality-first with skill-check integration:**
 
 1. **DOT Workflow** — Define workflows in Graphviz DOT syntax
 2. **Event System** — Track everything with 30+ typed events
@@ -28,10 +29,11 @@
 
 | Command | Purpose | When to use |
 |---------|---------|-------------|
-| `/ui "prompt"` | Full UI generation with Attractor orchestration | New UI projects |
+| `/ui "prompt"` | Full UI generation with 100 anti-patterns + quality gates | New UI projects |
+| `/ui --step "prompt"` | Interactive workshop (USER_CONTROL: 9, LEARNING: 8) | Learning, stakeholder approval |
+| `/ui --team "prompt"` | Parallel agents (TEAM_SIZE: 4, 1.85x faster) | Complex, large projects |
 | `/ui --resume` | Resume from checkpoint (auto-detects interruption) | After crash/interruption |
 | `/ui --workflow=path.dot "prompt"` | Use custom DOT workflow | Custom workflows |
-| `/ui --step "prompt"` | Interactive with human approval gates | Critical projects |
 | `/ui --explain "prompt"` | Include diagram explanation | Understand the workflow |
 | `/ui --learn "prompt"` | Extract patterns from this session | Improve future results |
 | `/build` | Implement from enriched spec | Build the UI |
@@ -41,14 +43,15 @@
 ## 📚 Documentation
 
 - **Marketplace**: `.claude-plugin/marketplace.json`
-- **Orchestrator**: `plugins/ui/README.md`
-- **Implementer**: `plugins/ui/README.md`
+- **Orchestrator**: `plugins/ui/README.md` (v4.1 - Quality-first with 100 anti-patterns)
+- **Step Mode**: `plugins/ui/skills/step/SKILL.md` (v4.1 - Interactive workshop)
+- **Teams Mode**: `plugins/ui/skills/teams/SKILL.md` (v4.1 - Parallel execution)
 - **Attractor Integration**: `plugins/ui/data/attractor/ATTRACTOR-INTEGRATION.md`
-- **DOT Grammar**: `plugins/ui/data/attractor/dot-grammar.md`
+- **DOT Grammar**: `plugins/ui/data/attractor/dot-grammar.md``
 
 ---
 
-## 🎯 DOT Workflow Examples (NEW v1.1.0)
+## 🎯 DOT Workflow Examples (v1.1.0+)
 
 ### Simple Sequential Workflow
 
@@ -105,7 +108,7 @@ digraph Parallel {
 
 ---
 
-## 💾 Checkpoint & Resume (NEW v1.1.0)
+## 💾 Checkpoint & Resume (v1.1.0+)
 
 **Auto-save after each phase:**
 ```bash
@@ -127,7 +130,7 @@ digraph Parallel {
 
 ---
 
-## 📊 Event System (NEW v1.1.0)
+## 📊 Event System (v1.1.0+)
 
 **Track everything with 30+ typed events:**
 - `SESSION_START` - Session created and initialized
@@ -235,7 +238,7 @@ See full library: `plugins/ui/data/core/constraints.json`
 
 ---
 
-## 📊 Constraint Scoring (NEW v2.0)
+## 📊 Constraint Scoring (v2.0+)
 
 Each constraint is scored (0-100) on:
 
@@ -282,7 +285,7 @@ Then `/ui` creates in `./output/`:
 
 ---
 
-## 🧩 Component Registry (NEW v2.0)
+## 🧩 Component Registry (v2.0+)
 
 Reference `plugins/ui/data/core/component-registry.json` for validated components.
 
@@ -303,7 +306,7 @@ Reference `plugins/ui/data/core/component-registry.json` for validated component
 
 ---
 
-## ♿ Accessibility (NEW v2.0)
+## ♿ Accessibility (v2.0+)
 
 All builds must pass the accessibility checklist:
 
@@ -322,9 +325,10 @@ See full checklist: `plugins/ui/data/core/accessibility-checklist.json`
 
 - **Anti-trend first**: Generic is the enemy
 - **Constraints guide, don't limit**: Find creative solutions within boundaries
-- **Accessibility first**: If it's not accessible, it's not done (NEW)
-- **Schema-validated communication**: Specs validated before delegation (NEW)
-- **Metrics-driven**: Measure compliance, bundle size, a11y scores (NEW)
+- **Accessibility first**: If it's not accessible, it's not done (v2.0+)
+- **Schema-validated communication**: Specs validated before delegation (v2.0+)
+- **Metrics-driven**: Measure compliance, bundle size, a11y scores (v2.0+)
+- **Quality gates**: Comprehensive validation before claiming "done" (v1.6.0+)
 - **Context matters**: A constraint that works for one project may fail for another
 - **Document decisions**: Explain why you made choices, especially constraint violations
 
@@ -397,12 +401,35 @@ Settings in `.claude/.strike/config.json`:
 - ❌ Don't ignore constraints — They're not optional guidelines
 - ❌ Don't use "trendy" templates from the internet — Orchestrator detects them as anti-patterns
 - ❌ Don't assume constraints are "too limiting" — They're liberation, not restriction
-- ❌ Don't skip accessibility — It's mandatory in v2.0 (NEW)
-- ❌ Don't skip metrics — build-result.json is required (NEW)
+- ❌ Don't skip accessibility — It's mandatory (v2.0+)
+- ❌ Don't skip metrics — build-result.json is required (v2.0+)
+- ❌ Don't skip quality gates — Validation is mandatory (v1.6.0+)
 
 ---
 
-## 🆕 What's New in v1.1.0
+## 🆕 What's New in v1.6.0
+
+| Feature | Description |
+|---------|-------------|
+| **Quality Skills Upgrade** | skill-check integration across all UI skills |
+| **100 UI Anti-Patterns** | Comprehensive forbidden patterns database |
+| **Baseline Configuration** | 4 dials per skill (UI: strength 7, creativity 8, difficulty 6, a11y 9) |
+| **Quality Gates** | Comprehensive pre-flight checklists for validation |
+| **Step Mode v4.1** | Interactive workshop with user control (LEARNING_MODE: 8) |
+| **Teams Mode v4.1** | Parallel execution (1.6x-1.85x faster, TEAM_SIZE: 4) |
+| **+90% Discovery** | MANDATORY/BEFORE language with specific trigger phrases |
+| **Modular Docs** | references/ structure for token efficiency |
+
+## 🆕 What's New in v1.5.0 (Marketplace)
+
+| Feature | Description |
+|---------|-------------|
+| **Marketplace** | 10+ patterns, 15+ constraints, 5+ workflows |
+| **CLI Tools** | `strike install`, `strike list`, `strike search`, `strike info` |
+| **Schema Validation** | JSON Schema validation for all marketplace items |
+| **Community** | Contribution guidelines and quality gates |
+
+## 🆕 What's New in v1.1.0 (Attractor)
 
 | Feature | Description |
 |---------|-------------|
@@ -420,4 +447,4 @@ Settings in `.claude/.strike/config.json`:
 
 ---
 
-**Version**: 1.1.0 | **Last updated**: 2025-02-10 | **Powered by [Attractor](https://github.com/strongdm/attractor)**
+**Version**: 1.6.0 | **Last updated**: 2025-02-24 | **Powered by [Attractor](https://github.com/strongdm/attractor)**

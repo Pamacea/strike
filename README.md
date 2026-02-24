@@ -1,9 +1,10 @@
-# Strike v1.5.0
+# Strike v1.6.0
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub release](https://img.shields.io/github/v/release/Pamacea/strike)](https://github.com/Pamacea/strike/releases/latest)
 [![CI](https://github.com/Pamacea/strike/actions/workflows/ci.yml/badge.svg)](https://github.com/Pamacea/strike/actions)
 [![Attractor](https://img.shields.io/badge/Powered%20By-Attractor-blue.svg)](https://github.com/strongdm/attractor)
+[![Quality Gates](https://img.shields.io/badge/Quality-Skill%20Check%20Integrated-green.svg)](https://github.com/spm1001/claude-suite)
 
 > **Creative Constraint Marketplace & UI Generation - Anti-trend UI with patterns, constraints, and workflows**
 
@@ -19,6 +20,13 @@ Break patterns. Create unique. Build thoughtful interfaces. Iterate instantly.
 2. **Orchestrator** — Analyzes prompts, detects anti-patterns, applies creative constraints
 3. **Implementer** — Builds the UI from enriched specification
 4. **Attractor Engine** — DOT-based workflow orchestration with events, checkpoints, and resilience
+
+**New in v1.6.0 - Quality Skills Upgrade:**
+- 🎯 **skill-check Integration** - MANDATORY/BEFORE language, specific triggers
+- 📊 **Baseline Configuration** - 4 dials per skill (strength 7, creativity 8, difficulty 6, a11y 9)
+- 🚫 **100 Anti-Patterns** - Comprehensive forbidden patterns database
+- ✅ **Quality Gates** - Pre-flight checklists for validation
+- 📚 **Modular Docs** - Token-efficient references/ structure
 
 **New in v1.5.0 - Marketplace Edition:**
 - 🛒 **Marketplace** — 10+ patterns, 15+ constraints, 5+ workflows
@@ -38,7 +46,16 @@ Modern web design has converged on a narrow set of "safe" choices. Glassmorphism
 
 ## 🚀 Key Features
 
-### Marketplace
+### Quality Framework (v1.6.0+)
+
+- **skill-check Integration** - MANDATORY gates, trigger phrases, method preview
+- **100 Anti-Patterns** - Comprehensive forbidden patterns (Visual, Typography, Layout, Content, Components, Interactions, Resources)
+- **Baseline Dials** - Configurable strength, creativity, difficulty, accessibility
+- **Quality Gates** - Pre-flight validation, anti-pattern compliance, WCAG AA+
+- **Step Mode** - Interactive workshop (USER_CONTROL: 9, LEARNING_MODE: 8)
+- **Teams Mode** - Parallel execution (TEAM_SIZE: 4, 1.6x-1.85x faster)
+
+### Marketplace (v1.5.0+)
 
 - **10+ UI Patterns** — Typography hierarchy, brutalist grid, asymmetric rhythm, print-first, etc.
 - **15+ Constraints** — Paper & ink, architectural, biological, CSS only, ASCII art, etc.
@@ -48,11 +65,11 @@ Modern web design has converged on a narrow set of "safe" choices. Glassmorphism
 
 ### Orchestrator (`/ui`)
 
-- **Anti-pattern detection** — 40+ static patterns detected
-- **Creative constraints** — 15+ constraints with scoring (creativity, difficulty, impact, synergy)
+- **Anti-pattern detection** — 100 static patterns + dynamic generation
+- **Creative constraints** — 15+ constraints with scoring (creativity 30%, difficulty 25%, impact 25%, synergy 20%)
 - **DOT workflows** — Pre-built or custom workflows
 - **Checkpoint & resume** — Crash recovery
-- **Teams mode** — Parallel multi-agent execution (2-3x faster)
+- **Teams mode** — Parallel multi-agent execution (1.6x-1.85x faster)
 
 ### Implementer (`/build`)
 
@@ -65,7 +82,23 @@ Modern web design has converged on a narrow set of "safe" choices. Glassmorphism
 
 ## Usage
 
-### Marketplace Commands
+### Quality Mode (v1.6.0+)
+
+```bash
+# Interactive workshop (learning, stakeholder approval)
+/ui --step "Complex dashboard"
+# → USER_CONTROL: 9, LEARNING_MODE: 8, pauses at each phase
+
+# Parallel execution (complex, large projects)
+export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
+/ui --team "Enterprise SaaS platform"
+# → TEAM_SIZE: 4, 1.85x faster than sequential
+
+# Full quality with dials customization
+ANTI_TREND_STRENGTH=9 CREATIVITY_TARGET=8 /ui "Bold experimental design"
+```
+
+### Marketplace Commands (v1.5.0+)
 
 ```bash
 # List all items
@@ -87,20 +120,12 @@ Modern web design has converged on a narrow set of "safe" choices. Glassmorphism
 ### Basic UI Generation
 
 ```bash
-# Full workflow
+# Full workflow with 100 anti-patterns + quality gates
 /ui "Create a modern SaaS dashboard"
 
 # Demo mode (fast)
 /ui --demo "Quick portfolio site"
 
-# Teams mode (2-3x faster)
-export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
-/ui --team "E-commerce platform"
-```
-
-### Workflow Mode
-
-```bash
 # Resume from checkpoint
 /ui --resume
 
@@ -108,9 +133,6 @@ export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
 /ui --workflow=quick-sequential "Create a button"
 /ui --workflow=with-approval "Create a dashboard"
 /ui --workflow=parallel-exploration "Create a landing page"
-
-# Interactive with approval
-/ui --step "Complex application"
 ```
 
 ---
@@ -182,9 +204,13 @@ git clone https://github.com/Pamacea/strike ~/.claude/plugins/strike
 
 ## Documentation
 
-- [CLAUDE.md](CLAUDE.md) — Quick reference
+- [CLAUDE.md](CLAUDE.md) — Quick reference (v1.6.0)
 - [CHANGELOG.md](CHANGELOG.md) — Version history
 - [CONTRIBUTING.md](CONTRIBUTING.md) — Contribution guidelines
+- [GOVERNANCE.md](GOVERNANCE.md) — Quality standards (v1.6.0)
+- [plugins/ui/skills/ui/SKILL.md](plugins/ui/skills/ui/SKILL.md) — Core orchestrator (v4.1)
+- [plugins/ui/skills/step/SKILL.md](plugins/ui/skills/step/SKILL.md) — Step mode (v4.1)
+- [plugins/ui/skills/teams/SKILL.md](plugins/ui/skills/teams/SKILL.md) — Teams mode (v4.1)
 - [plugins/ui/data/attractor/ATTRACTOR-INTEGRATION.md](plugins/ui/data/attractor/ATTRACTOR-INTEGRATION.md) — Attractor API guide
 
 ---
@@ -207,6 +233,6 @@ MIT — See [LICENSE](LICENSE) for details.
 
 ---
 
-*Version*: 1.5.0 | *Author*: Pamacea | *Repository*: https://github.com/Pamacea/strike
+*Version*: 1.6.0 | *Author*: Pamacea | *Repository*: https://github.com/Pamacea/strike
 
 **Powered by [Attractor](https://github.com/strongdm/attractor)**

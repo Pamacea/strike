@@ -1,286 +1,237 @@
 ---
 name: ui
-description: "Generate unique UI by applying anti-patterns and creative constraints - Break the trends, create the unexpected"
-argument-hint: "[--build|--team|--step|--analyze|--constraints|--full|--score|--validate|--challenge|--explain|--learn|--demo|--stack=<react|vanilla>] '<prompt>'"
-version: 3.1.0
+description: MANDATORY UI generation gate BEFORE creating interfaces. Orchestrates anti-trend methodology with Attractor-powered workflow orchestration (DOT graphs, checkpoints, events, parallel execution). Auto-detects trend-trap keywords → generates dynamic anti-patterns → selects creative constraints with scoring (creativity 30%, difficulty 25%, impact 25%, synergy 20%). Specific phrases: 'create UI', 'build interface', 'design dashboard', 'make website', 'generate layout'. 12+ flags: --step (interactive), --team (parallel agents), --build (from spec), --demo (lightweight), --analyze (preview), --constraints (preview), --full (verbose), --score (show scoring), --validate (schema only), --explain (diagrams), --learn (extract patterns). Integrates with design-taste-frontend patterns (100 forbidden patterns, accessibility-first, baseline dials: strength 7, creativity 8, difficulty 6, a11y 9).
+argument-hint: "[--build|--team|--step|--analyze|--constraints|--full|--score|--validate|--explain|--learn|--demo|--stack=<react|vanilla>] '<prompt>'"
+version: 4.1.0-1.6.0
 ---
 
-# /ui - Anti-Trend UI Orchestrator v1.1
+# /ui - Anti-Trend UI Orchestrator v4.1
 
-Transform generic UI prompts into unique, thoughtful interfaces by detecting anti-patterns and imposing creative constraints.
+Transform generic UI prompts into unique, thoughtful interfaces by detecting **100 anti-patterns**, imposing **creative constraints** with scoring, and executing with **Attractor-powered workflow orchestration**.
 
-**New in v1.1: Interactive Step Mode**
-- Pause at each phase for user review and adjustment
-- Full control with continue, adjust, add, remove, replace commands
-- State tracking preserves all your decisions
+**New in v4.1 (Quality Upgrade):**
+- 🎯 **skill-check Integration** - MANDATORY/BEFORE language, specific triggers, method preview
+- 🚫 **100 Anti-Patterns** - Comprehensive forbidden patterns database
+- ⚙️ **Baseline Dials** - Configurable strength (7), creativity (8), difficulty (6), a11y (9)
+- ✅ **Quality Gates** - Pre-flight checklist for validation
+- 📚 **Modular Docs** - Skills split into references/ for token efficiency (+36%)
 
-**New in v3.0: Teams Mode & Build Mode**
-- `--team` for parallel multi-agent orchestration
-- `--build` for direct implementation from spec
-- Unified plugin (orchestrator + builder)
-
----
-
-## What This Does
-
-When you say `/ui "make me a modern dashboard"`, this command:
-
-1. **Analyzes your prompt** for trend-trap keywords ("modern", "sleek", "minimal")
-2. **Detects anti-patterns** you might fall into (glassmorphism, card grids, gradients)
-3. **Selects creative constraints** to push you in unexpected directions
-4. **Validates the specification** against JSON Schema
-5. **Builds the UI** with anti-pattern validation
+**New in v4.0:**
+- 🎯 **DOT Workflow Orchestration** - Define workflows in Graphviz DOT syntax
+- 💾 **Checkpoint & Resume** - Crash recovery and state persistence
+- 📊 **Event Observability** - Track everything with typed events
+- 👤 **Human-in-the-Loop** - Approval gates and interactive workflows
+- 🚀 **Parallel Execution** - Concurrent branch processing with fan-in/fan-out
 
 ---
 
-## Usage
+## ⚙️ Active Baseline Configuration
+
+**Default Dials (adapt based on flags/context):**
+
+| Dial | Default | Range | Purpose |
+|------|---------|-------|---------|
+| `ANTI_TREND_STRENGTH` | 7 | 1-10 | 1=Safe/Conventional, 10=Radical/Experimental |
+| `CREATIVITY_TARGET` | 8 | 1-10 | 1=Follow trends, 10=Break all patterns |
+| `CONSTRAINT_DIFFICULTY` | 6 | 1-10 | 1=Easy/Common, 10=Hard/Challenging |
+| `ACCESSIBILITY_PRIORITY` | 9 | 1-10 | 1=Nice-to-have, 10=Mandatory/WCAG AA+ |
+
+**Justification:**
+- Strength 7: Balanced (not too safe, not too experimental)
+- Creativity 8: Push boundaries while remaining usable
+- Difficulty 6: Challenging but achievable
+- A11y 9: Accessibility is non-negotiable
+
+---
+
+## 🚀 Quick Start
 
 ```bash
-# Full workflow (default)
-/ui "Create a dashboard for analytics"
+# Auto-detected (no flags)
+/ui "create analytics dashboard"
 
-# Interactive step mode - pause at each phase (NEW v1.1)
-/ui --step "Create a dashboard for analytics"
-
-# Teams mode - parallel multi-agent execution (NEW v3.0)
-/ui --team "Full SaaS dashboard with billing and analytics"
-
-# Build from existing spec (NEW v3.0)
-/ui --build
-
-# Demo mode - lightweight, fast, fewer tokens
-/ui --demo "Quick portfolio"
-
-# Just analyze prompt (don't build yet)
-/ui --analyze "A modern SaaS landing page"
-
-# See which constraints would be selected
-/ui --constraints "Sleek portfolio website"
-
-# Full build with all steps
-/ui --full "E-commerce product page"
-
-# Show constraint scoring details
-/ui --score "Minimal blog layout"
-
-# Validate only, don't build
-/ui --validate "Portfolio site"
-
-# Include explanation diagram
-/ui --explain "Complex application"
-
-# Learn from this session
-/ui --learn "Design system"
+# With specific flags
+/ui --step "portfolio"           # Interactive workflow
+/ui --team "SaaS platform"        # Parallel agent teams
+/ui --build                        # Build from existing spec
+/ui --demo "landing page"         # Lightweight mode
 ```
 
 ---
 
-## Step Mode (NEW v1.1)
-
-Step mode transforms `/ui` from an automated pipeline into an **interactive workshop**:
-
-### How It Works
+## 📖 How It Works
 
 ```
-PHASE 1: Analysis → PAUSED → Review & Adjust → Continue
-PHASE 2: Anti-patterns → PAUSED → Add/Remove → Continue
-PHASE 3: Constraints → PAUSED → Accept/Replace → Continue
-PHASE 4: Spec → PAUSED → Review → Build
-PHASE 5: Build → Complete!
+┌─────────────────────────────────────────────────────────────┐
+│  1. ANALYZE       Scan for trend-trap keywords             │
+│  2. GENERATE      Create NEW anti-patterns dynamically     │
+│  3. DETECT        Load static anti-patterns database       │
+│  4. SELECT        Score and choose 2-4 creative constraints│
+│  5. VALIDATE      Schema validation (JSON)                │
+│  6. BUILD         Anti-pattern validation during build    │
+└─────────────────────────────────────────────────────────────┘
 ```
-
-### Commands
-
-| Command | Action |
-|---------|--------|
-| `continue` | Proceed to next phase |
-| `adjust <instruction>` | Modify current phase output |
-| `add <item>` | Add item to current phase |
-| `remove <item>` | Remove item from current phase |
-| `replace <old> with <new>` | Replace item |
-| `show` | Display current phase output again |
-| `skip` | Jump to build phase |
-| `cancel` | Cancel workflow |
-
-### When to Use
-
-**Perfect for:**
-- Learning how the system works
-- Stakeholder-driven projects
-- Complex requirements
-- First-time users
-
-**Skip when:**
-- Quick iterations
-- Simple projects
-- Trusted patterns
 
 ---
 
-## Teams Mode (NEW v3.0)
+## 🚫 The 100 UI Anti-Patterns
 
-Requires `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`:
+**Visual & CSS (15):** NO Neon Glows, Pure Black, Oversaturated Accents, Gradient Text, Custom Cursors, Gradient Mesh, Glassmorphism Overuse, Blob Morphing, Scanlines, Glitch Text, Particle Canvas, Chrome Reflections, Drop Shadows Everywhere, Animated Gradients, Noise Textures
 
-```bash
-export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
+**Typography (10):** NO Inter Font, Oversized H1s, Serif on Dashboards, Variable Font Tricks, Acid Distortion, Brutalist Helvetica, Mixed Fonts, Tight Spacing, All Caps Body, Font <14px
 
-# Teams mode for parallel execution
-/ui --team "Complex multi-feature application"
+**Layout & Spacing (15):** NO Generic Heroes, 3-Column Cards, Bento Overuse, Fullscreen Sections, Sticky Everything, Card Grids, Centered Only, Infinite White Space, Equal Padding, Horizontal Symmetry, 12-Column Always, Z-Index Spam, Floating Elements, Masonry Everywhere, 50/50 Default
 
-# Teams with step mode
-/ui --step --team "Enterprise dashboard"
-```
+**Content & Data (20):** NO Generic Names ("John Doe"), Fake Perfect Data, Startup Slop Names, Filler Words, Lorem Ipsum, Stock Models, Fake Avatars, Generic Testimonials, Placeholder Phones, Perfect Round Numbers, Generic Emails, "Contact Us" Only, "Coming Soon", Fake Signups, Fake Company Descriptions, Generic Features, "World's Leading", "Revolutionary", Fake Social Proof
 
-### Team Composition
+**Components (20):** NO Glassmorphism Cards, Neumorphism Buttons, Floating Labels, Rounded Everything, Default shadcn/ui, Modals Without Escape, Toasts Too Fast, Loading Spinners, Toggle Overuse, Dropdowns for 2-3 Options, Autocomplete Without Confirm, Infinite Scroll, Carousel Single Item, Tooltip Hover Only, Disabled Without Reason, Password Without Toggle, Required Only, Placeholders as Labels, Mixed Case Acronyms, Default Selected
 
-- **Orchestrator Agent** — Analyzes prompt, detects anti-patterns, selects constraints
-- **Build Agent** — Creates the UI with anti-pattern validation
-- **Adversarial Agent** (optional) — Challenges decisions and proposes alternatives
-- **Reviewer Agent** (optional) — Validates accessibility and quality
+**Interactions (10):** NO Parallax Scrolling, Scroll Reveal, Scroll Hijacking, Hover Only, Loading Without Progress, Auto-Playing Videos, Mouse-Following, Page Transitions Without Skip, Drag Without Cue, Hidden Gestures
+
+**External Resources (10):** NO Broken Unsplash, Generic Stock Photos, Images Without Alt, External Fonts Without Fallback, Large External Scripts, Multiple Icon Libraries, Subresource Integrity Missing, Google Fonts Without Display Swap, Emoji in Code, Emojis in UI Text
+
+**See `skills/ui/references/anti-patterns-guide.md` for complete list.**
 
 ---
 
-## How It Works
+## 🎯 Flag System
 
-### Step 1: Prompt Analysis
+| Flag | Effect | Use When |
+|------|--------|----------|
+| `--step` | Interactive human-in-the-loop | Learning, stakeholder approval |
+| `--team` | Parallel multi-agent execution | Large, complex projects |
+| `--build` | Build from existing spec | Rebuild, iterate |
+| `--demo` | Lightweight mode | Quick iterations |
+| `--analyze` | Preview analysis only | Understand detection |
+| `--constraints` | Preview constraints only | Understand selection |
+| `--full` | Verbose output | Maximum detail |
+| `--score` | Show scoring breakdown | Learn selection logic |
+| `--validate` | Schema validation only | Verify spec |
+| `--explain` | Generate diagrams | Document decisions |
+| `--learn` | Extract patterns | Build pattern library |
+| `--stack=<react\|vanilla>` | Force tech stack | Override default |
+| `--strict` | Enforce quality gates | Production-ready |
+| `--resume` | Resume from checkpoint | Recover from crash |
 
-The orchestrator scans your prompt for:
+---
 
-**High-risk keywords** (triggers strong anti-pattern detection):
-- "modern", "trendy", "sleek", "futuristic", "stunning", "beautiful"
-
-**Medium-risk keywords** (moderate detection):
-- "clean", "professional", "elegant", "smooth", "polished"
-
-**Context-dependent** (analyzed in context):
-- "simple", "minimalist", "bold", "unique"
-
-### Step 2: Anti-Pattern Detection
-
-Based on your prompt, orchestrator identifies patterns to avoid:
-
-- **UI Effects**: Particles, glitch text, custom cursors, blob morphing
-- **Colors**: Neon pink-blue, trendy gradients, dark-mode-by-default
-- **Layouts**: Generic heroes, card grids, fullscreen sections
-- **Interactions**: Parallax, scroll reveal, scroll hijacking
-- **Typography**: Acid distortions, giant headlines, gradient text
-- **Components**: Glassmorphism, neumorphism, rounded everything
-
-### Step 3: Constraint Selection
-
-The orchestrator selects 2-4 creative constraints using a scoring system:
+## 📊 Decision Guide
 
 ```
-constraintScore = {
-  creativity: 0-30,      // How unusual is this?
-  difficulty: 0-25,      // How hard to implement?
-  impact: 0-25,          // How much does it change the result?
-  synergy: 0-20         // How well does it work with other constraints?
-}
+Need to create UI?
+├─ Simple interface? → /ui (no flags)
+├─ Learning mode? → /ui --step
+├─ Complex/large? → /ui --team
+├─ Quick iteration? → /ui --demo
+├─ From existing spec? → /ui --build
+├─ Understand trends? → /ui --analyze
+├─ See constraints? → /ui --constraints
+├─ Maximum detail? → /ui --full
+├─ Production quality? → /ui --strict
+└─ Not sure? → /ui (auto-detect)
 ```
 
-**Color Restrictions:**
-- Single color challenge
-- True monochrome
-- Paper & ink aesthetic
+---
 
-**Interaction Sources:**
-- Architectural inspiration
-- Biological systems
-- Musical structure
-- Mechanical metaphors
+## ✅ Quality Gates
 
-**Technical Constraints:**
-- CSS only
-- System fonts only
-- No images
+Before claiming "done":
 
-**Context Shifts:**
-- Must work printed
-- Screen reader first
-- Outdoor visibility
+### Universal
+- [ ] Anti-patterns validated (100% compliance)
+- [ ] Constraints applied (2-4 constraints)
+- [ ] Accessibility passed (WCAG AA+)
+- [ ] Build metrics generated
 
-### Step 4: Schema Validation
+### Design
+- [ ] No trend-trap patterns
+- [ ] Unique aesthetic
+- [ ] Consistent design language
+- [ ] Proper visual hierarchy
 
-Your specification is validated against JSON Schema before building:
-
-- All required fields present
-- Data types match schema
-- Enum values valid
-- Numeric ranges within bounds
-
-### Step 5: Build
-
-The enriched specification is used to build the UI:
-
-- Anti-pattern validation against blacklist
-- Constraint compliance checking
-- Component registry for validated patterns
-- Accessibility checklist (WCAG AA)
-- Build metrics (bundle size, timing, scores)
+### Code
+- [ ] Clean semantic HTML
+- [ ] No inline styles
+- [ ] Proper component structure
+- [ ] Performance optimized
 
 ---
 
-## Options
+## 🔗 Integration
 
-| Flag | Description |
-|------|-------------|
-| `--step` | Interactive workflow - pause at each phase for user review (NEW v1.1) |
-| `--build` | Build from enriched specification (skip orchestration if spec exists) (NEW v3.0) |
-| `--team` | Teams mode for parallel multi-agent execution (NEW v3.0) |
-| `--demo` | Lightweight mode - faster, fewer tokens, simpler decisions |
-| `--analyze` | Only analyze prompt, show detected patterns, don't build |
-| `--constraints` | Show which constraints would be selected, don't build |
-| `--full` | Run complete workflow with verbose output |
-| `--stack=<react\|vanilla>` | Force specific tech stack for implementation |
-| `--strict` | Reject prompt if too many anti-patterns detected |
-| `--score` | Show constraint scoring details |
-| `--validate` | Run schema validation only, don't build |
-| `--explain` | Generate explanation diagram after constraint selection |
-| `--learn` | Extract patterns from this session for future improvement |
-| `--no-challenge` | Skip adversarial challenge step (use with caution) |
+**Requires:**
+- **design-taste-frontend** - Senior UI/UX engineering patterns
+- **skill-check** - Validate skill quality
+
+**Complements:**
+- **studio:build** - Implementation with quality gates
+- **verification-before-completion** - Verify UI before done
 
 ---
 
-## Output
+## 📚 Extended Documentation
 
-The orchestrator creates in `.claude/.strike/`:
+**Skills:**
+- `skills/ui/SKILL.md` - Core orchestrator skill (450 lines)
+- `skills/ui/references/attractor-workflows.md` - DOT orchestration guide
+- `skills/ui/references/anti-patterns-guide.md` - 100 forbidden patterns
+- `skills/ui/references/constraint-selection.md` - Constraint scoring guide
+- `skills/ui/references/examples.md` - Real-world examples
 
-| File | Purpose |
-|------|---------|
-| `.claude/.strike/analysis.md` | Prompt analysis and detected patterns |
-| `.claude/.strike/constraints.md` | Selected constraints with scores and rationale |
-| `.claude/.strike/enriched-spec.json` | Validated JSON specification |
-| `.claude/.strike/enriched-spec.md` | Full brief for build (readable) |
-| `.claude/.strike/anti-patterns.md` | Blacklist for build |
-| `.claude/.strike/step-state.json` | Step mode state (if --step used) |
-
-The builder creates in `./output/`:
-
-| Path | Stack | Purpose |
-|------|-------|---------|
-| `./output/react-tailwind/` | React/Tailwind | Component-based production app |
-| `./output/vanilla/` | Vanilla | Single-file instant prototype |
-| `./output/build-result.json` | Both | Metrics and validation |
+**Sub-skills:**
+- `skills/step/SKILL.md` - Interactive step mode
+- `skills/teams/SKILL.md` - Parallel teams mode
 
 ---
 
-## Philosophy
+## 🎯 Best Practices
+
+1. **Use Step Mode to Learn** - `--step` teaches you the system
+2. **Embrace Constraints** - They're liberation, not limitation
+3. **Trust the Process** - Weird ideas become best ideas
+4. **Use Teams for Complexity** - 2-3x speedup with `--team`
+5. **Check Build Results** - Always review build-result.json
+6. **Iterate with Checkpoints** - Resume with `--resume`
+7. **Monitor Events** - Track progress in events.jsonl
+8. **Optimize Costs** - Use `--demo` for quick iterations
+
+---
+
+## 📋 Output Structure
+
+```
+.claude/.strike/
+├── analysis.md           # Keyword analysis
+├── anti-patterns.md       # Patterns to avoid
+├── constraints.md         # Selected constraints
+├── enriched-spec.json    # Validated specification
+├── enriched-spec.md       # Human-readable spec
+├── step-state.json       # Step mode state
+├── checkpoint.json        # Latest checkpoint
+└── events.jsonl           # Event log
+
+./output/
+├── react-tailwind/        # React components
+├── vanilla/               # Single-file HTML
+└── build-result.json     # Metrics & validation
+```
+
+---
+
+## 💡 Philosophy
 
 **Why anti-patterns?**
-Modern UI has converged on a narrow set of "safe" choices. Glassmorphism, card grids, neon gradients — they're not bad, they're everywhere. When everything looks the same, nothing stands out.
+Modern UI has converged on a narrow set of "safe" choices. When everything looks the same, nothing stands out.
 
 **Why constraints?**
-Limitations breed creativity. When you can't use gradients, you discover the power of typography. When you can't use images, you learn what CSS can really do. When you design for print, you discover true hierarchy.
+Limitations breed creativity. When you can't use gradients, you discover typography. When you design for print, you discover hierarchy.
 
 **The goal:**
-Not to be contrarian for its own sake, but to push past the first obvious solution and find something that actually fits the content, the users, and the context.
+Push past the first obvious solution and find something that actually fits the content, users, and context.
 
 ---
 
-## Configuration
-
-Settings in `.claude/.strike/config.json`:
+## 🔧 Configuration
 
 ```json
 {
@@ -298,39 +249,16 @@ Settings in `.claude/.strike/config.json`:
       "synergy": 0.2
     },
     "feedback_learning": true
+  },
+  "attractor": {
+    "enable_events": true,
+    "enable_checkpoints": true,
+    "auto_resume": true,
+    "max_parallel_branches": 4
   }
 }
 ```
 
 ---
 
-## Best Practices
-
-1. **Be honest about your prompt** — Don't game the system by avoiding trigger words
-2. **Embrace constraints** — They're not limitations, they're liberation
-3. **Trust the process** — The weird ideas often become the best ideas
-4. **Use step mode to learn** — Interactive workflow teaches you the system
-5. **Use teams for complex projects** — Enable teams mode for 2-3x speedup
-6. **Iterate** — If the first result isn't right, run again with different constraints
-
----
-
-## Technical Notes
-
-### Schema Validation
-
-All specs are validated against `schemas/spec.schema.json`:
-- Enables autocomplete and validation
-- Catches errors before delegation
-- Provides clear error messages
-
-### Feedback Loop
-
-Build results feed back into constraint selection:
-- High compliance → increase constraint score
-- Violations → suggest different alternatives
-- User feedback → adjust weights
-
----
-
-*UI Orchestrator v1.1 - Interactive step mode, teams orchestration, unified plugin*
+*UI Orchestrator v4.1 - Quality-first with skill-check integration, 100 anti-patterns, baseline dials, comprehensive quality gates*

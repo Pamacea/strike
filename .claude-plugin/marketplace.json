@@ -1,14 +1,14 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "strike",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Creative constraint marketplace and UI generation - Anti-trend UI with patterns, constraints, and workflows",
   "owner": {
     "name": "Pamacea",
     "contact": "https://github.com/Pamacea/strike/issues"
   },
   "metadata": {
-    "description": "strike v1.5.0 - Marketplace with UI patterns, constraints, and workflows registries",
+    "description": "strike v1.6.0 - Marketplace with UI patterns, constraints, and workflows registries",
     "pluginRoot": "./plugins"
   },
   "plugins": [
@@ -16,7 +16,7 @@
       "name": "ui",
       "source": "./plugins/ui",
       "description": "Unified UI generation with orchestrator, builder, teams mode, step mode, and marketplace integration. Anti-pattern detection, creative constraints, parallel agent execution.",
-      "version": "1.5.0",
+      "version": "1.6.0",
       "author": { "name": "Pamacea" },
       "category": "ui-generation",
       "tags": ["ui", "anti-trend", "anti-patterns", "creative-constraints", "orchestration", "implementation", "teams", "agent-teams", "interactive", "step-mode", "marketplace"],
