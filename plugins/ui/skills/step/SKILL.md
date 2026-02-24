@@ -1,14 +1,39 @@
 ---
 name: step
-description: Interactive step mode for ui plugin - Pause at each phase for user review and adjustment
-version: 1.1.0
+description: MANDATORY interactive workshop gate BEFORE building UI when user control is needed. Orchestrates phase-by-phase human-in-the-loop workflow with pause/adjust/continue pattern. Specific phrases: 'step through', 'interactive mode', 'show me how', 'learn to build', 'understand process', 'stakeholder approval', 'review each phase'. Auto-activates with --step flag or stakeholder-driven projects. Pauses after each phase (ANALYSIS → PAUSED → ANTI-PATTERNS → PAUSED → CONSTRAINTS → PAUSED → SPEC → PAUSED → BUILD). Full adjustment capability: adjust/modify, add/insert, remove/delete, replace/swap, show/display, skip/jump, cancel/abort. State preservation via step-state.json. Learning-friendly with explicit phase outputs. Integrates with ui orchestrator and teams mode.
+version: 4.1.0-1.6.0
 ---
 
-# UI Step Mode v3.1
+# UI Step Mode v4.1
 
 ## Mission
 
-Transform the automated workflow into an interactive experience where the user controls each phase, reviews outputs, and makes adjustments before proceeding.
+Transform the automated UI generation pipeline into an **interactive workshop** where the user controls each phase, reviews outputs, and makes adjustments before proceeding.
+
+---
+
+## ⚙️ Active Baseline Configuration
+
+**Step Mode Dials (adapted from ui parent):**
+
+| Dial | Default | Range | Purpose |
+|------|---------|-------|---------|
+| `USER_CONTROL_LEVEL` | 9 | 1-10 | 1=Auto-pilot, 10=Manual-everything |
+| `EXPLANATION_DETAIL` | 7 | 1-10 | 1=Minimal, 10=Comprehensive |
+| `PAUSE_FREQUENCY` | 10 | 1-10 | 1=Major phases only, 10=After each action |
+| `LEARNING_MODE` | 8 | 1-10 | 1=Production, 10=Educational |
+
+**AI Instruction:**
+- In learning mode (8+), explain WHY each decision was made
+- In production mode (1-3), focus on WHAT needs approval
+- Adapt pause frequency based on user expertise
+- Show progress indicators at each pause
+
+**Justification:**
+- Control 9: User has final say but system guides
+- Detail 7: Balanced explanations (not overwhelming, not minimal)
+- Frequency 10: Pause after every phase (never skip user review)
+- Learning 8: Educational by default (teach the system)
 
 ---
 
@@ -19,28 +44,43 @@ Step mode transforms `/ui` from an automated pipeline into an **interactive work
 - **Phase-by-phase execution** - Each phase completes and pauses for your review
 - **User approval required** - Nothing proceeds without your consent
 - **Full adjustment capability** - Modify keywords, patterns, constraints at any point
-- **State preservation** - All your adjustments are tracked and preserved
+- **State preservation** - All your adjustments tracked in step-state.json
 - **Learning-friendly** - See how each decision affects the final result
 
 ---
 
-## When to Use Step Mode
+## 🎯 When to Use Step Mode
 
-### Perfect For:
-- **First-time users** - Learn how the anti-pattern system works
-- **Stakeholder-driven projects** - Get approval at each stage
-- **Complex requirements** - Fine-tune constraints based on specific needs
-- **Exploration** - Experiment with different combinations
-- **Teaching** - Demonstrate the workflow to others
+### Auto-Activation Triggers
 
-### Skip When:
-- **Quick iterations** - You know what you want
-- **Simple projects** - Straightforward requirements
-- **Trusted patterns** - Reusing proven constraint combinations
+**Use Step Mode when:**
+- ✅ First-time user (learning the system)
+- ✅ Stakeholder approval needed (client projects)
+- ✅ Complex/ambiguous requirements (need clarification)
+- ✅ Exploration mode (experimenting with options)
+- ✅ Teaching/demonstration (showing workflow)
+
+**Skip Step Mode when:**
+- ❌ Quick iterations (you know what you want)
+- ❌ Simple projects (straightforward requirements)
+- ❌ Trusted patterns (reusing proven combinations)
+- ❌ Time-critical (need speed over control)
+
+### Specific Trigger Phrases
+
+```
+'step through UI generation' → ACTIVATE
+'interactive mode for design' → ACTIVATE
+'show me how this works' → ACTIVATE
+'learn to build UI' → ACTIVATE
+'understand the process' → ACTIVATE
+'need stakeholder approval' → ACTIVATE
+'review each phase' → ACTIVATE
+```
 
 ---
 
-## Phase Workflow
+## 🔄 Phase Workflow
 
 ```
 STEP MODE PHASES
@@ -89,7 +129,7 @@ STEP MODE PHASES
 
 ---
 
-## User Commands
+## 💬 User Commands
 
 At each pause, you can use these commands:
 
@@ -101,14 +141,14 @@ At each pause, you can use these commands:
 | `remove <item>` | `delete`, `exclude` | Remove item from current phase |
 | `replace <old> with <new>` | `swap`, `substitute` | Replace item with another |
 | `show` | `display`, `view` | Display current phase output again |
-| `skip` | `jump` | Skip to build phase (use current spec) |
+| `skip` | `jump` | Jump to build phase (use current spec) |
 | `cancel` | `abort`, `stop` | Cancel the entire workflow |
 | `help` | `?` | Show available commands |
 | `status` | `state` | Show current workflow state |
 
 ---
 
-## Phase 1: Analysis
+## 📋 Phase 1: Analysis
 
 ### Output Format
 
@@ -166,7 +206,7 @@ Available Commands:
 
 ---
 
-## Phase 2: Anti-Patterns
+## 🚫 Phase 2: Anti-Patterns
 
 ### Output Format
 
@@ -215,7 +255,7 @@ Available Commands:
 
 ---
 
-## Phase 3: Constraints
+## 🎯 Phase 3: Constraints
 
 ### Output Format
 
@@ -249,7 +289,7 @@ Available Commands:
 ─────────────────────────────────────────────────────────────────
 Available Commands:
   accept    | Accept these constraints and proceed
-  replace  | Replace a constraint (e.g., "replace architectural with musical")
+  replace  | Replace a constraint (e.g., "replace architectural with mechanical")
   add       | Add another constraint
   remove    | Remove a constraint
   show      | Display constraints again
@@ -273,7 +313,7 @@ Available Commands:
 
 ---
 
-## Phase 4: Enriched Spec
+## 📄 Phase 4: Enriched Spec
 
 ### Output Format
 
@@ -310,7 +350,7 @@ Available Commands:
 
 ---
 
-## Phase 5: Build
+## 🔨 Phase 5: Build
 
 ### Output Format
 
@@ -334,12 +374,13 @@ Results: .claude/.strike/build-result.json
 
 ---
 
-## State Management
+## 💾 State Management
 
 Step mode preserves all user adjustments in `.claude/.strike/step-state.json`:
 
 ```json
 {
+  "version": "4.1.0",
   "session_id": "uuid-v4",
   "prompt": "Create a modern SaaS dashboard",
   "current_phase": "constraints",
@@ -361,38 +402,141 @@ Step mode preserves all user adjustments in `.claude/.strike/step-state.json`:
     }
   },
   "phase_outputs": {
-    "analysis": { ... },
-    "anti_patterns": { ... },
-    "constraints": { ... }
+    "analysis": { /* ... */ },
+    "anti_patterns": { /* ... */ },
+    "constraints": { /* ... */ }
   }
 }
 ```
 
 ---
 
-## Step Mode with Teams
+## 🎯 Step Mode Quality Gates
 
-Step mode can be combined with teams mode:
+Before proceeding to next phase, verify:
+
+### Phase Completion
+- [ ] Phase output displayed clearly
+- [ ] User review time provided
+- [ ] All adjustments processed
+
+### State Integrity
+- [ ] User adjustments saved to step-state.json
+- [ ] Previous phase states preserved
+- [ ] No data loss between phases
+
+### User Understanding
+- [ ] Next phase explained (in learning mode)
+- [ ] Available commands shown
+- [ ] User knows how to proceed
+
+### Final Build Quality
+- [ ] All constraints applied
+- [ ] Anti-patterns avoided
+- [ ] Accessibility passed
+- [ ] Metrics generated
+
+---
+
+## 🔗 Integration with Other Modes
+
+### Step + Teams
 
 ```bash
 /ui --step --team "Complex dashboard"
 ```
 
-In teams + step mode:
-- Each phase is executed by the appropriate agent
-- The team lead (you) reviews and approves before proceeding
-- Agents pause and wait for your input
+In step + teams mode:
+- Each phase executed by appropriate agent
+- Team lead (you) reviews and approves
+- Agents pause and wait for input
+- Parallel work within phases, sequential between phases
+
+### Step + Demo
+
+```bash
+/ui --step --demo "Quick portfolio"
+```
+
+In step + demo mode:
+- Simplified outputs (less verbose)
+- Faster phase execution
+- Still pauses for user control
+- Good for learning the basics
 
 ---
 
-## Best Practices
+## ✅ Pre-Flight Checklist
+
+Before completing step mode, verify:
+
+### User Experience
+- [ ] User had control at each phase
+- [ ] All adjustments acknowledged
+- [ ] User understood the impact
+- [ ] Final result matches expectations
+
+### Technical Quality
+- [ ] Build successful
+- [ ] All constraints applied
+- [ ] Anti-patterns avoided
+- [ ] Accessibility passed
+
+### State Preservation
+- [ ] All adjustments saved
+- [ ] step-state.json complete
+- [ ] Can resume if interrupted
+- [ ] Session reproducible
+
+---
+
+## 🎯 Best Practices
 
 1. **Review each phase carefully** - Don't rush through
 2. **Use `show` command** - Redisplay output if needed
 3. **Experiment with adjustments** - Step mode is perfect for learning
 4. **Save interesting combinations** - Note constraint combos that work well
 5. **Provide feedback** - The system learns from your choices
+6. **Use help command** - Unsure? Type `help` for options
+7. **Check state** - Use `status` to see current progress
+8. **Can cancel anytime** - Not happy? Use `cancel` to stop
 
 ---
 
-*UI Step Mode v3.1 - Interactive workflow for user-controlled UI generation*
+## 🔗 Integration with Other Skills
+
+**Requires:**
+- **ui** (parent orchestrator) - Step mode is a ui sub-skill
+
+**Complements:**
+- **teams** - Step mode can be combined with teams mode
+- **verification-before-completion** - Final verification before done
+
+---
+
+## 📋 Quick Reference
+
+### Step Mode Commands
+```
+continue   → Next phase
+adjust     → Modify current phase
+add/remove → Modify items
+replace    → Swap items
+show       → Display output again
+skip       → Jump to build
+cancel     → Stop workflow
+```
+
+### Phase Order
+```
+ANALYSIS → ANTI-PATTERNS → CONSTRAINTS → SPEC → BUILD
+```
+
+### State File
+```
+.claude/.strike/step-state.json
+```
+
+---
+
+*UI Step Mode v4.1 - Interactive workshop for user-controlled UI generation*

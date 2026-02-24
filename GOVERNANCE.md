@@ -303,7 +303,8 @@ Marketplace version follows SemVer:
 - **MINOR** - New items, backward-compatible changes
 - **PATCH** - Bug fixes, scoring updates
 
-Current version: **2.0.0**
+Current version: **2.0.0** (Marketplace)
+Plugin version: **1.6.0** (Quality Skills Upgrade)
 
 ### Item Version
 
@@ -326,5 +327,5 @@ Planned governance enhancements:
 
 ---
 
-**Last Updated:** 2025-02-19
-**Version:** 1.0.0
+**Last Updated:** 2025-02-24
+**Version:** 1.6.0

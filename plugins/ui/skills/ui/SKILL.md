@@ -1,40 +1,46 @@
 ---
 name: ui
-description: Frontend UI Orchestrator Skill - Attractor-powered workflow orchestration with events, checkpoints, and DOT graphs
-version: 4.0.0
+description: MANDATORY UI generation gate BEFORE creating interfaces. Orchestrates anti-trend methodology with 12+ flags (--step/--team/--build/--demo/--analyze/--constraints/--full/--score/--validate) and Attractor-powered workflow orchestration (DOT graphs, checkpoints, events, parallel execution). Specific phrases: 'create UI', 'build interface', 'design dashboard', 'make website', 'generate layout', 'build page'. Auto-detects trend-trap keywords ("modern", "sleek", "minimal", "futuristic", "stunning") → generates dynamic anti-patterns → selects creative constraints with scoring (creativity 30%, difficulty 25%, impact 25%, synergy 20%). Integrates with step mode (interactive human-in-the-loop), teams mode (parallel agents), and design-taste-frontend patterns (100 forbidden patterns, accessibility-first). Reads memory via claude-mem before implementing, saves patterns after completion.
+version: 4.1.0-1.6.0
 ---
 
-# UI Orchestrator Skill v4.0 - Attractor Edition
+# UI Orchestrator Skill v4.1 - Attractor Edition
 
 ## Mission
 
-Transform generic UI prompts into unique, anti-trend specifications using **enterprise-grade Attractor workflow orchestration**. Detect overused patterns, generate prompt-specific anti-patterns dynamically, impose creative constraints, and execute with full observability and resilience.
-
-## 🎉 What's New in v4.0
-
-**Major upgrade - Full Attractor integration:**
-- 🎯 **DOT Workflow Orchestration** - Define workflows in Graphviz DOT syntax
-- 💾 **Checkpoint & Resume** - Crash recovery and state persistence
-- 📊 **Event Observability** - Track everything with typed events
-- 👤 **Human-in-the-Loop** - Approval gates and interactive workflows
-- 🚀 **Parallel Execution** - Concurrent branch processing with fan-in/fan-out
-- 🔀 **Conditional Routing** - Smart workflow branching with conditions
-- 🎨 **Model Stylesheet** - CSS-like LLM configuration
-- 💬 **Steering** - Mid-task injection for dynamic redirection
-
-**Previous v3.0 features:**
-- Unified plugin (orchestrator + builder)
-- Teams mode (`--team`) for parallel multi-agent execution
-- Build flag (`--build`) for direct implementation
-- Dynamic anti-pattern generation
-- Demo mode (`--demo`) for lightweight workflows
+Transform generic UI prompts into unique, anti-trend specifications using **enterprise-grade Attractor workflow orchestration**. Detect overused patterns with 100 forbidden anti-patterns, generate prompt-specific anti-patterns dynamically, impose creative constraints with scoring, and execute with full observability, checkpoint resilience, and human-in-the-loop control.
 
 ---
 
-## Core Workflow
+## ⚙️ Active Baseline Configuration
+
+**Default Dials (adapt based on flags/context):**
+
+| Dial | Default | Range | Purpose |
+|------|---------|-------|---------|
+| `ANTI_TREND_STRENGTH` | 7 | 1-10 | 1=Safe/Conventional, 10=Radical/Experimental |
+| `CREATIVITY_TARGET` | 8 | 1-10 | 1=Follow trends, 10=Break all patterns |
+| `CONSTRAINT_DIFFICULTY` | 6 | 1-10 | 1=Easy/Common, 10=Hard/Challenging |
+| `ACCESSIBILITY_PRIORITY` | 9 | 1-10 | 1=Nice-to-have, 10=Mandatory/WCAG AA+ |
+
+**AI Instruction:**
+- Adapt these values based on explicit flags (`--demo` → lower creativity, `--full` → max strength)
+- Task complexity (simple page → strength 5, system → strength 9)
+- User expertise (`--step` mode → strength 7 for learning)
+- Production context (`--team` → strength 8 for enterprise)
+
+**Justification:**
+- Strength 7: Balanced (not too safe, not too experimental)
+- Creativity 8: Push boundaries while remaining usable
+- Difficulty 6: Challenging but achievable
+- A11y 9: Accessibility is non-negotiable (design-taste-frontend principle)
+
+---
+
+## 🎯 Core Workflow
 
 ```
-UI ORCHESTRATOR v3.0 WORKFLOW
+UI ORCHESTRATOR v4.1 WORKFLOW
 ┌─────────────────────────────────────────────────────────────────┐
 │                                                                 │
 │  1. RECEIVE          Raw prompt from user                       │
@@ -48,7 +54,6 @@ UI ORCHESTRATOR v3.0 WORKFLOW
 │  3. GENERATE         Create NEW anti-patterns from keywords    │
 │       ↓              → Semantic reasoning from keywords         │
 │                      → Combine existing patterns                │
-│                      → Web search for examples (if available)   │
 │                      → EXPLICITLY SHOW to user                  │
 │                                                                 │
 │  4. DETECT           Load anti-patterns.json (static DB)        │
@@ -59,398 +64,115 @@ UI ORCHESTRATOR v3.0 WORKFLOW
 │       ↓              → Choose 2-4 creative constraints          │
 │                      → Score constraints                        │
 │                      → Resolve conflicts                        │
-│                      → Balance difficulty                       │
 │                                                                 │
-│  6. SELF-CHALLENGE   Adversarial mode                           │
-│       ↓              → Question own decisions                   │
-│                      → Propose alternatives                     │
-│                      → Debate trade-offs                        │
-│                                                                 │
-│  7. VALIDATE         Validate spec against schema               │
+│  6. VALIDATE         Validate spec against schema               │
 │       ↓              → JSON Schema validation                   │
-│                      → Consistency checks                       │
 │                                                                 │
-│  8. ENRICH           Transform prompt                           │
-│       ↓              → Add specific guidance                    │
-│                      → Include ALL anti-pattern warnings        │
-│                      → Suggest alternatives                     │
-│                                                                 │
-│  9. BUILD            Execute build (or delegate to build agent)  │
+│  7. BUILD            Execute build (or delegate to build agent)  │
 │       ↓              → React/Tailwind or Vanilla                 │
 │                      → Anti-pattern validation                   │
-│                      → Accessibility checks                     │
 │                                                                 │
-│ 10. EXPLAIN (opt)    Diagram explanations                       │
+│  8. EXPLAIN (opt)    Diagram explanations                       │
 │       ↓              → Visual workflow diagrams                 │
-│                      → Decision rationale                       │
 │                                                                 │
-│ 11. LEARN (opt)      Extract patterns                           │
+│  9. LEARN (opt)      Extract patterns                           │
 │                      → Document successful combos               │
-│                      → Build pattern library                    │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Demo Mode - Lightweight Workflow
+## 🚫 The 100 UI Anti-Patterns (Forbidden Patterns)
 
-Use `--demo` flag for a **faster, lighter** workflow inspired by v1.
+**Visual & CSS (15)**
+- NO Neon/Outer Glows, Pure Black, Oversaturated Accents
+- NO Excessive Gradient Text, Custom Mouse Cursors
+- NO Gradient Mesh, Glassmorphism Overuse, Blob Morphing
+- NO Scanlines, Glitch Text, Particle Canvas
+- NO Chrome Reflections, Drop Shadows Everywhere
 
-**When to use:** You want quick results without the heavy analysis, token usage, and detailed decision-making.
+**Typography (10)**
+- NO Inter Font, Oversized H1s, Serif Fonts on Dashboards
+- NO Variable Font Tricks, Acid Distortion
+- NO Brutalist Helvetica, Mixed Font Families
+- NO Tight Letter Spacing, All Caps Body Text
+- NO Font Size Under 14px
 
-**What changes:**
-- No dynamic pattern generation
-- No constraint scoring system
-- No adversarial self-challenge
-- No schema validation
-- Quick keyword matching only
-- Simpler constraint selection
+**Layout & Spacing (15)**
+- NO Generic Hero Sections, 3-Column Card Layouts
+- NO Bento Box Overuse, Fullscreen Sections, Sticky Everything
+- NO Card Grids, Centered Content Only, Infinite White Space
+- NO Equal Padding, Horizontal Symmetry, 12-Column Grid Always
 
-### Demo Workflow
+**Content & Data (20)**
+- NO Generic Names ("John Doe"), Fake Perfect Data
+- NO Startup Slop Names ("Acme", "Nexus")
+- NO Filler Words ("Elevate", "Seamless")
+- NO Lorem Ipsum, Stock Photo Models, Fake avatars
+- NO "Coming Soon", "Sign Up" without context
+- NO "World's Leading", "Revolutionary" without proof
 
-```
-UI ORCHESTRATOR DEMO MODE (--demo)
-┌─────────────────────────────────────────────────────────┐
-│                                                         │
-│  1. RECEIVE     Raw prompt                              │
-│       ↓         "Create a modern dashboard"              │
-│                                                         │
-│  2. ANALYZE     Quick keyword scan                       │
-│       ↓         → "modern" detected (high-risk)          │
-│                                                         │
-│  3. DETECT      Match to static anti-patterns DB        │
-│       ↓         → Quick blacklist: 3-5 patterns          │
-│                                                         │
-│  4. SELECT     Pick 2-3 constraints (simple algo)       │
-│       ↓         → No scoring, no complex resolution      │
-│                                                         │
-│  5. BUILD      Execute build                             │
-│                  → Anti-pattern validation                │
-│                  → Accessibility checks                   │
-└─────────────────────────────────────────────────────────┘
-```
+**Components (20)**
+- NO Glassmorphism Cards, Neumorphism Buttons
+- NO Floating Labels, Rounded Everything
+- NO Default shadcn/ui without customization
+- NO Modals Without Escape, Loading Spinners Everywhere
+- NO Toggle Switches for Everything, Dropdowns for 2-3 Options
 
-### Comparison: Full vs Demo
+**Interactions (10)**
+- NO Parallax Scrolling, Scroll Reveal, Scroll Hijacking
+- NO Hover Effects Only, Loading Screens Without Progress
+- NO Auto-Playing Videos, Mouse-Following Effects
 
-| Aspect | Full Mode | Demo Mode (--demo) |
-|--------|-----------|-------------------|
-| Token usage | High | Low |
-| Analysis depth | Deep semantic reasoning | Quick keyword match |
-| Pattern generation | Dynamic + Static | Static only |
-| Constraint selection | Scored, balanced | Simple pick |
-| Self-challenge | Yes | No |
-| Schema validation | Yes | No |
-| Speed | Slower | **Fast** |
-| Best for | Complex, unique results | Quick iterations |
+**External Resources (10)**
+- NO Broken Unsplash Links, Generic Stock Photos
+- NO Placeholder Images Without Alt Text
+- NO External Font Loading Without Fallback
+- NO Large External Scripts, Icons from Multiple Libraries
+- NO Emoji in Code/Markup
 
----
-
-## Step 1: Prompt Reception
-
-Receive raw prompt and preserve original intent.
-
-**Input:** User's natural language request
-
-**Output:** Stored original prompt for reference
-
-```markdown
-## Original Intent
-"${user_prompt}"
-
-## Timestamp
-${current_time}
-
-## Context
-- Previous builds: ${previous_count}
-- User preferences: ${stored_preferences}
-- Feedback history: ${feedback_loop_results}
-```
+**See `references/anti-patterns-guide.md` for complete list with fixes.**
 
 ---
 
-## Step 2: Prompt Analysis
+## 🎛️ Technical Reference: Dial Definitions
 
-Scan prompt for keywords that indicate trend-following.
+### ANTI_TREND_STRENGTH (Level 1-10)
+- **1-3 (Conservative):** Minor tweaks to trends, safe choices
+- **4-7 (Balanced):** Clear departure from trends, unique but usable
+- **8-10 (Experimental):** Radical rethinking, challenging conventions
 
-### Keyword Categories
+### CREATIVITY_TARGET (Level 1-10)
+- **1-3 (Trend-Following):** Industry-standard patterns
+- **4-7 (Creative):** Unique combinations, some risk-taking
+- **8-10 (Boundary-Breaking):** Entirely new approaches
 
-**High-Risk (strong anti-pattern trigger):**
-```
-modern, trendy, sleek, futuristic, stunning, beautiful,
-minimal but impactful, cutting-edge, next-gen, innovative
-```
+### CONSTRAINT_DIFFICULTY (Level 1-10)
+- **1-3 (Easy):** Common constraints (monochrome, system fonts)
+- **4-7 (Challenging):** Requires creative problem-solving
+- **8-10 (Hard):** Demands architectural rethinking
 
-**Medium-Risk (moderate detection):**
-```
-clean, professional, elegant, smooth, polished,
-refined, sophisticated, premium, high-end, bespoke
-```
-
-**Context-Dependent (analyzed in context):**
-```
-simple, minimalist, bold, unique, creative, dynamic
-```
-
-### Enhanced Analysis Output
-
-```markdown
-## Prompt Analysis
-
-### Detected Keywords
-- HIGH: "modern" (position: 8, weight: 0.9)
-- MEDIUM: "clean" (position: 23, weight: 0.6)
-
-### Risk Assessment
-- Trend-trap score: 7/10
-- Pattern convergence risk: HIGH
-- Recommendation: APPLY STRONG CONSTRAINTS
-- Confidence: 85%
-
-### Project Type Detection
-- Type: Dashboard
-- Industry: Analytics/SaaS
-- Typical patterns: Cards, charts, dark theme
-- Constraint suggestions: architectural, print_first
-```
+### ACCESSIBILITY_PRIORITY (Level 1-10)
+- **1-3 (Optional):** Basic semantic HTML
+- **4-7 (Standard):** WCAG AA compliance
+- **8-10 (Mandatory):** WCAG AAA, screen reader first, keyboard navigation
 
 ---
 
-## Step 3: Dynamic Anti-Pattern Generation
-
-**Generate NEW anti-patterns based on prompt keywords, not just match existing ones.**
-
-### How It Works
-
-1. **Extract semantic keywords** - Beyond the standard high/medium/low risk lists
-2. **Analyze keyword combinations** - Understand the aesthetic direction
-3. **Generate NEW anti-patterns** - Create patterns that don't exist in the static database
-4. **Search/Find examples** - Use web search or knowledge to find what's overused in this style
-5. **Combine and mutate** - Mix existing patterns to create new ones
-6. **Display explicitly to user** - Show what was detected and what should be avoided
-
-### Explicit Display Format
-
-**CRITICAL: Always show this table to the user - EVERY TIME.**
-
-```markdown
-════════════════════════════════════════════════════════════════════════════════
-  🔍 STYLE ANALYSIS - DETECTED ANTI-PATTERNS
-════════════════════════════════════════════════════════════════════════════════
-
-Based on your prompt: "Un site futuriste, un peu nuageux et mélancolique"
-
-┌─────────────────────────────────────────────────────────────────────────────┐
-│  🔴 RED FLAGS - Patterns to AVOID (what everyone does)                      │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  ❌ cyberpunk_overload        Neon + glitch, exhausted since 2018           │
-│  ❌ dreamy_blur_overload      Pastel gradients + blur everywhere            │
-│  ❌ moody_dark_with_accent    Dark + single accent (melancholy formula)     │
-│  ❌ blurry_glass_cards        Glass + blur = 2023-2024 soft cliché           │
-│  ❌ particle_canvas           Every SaaS landing page has this               │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────────────────────┐
-│  🟢 GREEN FLAGS - Selected Constraints (your unique direction)              │
-├─────────────────────────────────────────────────────────────────────────────┤
-│  ✅ paper_and_ink              Crisp print aesthetic, counters blur         │
-│  ✅ warm_only                  No neon, breaks cyberpunk default            │
-│  ✅ architectural              Solid structure, not floating elements        │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-[Proceeding to build with these constraints...]
-════════════════════════════════════════════════════════════════════════════════
-```
-
----
-
-## Step 4: Static Anti-Pattern Detection
-
-After dynamic generation, also load `anti-patterns.json` for additional patterns.
-
-### Pattern Categories to Check
-
-1. **UI Effects** - particles, glitch, scanlines, custom cursor, gradient mesh, blob morphing
-2. **Colors** - neon pink-blue, gradient trendy, dark mode default, pastel everything
-3. **Layouts** - hero generic, card grid, bento boxes, fullscreen sections, sticky everything
-4. **Interactions** - parallax, scroll reveal, scroll hijacking, loading animations
-5. **Typography** - acid distortion, brutalism helvetica, variable font tricks, giant headlines
-6. **Components** - glassmorphism cards, neumorphism buttons, floating labels, rounded everything
-
----
-
-## Step 5: Constraint Selection
-
-Load `constraints.json` and select 2-4 creative constraints.
-
-### Constraint Scoring System
-
-Each constraint has a `score` attribute (0-100) based on:
-
-```javascript
-constraintScore = {
-  creativity: 0-30,      // How unusual is this?
-  difficulty: 0-25,      // How hard to implement?
-  impact: 0-25,          // How much does it change the result?
-  synergy: 0-20         // How well does it work with other constraints?
-}
-```
-
----
-
-## Step 6: Schema Validation
-
-Validate the enriched specification against JSON Schema before building.
-
-### Validation Checks
-
-- [ ] All required fields present
-- [ ] Data types match schema
-- [ ] Enum values valid
-- [ ] Numeric ranges within bounds
-- [ ] Arrays not empty where required
-- [ ] No circular references
-
----
-
-## Step 7: Teams Mode (NEW v3.0)
-
-Teams mode uses Claude Code's **Agent Teams** for parallel multi-agent execution.
-
-### Activation
-
-```bash
-# Enable experiment flag
-export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
-
-# Use teams mode
-/ui --team "Full SaaS dashboard with billing and analytics"
-```
-
-### Team Composition
-
-- **Orchestrator Agent** — Analyzes prompt, detects anti-patterns, selects constraints
-- **Build Agent** — Creates the UI with anti-pattern validation
-- **Adversarial Agent** (optional) — Challenges decisions and proposes alternatives
-- **Reviewer Agent** (optional) — Validates accessibility and quality
-
-### Benefits
-
-- 2-3x faster than sequential execution
-- Parallel work on different aspects
-- Shared task list for coordination
-- Direct inter-agent messaging
-
----
-
-## Step 8: Build Mode
-
-Use `--build` flag to skip orchestration and build directly from existing spec.
-
-```bash
-/ui --build "Rebuild from existing spec"
-```
-
-**When to use:**
-- Enriched spec already exists in `.claude/.strike/`
-- Rebuilding with different stack
-- Iterating on constraints without re-analysis
-
----
-
-## Options
-
-| Flag | Description |
-|------|-------------|
-| `--step` | **NEW v3.1:** Interactive workflow - pause at each phase for user review |
-| `--build` | Build from existing spec (skip orchestration) |
-| `--team` | Teams mode for parallel multi-agent execution |
-| `--demo` | Lightweight mode - faster, fewer tokens, simpler decisions |
-| `--analyze` | Only analyze prompt, show detected patterns, don't build |
-| `--constraints` | Show which constraints would be selected, don't build |
-| `--full` | Run complete workflow with verbose output |
-| `--stack=<react\|vanilla>` | Force specific tech stack for implementation |
-| `--strict` | Reject prompt if too many anti-patterns detected |
-| `--score` | Show constraint scoring details |
-| `--validate` | Run schema validation only, don't build |
-| `--explain` | Generate explanation diagram after constraint selection |
-| `--learn` | Extract patterns from this session for future improvement |
-| `--feedback=<id>` | Include previous feedback in selection |
-| `--no-challenge` | Skip adversarial challenge step (use with caution) |
-
----
-
-## Step Mode Integration
-
-When `--step` flag is used, the orchestrator:
-
-1. **Pauses after each phase** - Analysis, Anti-patterns, Constraints, Spec
-2. **Displays phase output** - Clear, formatted results
-3. **Waits for user input** - Commands: continue, adjust, add, remove, replace, show, skip, cancel
-4. **Tracks all adjustments** - Preserved in step-state.json
-5. **Proceeds only on approval** - User types `continue` or `accept` to move forward
-
-### Step Mode Commands
-
-| Command | Action |
-|---------|--------|
-| `continue` | Proceed to next phase |
-| `adjust <instruction>` | Modify current phase output |
-| `add <item>` | Add item to current phase |
-| `remove <item>` | Remove item from current phase |
-| `replace <old> with <new>` | Replace item |
-| `show` | Display current phase output again |
-| `skip` | Jump to build phase |
-| `cancel` | Cancel workflow |
-
-See `skills/step/SKILL.md` for complete step mode documentation.
-
----
-
-## Output
-
-The orchestrator creates in `.claude/.strike/`:
-
-| File | Purpose |
-|------|---------|
-| `.claude/.strike/analysis.md` | Prompt analysis and detected patterns |
-| `.claude/.strike/constraints.md` | Selected constraints with scores and rationale |
-| `.claude/.strike/enriched-spec.json` | Validated JSON specification |
-| `.claude/.strike/enriched-spec.md` | Full brief for build (readable) |
-| `.claude/.strike/anti-patterns.md` | Blacklist for build |
-
----
-
-## 🚀 Attractor Mode - DOT Workflow Orchestration (NEW v4.0)
+## 🚀 Attractor Mode - DOT Workflow Orchestration
 
 ### Overview
 
-Strike v4.0 introduces **Attractor mode** - a powerful new way to define and execute workflows using Graphviz DOT syntax. This enables:
+Strike v4.1 includes **Attractor mode** - define workflows in Graphviz DOT syntax:
 
-- **Declarative workflow definitions** - Visual, version-controllable pipelines
+- **Declarative workflows** - Visual, version-controllable pipelines
 - **Checkpoint & resume** - Recover from crashes and interruptions
 - **Event observability** - Track every phase with typed events
 - **Human-in-the-loop** - Pause for user approval at critical points
 - **Parallel execution** - Run multiple branches concurrently
 - **Conditional routing** - Smart branching based on outcomes
 
-### Activation
-
-```bash
-# Use Attractor mode (default in v4.0)
-/ui "Create a unique dashboard"
-
-# With DOT workflow definition
-/ui --workflow=".claude/.strike/workflow.dot" "Modern SaaS app"
-
-# Resume from checkpoint
-/ui --resume
-
-# Teams mode with Attractor
-export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
-/ui --team "E-commerce platform"
-```
-
-### DOT Workflow Example
+### Quick Example
 
 ```dot
 digraph AntiTrendWorkflow {
@@ -466,253 +188,169 @@ digraph AntiTrendWorkflow {
 
   start -> analyze -> patterns -> constraints -> approve
   approve -> build [label="[A] Approve"]
-  approve -> constraints [label="[M] Modify"]
+  approve -> constraints [label="[R] Modify"]
   build -> exit
 }
 ```
 
-### Conditional Routing
-
-```dot
-digraph ConditionalFlow {
-  validate [shape=box]
-  gate [shape=diamond]
-  deploy [shape=box]
-  fix [shape=box]
-
-  validate -> gate
-  gate -> deploy [condition="outcome=success && context.tests_passed=true"]
-  gate -> fix [condition="outcome!=success"]
-  fix -> validate
-}
-```
-
-### Parallel Execution
-
-```dot
-digraph ParallelExploration {
-  start [shape=Mdiamond]
-  split [shape=component]
-  option_a [shape=box, class="creative"]
-  option_b [shape=box]
-  merge [shape=tripleoctagon]
-  best [shape=box]
-  exit [shape=Msquare]
-
-  start -> split
-  split -> option_a
-  split -> option_b
-  option_a -> merge
-  option_b -> merge
-  merge -> best -> exit
-}
-```
-
-### Human Gates
-
-```dot
-digraph WithApproval {
-  plan [shape=box]
-  review [shape=hexagon, label="Review Plan?"]
-  execute [shape=box]
-
-  plan -> review
-  review -> execute [label="[A] Approve"]
-  review -> plan [label="[R] Revise"]
-}
-```
-
----
-
-## 📊 Event System (NEW v4.0)
-
-All phases emit typed events for observability:
-
-### Key Events
-
-- `SESSION_START` / `SESSION_END` - Session lifecycle
-- `PHASE_START` / `PHASE_END` - Phase execution
-- `ANALYSIS_START` / `ANALYSIS_END` - Analysis phase
-- `ANTI_PATTERNS_DETECTED` - Patterns found
-- `CONSTRAINTS_SELECTED` - Constraints chosen
-- `BUILD_START` / `BUILD_END` - Build phase
-- `ACCESSIBILITY_CHECK` - A11y validation
-- `CHECKPOINT_SAVED` / `CHECKPOINT_LOADED` - State persistence
-- `ERROR` - Errors with context
-
-### Using Events
-
-```javascript
-// Events are emitted automatically during workflow
-// Check .claude/.strike/events.jsonl for full log
-
-// Session stats are available
-const stats = emitter.getStats();
-console.log(`Total events: ${stats.total}`);
-console.log(`By kind:`, stats.byKind);
-```
-
----
-
-## 💾 Checkpoint & Resume (NEW v4.0)
-
-### Automatic Checkpoints
-
-Strike automatically saves checkpoints after each phase:
-
-```json
-// .claude/.strike/checkpoint.json
-{
-  "version": "1.0.0",
-  "timestamp": "2025-02-10T14:30:45.123Z",
-  "session_id": "uuid",
-  "current_node": "enrich",
-  "completed_nodes": ["analyze", "detect_patterns", "select_constraints"],
-  "context_values": {
-    "user_prompt": "...",
-    "detected_keywords": ["modern"],
-    "selected_constraints": ["monochrome"]
-  },
-  "node_states": {
-    "analyze": {
-      "status": "completed",
-      "duration_ms": 4234,
-      "output_files": [".claude/.strike/analysis.md"]
-    }
-  }
-}
-```
-
-### Resume from Interruption
+### Activation
 
 ```bash
-# Workflow was interrupted - resume automatically
+# Use Attractor mode (default)
+/ui "Create a unique dashboard"
+
+# With custom DOT workflow
+/ui --workflow=".claude/.strike/workflow.dot" "SaaS app"
+
+# Resume from checkpoint
 /ui --resume
-
-# Or it resumes automatically on next run
-/ui "Continue the work"
 ```
 
-### Manual Checkpoint Control
+**See `references/attractor-workflows.md` for complete DOT grammar guide.**
 
+---
+
+## 📊 Options
+
+| Flag | Description | When to Use |
+|------|-------------|-------------|
+| `--step` | Interactive workflow - pause at each phase | Learning, stakeholder approval |
+| `--team` | Teams mode for parallel multi-agent execution | Large, complex projects |
+| `--build` | Build from existing spec (skip orchestration) | Rebuild, iterate |
+| `--demo` | Lightweight mode - faster, fewer tokens | Quick iterations |
+| `--analyze` | Only analyze prompt, show detected patterns | Preview analysis |
+| `--constraints` | Show which constraints would be selected | Preview constraints |
+| `--full` | Run complete workflow with verbose output | Maximum detail |
+| `--score` | Show constraint scoring details | Understand selection |
+| `--validate` | Run schema validation only, don't build | Validate spec |
+| `--explain` | Generate explanation diagram | Document decisions |
+| `--learn` | Extract patterns from this session | Build pattern library |
+| `--stack=<react\|vanilla>` | Force specific tech stack | Override default |
+| `--strict` | Reject prompt if too many anti-patterns | Enforce quality |
+| `--no-challenge` | Skip adversarial challenge | Use with caution |
+
+---
+
+## ✅ Final Pre-Flight Check
+
+Before claiming "done", verify:
+
+### Universal (All UIs)
+- [ ] Anti-patterns validated against blacklist
+- [ ] Constraints properly applied
+- [ ] Accessibility checklist passed (WCAG AA)
+- [ ] Component registry used
+- [ ] Build metrics generated
+
+### Design Quality
+- [ ] No trend-trap patterns detected
+- [ ] Unique aesthetic (not generic)
+- [ ] Consistent design language
+- [ ] Proper visual hierarchy
+- [ ] Responsive on all breakpoints
+
+### Code Quality
+- [ ] Clean, semantic HTML
+- [ ] No inline styles (use CSS classes)
+- [ ] Proper component structure
+- [ ] Accessible markup
+- [ ] Performance optimized
+
+**See `references/quality-gates.md` for comprehensive checklists.**
+
+---
+
+## 🔗 Integration with Other Skills
+
+**Requires:**
+- **design-taste-frontend** - Senior UI/UX engineering patterns
+- **skill-check** - Validate skill quality before deployment
+
+**Complements:**
+- **studio:build** - Implementation with quality gates
+- **verification-before-completion** - Verify UI before done
+
+---
+
+## 📋 Quick Reference Card
+
+### Minimum Viable UI Generation
 ```bash
-# List checkpoints
-ls .claude/.strike/checkpoints/
+# Auto-detected
+/ui "create dashboard"
 
-# Load specific checkpoint
-/ui --checkpoint=".claude/.strike/checkpoints/checkpoint-1234567890.json"
+# With flags
+/ui --step "portfolio"        # Interactive
+/ui --team "SaaS app"         # Parallel agents
+/ui --build                   # From existing spec
+```
+
+### Decision Matrix
+```
+Simple UI? → /ui (no flags)
+Need control? → /ui --step
+Complex/large? → /ui --team
+Quick iteration? → /ui --demo
+From spec? → /ui --build
+```
+
+### Quality Gates
+```
+✓ No anti-pattern violations
+✓ Constraints applied
+✓ WCAG AA compliant
+✓ Build metrics generated
+```
+
+### Output Structure
+```
+.claude/.strike/
+├── analysis.md
+├── anti-patterns.md
+├── constraints.md
+├── enriched-spec.json
+└── step-state.json (if --step)
+
+./output/
+├── react-tailwind/
+├── vanilla/
+└── build-result.json
 ```
 
 ---
 
-## 🎯 Model Stylesheet (NEW v4.0)
+## 📚 Extended Documentation
 
-Optimize LLM usage with CSS-like configuration:
-
-```javascript
-// In config.json or per-workflow
-{
-  "model_stylesheet": "
-    * { llm_model: claude-sonnet-4-5; }
-    .creative { llm_model: claude-opus-4-6; reasoning_effort: high; }
-    #critical_review { llm_model: gpt-5.2; }
-  "
-}
-```
-
-### Selector Types
-
-- `*` - Universal (all nodes)
-- `.classname` - Class selector
-- `#nodeid` - ID selector
-
-### Specificity
-
-ID (2) > Class (1) > Universal (0)
+**See `references/` for detailed guides:**
+- `attractor-workflows.md` - DOT orchestration complete guide
+- `anti-patterns-guide.md` - 100 forbidden patterns with fixes
+- `constraint-selection.md` - How constraints are scored and selected
+- `examples.md` - Real-world usage examples
 
 ---
 
-## Best Practices
+## 🎯 Best Practices
 
-1. **Use Teams mode** - Enable `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` for 2-3x speedup
-2. **Embrace constraints** - They're liberation, not limitation
-3. **Trust the process** - The weird ideas become the best ideas
-4. **Iterate with checkpoints** - Resume and adjust as needed
-5. **Use human gates** - Get approval on critical decisions
-6. **Monitor events** - Track progress in real-time
-7. **Optimize costs** - Use stylesheets for smart LLM selection
-8. **Leverage parallelism** - Run explorations concurrently
-
----
-
-## Configuration
-
-Settings in `.claude/.strike/config.json`:
-
-```json
-{
-  "ui": {
-    "min_constraints": 2,
-    "max_constraints": 4,
-    "strict_mode": false,
-    "always_include": ["color_restrictions"],
-    "prefer_categories": ["technical_constraints"],
-    "anti_pattern_severity_threshold": "medium",
-    "scoring_weights": {
-      "creativity": 0.3,
-      "difficulty": 0.25,
-      "impact": 0.25,
-      "synergy": 0.2
-    },
-    "feedback_learning": true
-  }
-}
-```
+1. **Use Step Mode to Learn** - `--step` flag teaches you the system
+2. **Embrace Constraints** - They're liberation, not limitation
+3. **Trust the Process** - The weird ideas become the best ideas
+4. **Use Teams for Complex Projects** - 2-3x speedup with `--team`
+5. **Check Build Results** - Always review build-result.json
+6. **Iterate with Checkpoints** - Resume and adjust as needed
+7. **Monitor Events** - Track progress in events.jsonl
+8. **Optimize Costs** - Use `--demo` for quick iterations
 
 ---
 
-## Configuration
+## 🔄 Legacy Compatibility
 
-Settings in `.claude/.strike/config.json`:
-
-```json
-{
-  "ui": {
-    "min_constraints": 2,
-    "max_constraints": 4,
-    "strict_mode": false,
-    "always_include": ["color_restrictions"],
-    "prefer_categories": ["technical_constraints"],
-    "anti_pattern_severity_threshold": "medium",
-    "scoring_weights": {
-      "creativity": 0.3,
-      "difficulty": 0.25,
-      "impact": 0.25,
-      "synergy": 0.2
-    },
-    "feedback_learning": true
-  },
-  "attractor": {
-    "enable_events": true,
-    "enable_checkpoints": true,
-    "auto_resume": true,
-    "max_parallel_branches": 4
-  }
-}
-```
+| Old Command | New Equivalent |
+|-------------|----------------|
+| `/ui "..."` (v1.x) | `/ui --full "..."` (more detail) |
+| `/ui:step "..."` | `/ui --step "..."` |
+| `/ui:team "..."` | `/ui --team "..."` |
+| `/ui:build` | `/ui --build` |
 
 ---
 
-## 📖 Attractor API Reference
-
-See `plugins/ui/data/attractor/ATTRACTOR-INTEGRATION.md` for complete documentation of:
-- Event system API
-- Checkpoint service API
-- DOT grammar reference
-- Workflow engine API
-- Node handlers
-- All feature integrations
-
----
-
-*UI Orchestrator v4.0 - Attractor Edition: Event-driven workflows, checkpoint/resume, DOT orchestration, teams mode, dynamic anti-pattern generation*
+*UI Orchestrator v4.1 - Attractor Edition: 100 anti-patterns, DOT orchestration, checkpoint/resume, quality gates, accessibility-first*
