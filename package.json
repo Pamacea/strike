@@ -1,7 +1,7 @@
 {
   "name": "strike",
-  "version": "2.1.0",
-  "description": "Anti-trend UI generation with contextual orchestration - Break patterns, create unique",
+  "version": "2.2.0",
+  "description": "Anti-trend UI generation with contextual orchestration and session content generation - Break patterns, create unique, document everything",
   "author": "Pamacea",
   "license": "MIT",
   "repository": "https://github.com/Pamacea/strike",
@@ -13,7 +13,7 @@
     "dev": "echo 'Use /ui \"prompt\" in Claude Code to start'",
     "lint": "echo 'No lint configured - use project lint tools'",
     "typecheck": "echo 'No TypeScript - use project typecheck'",
-    "clean": "rm -rf .strike plugins/*/output"
+    "clean": "rm -rf .strike plugins/*/output .ex-g-se"
   },
   "keywords": [
     "ui",
@@ -23,7 +23,13 @@
     "creativity",
     "smite",
     "claude-code",
-    "marketplace"
+    "marketplace",
+    "content-generation",
+    "session",
+    "social-media",
+    "documentation",
+    "script",
+    "posts"
   ],
   "engines": {
     "node": ">=18.0.0"

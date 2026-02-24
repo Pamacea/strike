@@ -1,0 +1,196 @@
+{
+  "version": "1.0.0",
+  "description": "Style reference for content generation - patterns, anti-patterns, and format templates",
+  "lastUpdated": "2025-02-24",
+
+  "styleProfiles": {
+    "technical": {
+      "name": "Technical Deep-Dive",
+      "tone": "professional, detailed, code-focused",
+      "audience": "developers, engineers",
+      "patterns": [
+        "Include code snippets with syntax highlighting",
+        "Explain technical decisions with rationale",
+        "Reference specific files and line numbers",
+        "Include performance metrics or benchmarks",
+        "Link to relevant documentation"
+      ],
+      "antiPatterns": [
+        "Avoid jargon without explanation",
+        "Don't skip the 'why' behind technical choices",
+        "Never claim performance without measurements",
+        "Avoid generic advice - be specific"
+      ],
+      "postTemplates": {
+        "linkedin": "🚀 **{title}**\\n\\nJust tackled {challenge} and here's what I learned:\\n\\n{keyInsight}\\n\\n{codeExample}\\n\\n{outcome}\\n\\n#Developer #Technical #{techStack}",
+        "twitter": "1/ Learned something cool about {topic}:\\n\\n{keyPoint}\\n\\n{thread}",
+        "blog": "# {title}\\n\\n{introduction}\\n\\n## The Challenge\\n{challenge}\\n\\n## The Solution\\n{solution}\\n\\n## Code\\n```{language}\\n{code}\\n```\\n\\n## Results\\n{results}"
+      }
+    },
+
+    "storytelling": {
+      "name": "Storytelling & Journey",
+      "tone": "engaging, narrative, personal",
+      "audience": "general tech community",
+      "patterns": [
+        "Start with the problem/pain point",
+        "Show the struggle and dead ends",
+        "Reveal the breakthrough moment",
+        "Include emotional context (frustration, excitement)",
+        "End with lessons learned"
+      ],
+      "antiPatterns": [
+        "Don't jump straight to the solution",
+        "Avoid making it seem effortless (it wasn't)",
+        "Never hide the mistakes made",
+        "Don't skip the 'aha!' moment details"
+      ],
+      "postTemplates": {
+        "linkedin": "💡 **{title}**\\n\\n{storyHook}\\n\\nAfter {timeSpent} of {struggle}, I finally {breakthrough}.\\n\\nHere's what I wish I knew starting out:\\n\\n{lesson}\\n\\n{cta}\\n\\n#DevLife #CodingJourney #{techStack}",
+        "twitter": "Me: {initialApproach}\\n\\nAlso me after {hours} hours: {reality}\\n\\n{lesson} 🎯",
+        "blog": "# {title}\\n\\n{storyIntro}\\n\\n> {quoteMoment}\\n\\n## The Problem\\n{problem}\\n\\n## The Journey\\n{journey}\\n\\n## The Solution\\n{solution}"
+      }
+    },
+
+    "educational": {
+      "name": "Educational Tutorial",
+      "tone": "clear, step-by-step, beginner-friendly",
+      "audience": "learners, students",
+      "patterns": [
+        "Break down complex concepts",
+        "Use analogies and metaphors",
+        "Provide multiple examples",
+        "Include prerequisites clearly",
+        "Add 'common pitfalls' sections"
+      ],
+      "antiPatterns": [
+        "Don't assume prior knowledge without stating it",
+        "Avoid skipping intermediate steps",
+        "Never use 'obviously' or 'simply'",
+        "Don't mix too many concepts at once"
+      ],
+      "postTemplates": {
+        "linkedin": "📚 **{concept} Explained in 5 Minutes**\\n\\n{hook}\\n\\nHere's the breakdown:\\n\\n1️⃣ {step1}\\n2️⃣ {step2}\\n3️⃣ {step3}\\n\\n{keyTakeaway}\\n\\nSave this for later! 📌\\n\\n#Learning #Tutorial #{techStack}",
+        "twitter": "{concept} in a nutshell:\\n\\n{explanation}\\n\\nA thread 🧵👇",
+        "blog": "# {title}\\n\\n**Prerequisites:** {prereqs}\\n\\n**Time:** {readTime}\\n\\n{content}\\n\\n## Summary\\n{summary}\\n\\n## Next Steps\\n{nextSteps}"
+      }
+    },
+
+    "opinion": {
+      "name": "Opinion & Hot Take",
+      "tone": "bold, controversial, thought-provoking",
+      "audience": "tech community, decision makers",
+      "patterns": [
+        "Take a clear stance",
+        "Back opinions with experience",
+        "Acknowledge counterarguments",
+        "Use data or examples when possible",
+        "Invite respectful debate"
+      ],
+      "antiPatterns": [
+        "Don't be controversial just for clicks",
+        "Avoid personal attacks",
+        "Never present opinion as fact",
+        "Don't ignore valid counterpoints"
+      ],
+      "postTemplates": {
+        "linkedin": "🔥 **Unpopular Opinion:** {hotTake}\\n\\n{argument}\\n\\n{evidence}\\n\\n{counterargument}\\n\\nHere's why I still believe {stance}:\\n\\n{reasoning}\\n\\nAgree or disagree? Let's discuss respectfully. 👇\\n\\n#TechDebate #{techStack}",
+        "twitter": "{hotTake}\\n\\n{supportingPoint}\\n\\nChange my mind 🤔",
+        "blog": "# {title}\\n\\n> {thesis}\\n\\n**Disclaimer:** This is my opinion based on {experience}.\\n\\n## The Argument\\n{argument}\\n\\n## The Counterpoints\\n{counterpoints}\\n\\n## Why I Still Believe This\\n{reasoning}"
+      }
+    }
+  },
+
+  "scriptTheater": {
+    "format": {
+      "dialogue": "**{role}:** {message}",
+      "action": "*{action}*",
+      "thought": "({internalThought})",
+      "document": "`📄 {document}:line - {action}`"
+    },
+    "sections": [
+      "introduction",
+      "problemStatement",
+      "exploration",
+      "implementation",
+      "challenges",
+      "solution",
+      "reflection"
+    ],
+    "bestPractices": [
+      "Capture the reasoning, not just the result",
+      "Include dead ends and wrong turns (these make it real)",
+      "Show the evolution of understanding",
+      "Document the files touched and why",
+      "Include moments of uncertainty and how they were resolved"
+    ]
+  },
+
+  "conversationSummary": {
+    "structure": {
+      "metadata": {
+        "sessionStart": "ISO timestamp",
+        "sessionEnd": "ISO timestamp",
+        "duration": "human-readable",
+        "filesModified": ["list of files"],
+        "toolsUsed": ["list of tools"],
+        "outcome": "success/failure/partial"
+      },
+      "sections": {
+        "objective": "What we were trying to accomplish",
+        "approach": "How we tackled it",
+        "keyDecisions": "Critical choices with rationale",
+        "challenges": "Obstacles encountered",
+        "outcome": "Final result and metrics",
+        "learnings": "Knowledge gained"
+      }
+    },
+    "format": "markdown",
+    "audience": "future self, team members, stakeholders"
+  },
+
+  "platformSpecs": {
+    "linkedin": {
+      "maxChars": 3000,
+      "hashtags": 3,
+      "optimalLength": "1200-2000 chars",
+      "tone": "professional but conversational",
+      "formatting": ["bold", "lists", "emojis"],
+      "bestTimes": ["Tuesday-Thursday", "8-10am", "5-6pm"]
+    },
+    "twitter": {
+      "maxChars": 280,
+      "hashtags": 2,
+      "optimalLength": "200-270 chars",
+      "tone": "concise, punchy",
+      "formatting": ["threads", "line breaks"],
+      "bestTimes": ["Tuesday-Wednesday", "9-11am"]
+    },
+    "contrapoints": {
+      "style": "video essay",
+      "length": "10-30 minutes",
+      "tone": "analytical, nuanced, well-researched",
+      "structure": ["hook", "context", "analysis", "synthesis", "conclusion"],
+      "visualStyle": "minimal, text-driven"
+    }
+  },
+
+  "qualityMetrics": {
+    "conversationSummary": {
+      "completeness": "All sections present and filled",
+      "specificity": "Concrete details over vague statements",
+      "traceability": "All decisions linked to outcomes"
+    },
+    "scriptTheater": {
+      "authenticity": "Includes struggles and dead ends",
+      "narrative": "Clear story arc from problem to solution",
+      "detail": "Specific files, tools, and reasoning captured"
+    },
+    "socialPosts": {
+      "hookStrength": "First line grabs attention",
+      "valueDensity": "High signal-to-noise ratio",
+      "engagement": "Includes call-to-action or question",
+      "platformFit": "Follows platform norms and constraints"
+    }
+  }
+}

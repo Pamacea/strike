@@ -1,4 +1,4 @@
-# 🚀 strike v1.6.0 — Quick Reference
+# 🚀 strike v1.7.0 — Quick Reference
 
 ## 🎯 I'm here to...
 
@@ -6,22 +6,25 @@
 - **Step mode**: `/ui --step "prompt"` — Interactive workshop with user control (LEARNING_MODE: 8)
 - **Teams mode**: `/ui --team "prompt"` — Parallel agents (1.6x-1.85x faster)
 - **Resume workflows**: `/ui --resume` — Auto-detects and resumes from checkpoint
+- **Generate session content**: `exg` skill invoked automatically at session end — Creates conversation summaries, script theater, social posts
 
 ---
 
 ## 🔍 Core Workflow
 
-**POWERED BY ATTRACTOR in v1.6.0 - Quality-first with skill-check integration:**
+**POWERED BY ATTRACTOR in v1.7.0 - EXG plugin + skill-check integration:**
 
 1. **DOT Workflow** — Define workflows in Graphviz DOT syntax
 2. **Event System** — Track everything with 30+ typed events
 3. **Checkpoint & Resume** — Crash recovery with state persistence
 4. **Human-in-the-Loop** — Approval gates for critical decisions
 5. **Parallel Execution** — Concurrent branch processing (2-3x faster)
+6. **EXG Content Generation** — Session-end hook creates 3 outputs in `.ex-g-se/`
 
 **Traditional flow (still supported):**
 1. **Orchestrator** — Analyzes prompt, detects anti-patterns, selects constraints
 2. **Implementer** — Builds validated UI
+3. **EXG** — Generates content at session end (automatic)
 
 ---
 
@@ -37,17 +40,27 @@
 | `/ui --explain "prompt"` | Include diagram explanation | Understand the workflow |
 | `/ui --learn "prompt"` | Extract patterns from this session | Improve future results |
 | `/build` | Implement from enriched spec | Build the UI |
+| `exg` (automatic) | Generate session content at session end | Always (exit/clear) |
+| `exg` (manual) | "Generate [style] content" | Specific style requested |
 
 ---
 
 ## 📚 Documentation
 
+### UI Generation
 - **Marketplace**: `.claude-plugin/marketplace.json`
 - **Orchestrator**: `plugins/ui/README.md` (v4.1 - Quality-first with 100 anti-patterns)
 - **Step Mode**: `plugins/ui/skills/step/SKILL.md` (v4.1 - Interactive workshop)
 - **Teams Mode**: `plugins/ui/skills/teams/SKILL.md` (v4.1 - Parallel execution)
 - **Attractor Integration**: `plugins/ui/data/attractor/ATTRACTOR-INTEGRATION.md`
-- **DOT Grammar**: `plugins/ui/data/attractor/dot-grammar.md``
+- **DOT Grammar**: `plugins/ui/data/attractor/dot-grammar.md`
+
+### EXG Content Generation (NEW v1.7.0)
+- **EXG Plugin**: `plugins/exg/README.md` - Session-end content generation
+- **EXG Skill**: `plugins/exg/skills/exg/SKILL.md` - Core content generation logic
+- **Style Reference**: `plugins/exg/data/content-reference.json` - 4 style profiles
+- **Anti-Patterns**: `plugins/exg/data/anti-patterns.json` - 40+ content anti-patterns
+- **Workflow**: `plugins/exg/WORKFLOW.md` - Visual flow diagrams`
 
 ---
 

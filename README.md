@@ -1,4 +1,4 @@
-# Strike v1.6.0
+# Strike v1.7.0
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub release](https://img.shields.io/github/v/release/Pamacea/strike)](https://github.com/Pamacea/strike/releases/latest)
@@ -6,20 +6,29 @@
 [![Attractor](https://img.shields.io/badge/Powered%20By-Attractor-blue.svg)](https://github.com/strongdm/attractor)
 [![Quality Gates](https://img.shields.io/badge/Quality-Skill%20Check%20Integrated-green.svg)](https://github.com/spm1001/claude-suite)
 
-> **Creative Constraint Marketplace & UI Generation - Anti-trend UI with patterns, constraints, and workflows**
+> **Creative Constraint Marketplace, UI Generation & Session Content Generation - Anti-trend UI with patterns, constraints, workflows, and automatic content extraction**
 
-Break patterns. Create unique. Build thoughtful interfaces. Iterate instantly.
+Break patterns. Create unique. Build thoughtful interfaces. Iterate instantly. Document everything.
 
 ---
 
 ## What is Strike?
 
-**Strike** is a creative constraint system for Claude Code that prevents generic UI patterns. It combines:
+**Strike** is a creative constraint system for Claude Code that prevents generic UI patterns and automatically generates session content. It combines:
 
 1. **Marketplace** — Browse and install UI patterns, constraints, and workflows
 2. **Orchestrator** — Analyzes prompts, detects anti-patterns, applies creative constraints
 3. **Implementer** — Builds the UI from enriched specification
-4. **Attractor Engine** — DOT-based workflow orchestration with events, checkpoints, and resilience
+4. **EXG Plugin** — Generates conversation summaries, script theater, and social posts at session end
+5. **Attractor Engine** — DOT-based workflow orchestration with events, checkpoints, and resilience
+
+**New in v1.7.0 - EXG Plugin (Session Content Generation):**
+- 📝 **Automatic Content Generation** - Session-end hook creates 3 outputs
+- 🎭 **Script Theater** - Dialogue format for video content creation
+- 📱 **Social Posts** - Platform-ready posts (LinkedIn, Twitter, blog)
+- 🎨 **4 Style Profiles** - Technical, storytelling, educational, opinion
+- 🚫 **40+ Anti-Patterns** - Content quality validation
+- ✅ **Quality Gates** - Comprehensive validation before output
 
 **New in v1.6.0 - Quality Skills Upgrade:**
 - 🎯 **skill-check Integration** - MANDATORY/BEFORE language, specific triggers

@@ -1,0 +1,14 @@
+{
+  "name": "exg",
+  "description": "EXG - Session-end content generator that automatically creates conversation summaries, script theater for video content, and platform-ready social posts (LinkedIn, Twitter, blog) in multiple style profiles (technical, storytelling, educational, opinion)",
+  "version": "1.0.0",
+  "author": {
+    "name": "Pamacea",
+    "contact": "https://github.com/Pamacea/strike/issues"
+  },
+  "repository": "https://github.com/Pamacea/strike",
+  "license": "MIT",
+  "keywords": ["exg", "session", "content-generation", "social-media", "documentation", "script", "posts", "linkedin", "twitter", "blog", "video", "automation", "hook"],
+  "skills": "./skills/"
+}
+

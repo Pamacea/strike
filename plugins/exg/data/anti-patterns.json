@@ -1,0 +1,418 @@
+{
+  "content_quality": {
+    "description": "Content patterns that reduce value and engagement",
+    "generic_summary": {
+      "name": "generic_summary",
+      "examples": [
+        "We worked on the project",
+        "Made some changes to the code",
+        "Fixed some bugs",
+        "Implemented a feature"
+      ],
+      "why_avoid": "Zero value for future reference. Doesn't capture what was actually done.",
+      "severity": "high",
+      "fix": "Include specific files, line numbers, tools used, and concrete outcomes"
+    },
+    "instant_success": {
+      "name": "instant_success",
+      "examples": [
+        "We quickly implemented X",
+        "Straightforward fix for Y",
+        "Simple solution to problem"
+      ],
+      "why_avoid": "Unrealistic. Every real session involves struggle, dead ends, and iteration.",
+      "severity": "high",
+      "fix": "Document the failures, wrong turns, and evolution of understanding"
+    },
+    "no_rationale": {
+      "name": "no_rationale",
+      "examples": [
+        "Chose option A over B",
+        "Implemented this approach",
+        "Used library X"
+      ],
+      "why_avoid": "Future you (and others) need to know WHY, not just WHAT.",
+      "severity": "high",
+      "fix": "Always include the reasoning behind decisions and alternatives considered"
+    },
+    "missing_failures": {
+      "name": "missing_failures",
+      "examples": [
+        "Successfully implemented X",
+        "Everything worked as planned",
+        "Smooth development process"
+      ],
+      "why_avoid": "Failures are more educational than successes. Hiding them loses value.",
+      "severity": "medium",
+      "fix": "Document what didn't work and why—it's often more valuable than the solution"
+    },
+    "vague_outcomes": {
+      "name": "vague_outcomes",
+      "examples": [
+        "Improved performance",
+        "Better user experience",
+        "Cleaner code"
+      ],
+      "why_avoid": "Unmeasurable claims. Without metrics, impossible to verify impact.",
+      "severity": "medium",
+      "fix": "Include specific metrics: '20% faster', '3 files removed', '50 lines reduced'"
+    }
+  },
+  "social_media": {
+    "description": "Social media post patterns that perform poorly",
+    "weak_hook": {
+      "name": "weak_hook",
+      "examples": [
+        "Today I learned...",
+        "Just finished working on...",
+        "Here's a post about..."
+      ],
+      "why_avoid": "Generic openings that don't grab attention. Low engagement.",
+      "severity": "high",
+      "fix": "Start with controversy, surprise, numbers, or strong statements"
+    },
+    "no_value": {
+      "name": "no_value",
+      "examples": [
+        "I built a React app",
+        "Fixed a bug in production",
+        "Learned a new framework"
+      ],
+      "why_avoid": "So what? Readers need to know what's in it for them.",
+      "severity": "high",
+      "fix": "Always answer: 'What will the reader learn or gain?'"
+    },
+    "code_only": {
+      "name": "code_only",
+      "examples": [
+        "Here's the code:",
+        "Check this out:",
+        "Code snippet:"
+      ],
+      "why_avoid": "Code without context is just noise. Needs story and explanation.",
+      "severity": "medium",
+      "fix": "Set up the problem first, then show code as the solution"
+    },
+    "cta_missing": {
+      "name": "cta_missing",
+      "examples": [
+        Posts that just end without asking for engagement
+      ],
+      "why_avoid": "Missed opportunity for comments, shares, follows.",
+      "severity": "medium",
+      "fix": "Always end with question, request for thoughts, or call-to-action"
+    },
+    "hashtag_spam": {
+      "name": "hashtag_spam",
+      "examples": [
+        "#tech #coding #programming #developer #javascript #react #webdev #software"
+      ],
+      "why_avoid": "Looks spammy. LinkedIn shows 3 hashtags, Twitter allows 2.",
+      "severity": "low",
+      "fix": "Use 2-3 highly relevant, targeted hashtags per platform"
+    },
+    "wall_of_text": {
+      "name": "wall_of_text",
+      "examples": [
+        Long posts without breaks, bullets, or structure
+      ],
+      "why_avoid": "Hard to read on mobile. Low completion rate.",
+      "severity": "medium",
+      "fix": "Use line breaks, bullets, emojis as visual anchors, short paragraphs"
+    },
+    "humble_brag": {
+      "name": "humble_brag",
+      "examples": [
+        "So tired from all these job offers",
+        "Can't believe my project went viral again",
+        "Another day, another feature request"
+      ],
+      "why_avoid": "People see through it. Creates resentment, not engagement.",
+      "severity": "high",
+      "fix": "Share struggles, not just successes. Be authentic about the journey"
+    }
+  },
+  "script_theater": {
+    "description": "Script patterns that don't translate to engaging video",
+    "monologue": {
+      "name": "monologue",
+      "examples": [
+        "Assistant explains everything without user interaction",
+        "No dialogue, just exposition",
+        "One-sided conversation"
+      ],
+      "why_avoid": "Boring. Drama needs conflict and dialogue.",
+      "severity": "high",
+      "fix": "Include user questions, objections, and feedback. Make it a conversation."
+    },
+    "no_emotion": {
+      "name": "no_emotion",
+      "examples": [
+        Flat dialogue without frustration, excitement, or surprise
+      ],
+      "why_avoid": "Robotic. Viewers connect with human emotions.",
+      "severity": "high",
+      "fix": "Show the struggle: 'Wait, that didn't work...', 'Oh! I see it now!'"
+    },
+    "teleport_solution": {
+      "name": "teleport_solution",
+      "examples": [
+        "Suddenly realized the answer",
+        "Just knew what to do",
+        "Solution appeared"
+      ],
+      "why_avoid": "Unrealistic. Misses the thinking process viewers want to see.",
+      "severity": "medium",
+      "fix": "Show the evolution: tried X, failed, tried Y, failed, realized Z"
+    },
+    "no_dead_ends": {
+      "name": "no_dead_ends",
+      "examples": [
+        First attempt always works, no wrong turns shown
+      ],
+      "why_avoid": "Suspicious. Every real session has failures.",
+      "severity": "medium",
+      "fix": "Include at least 2-3 dead ends or wrong turns before breakthrough"
+    },
+    "missing_context": {
+      "name": "missing_context",
+      "examples": [
+        No file references, no line numbers, no tool usage shown
+      ],
+      "why_avoid": "Viewers can't follow without seeing what's being worked on.",
+      "severity": "medium",
+      "fix": "Always include: 📄 file.ext:line - action being taken"
+    }
+  },
+  "style_profiles": {
+    "description": "Misusing style profiles or wrong profile selection",
+    "wrong_profile": {
+      "name": "wrong_profile",
+      "examples": [
+        "Using 'opinion' profile for debugging session",
+        "Using 'educational' for personal struggle",
+        "Using 'storytelling' for API documentation"
+      ],
+      "why_avoid": "Content feels off. Mismatch between tone and content.",
+      "severity": "medium",
+      "fix": "Match profile to session: technical (code-heavy), storytelling (struggles), educational (teaching), opinion (debates)"
+    },
+    "profile_hopping": {
+      "name": "profile_hopping",
+      "examples": [
+        Mixing multiple profiles in single output
+      ],
+      "why_avoid": "Confusing tone. Inconsistent voice.",
+      "severity": "low",
+      "fix": "Choose ONE profile and apply it consistently throughout"
+    },
+    "ignoring_platform": {
+      "name": "ignoring_platform",
+      "examples": [
+        "Twitter posts over 280 chars",
+        "LinkedIn posts without formatting",
+        "Blog posts that are too short"
+      ],
+      "why_avoid": "Platform norms exist for reasons. Breaking them hurts performance.",
+      "severity": "medium",
+      "fix": "Respect platform constraints: LinkedIn (3000 chars, formatted), Twitter (280 chars, thread)"
+    }
+  },
+  "generation_process": {
+    "description": "Anti-patterns in the content generation workflow",
+    "skipping_context": {
+      "name": "skipping_context",
+      "examples": [
+        Generating content without reading session history
+      ],
+      "why_avoid": "Output will be generic, inaccurate, or hallucinated.",
+      "severity": "high",
+      "fix": "Always collect full session context: messages, tools, files, outcomes"
+    },
+    "ignoring_quality_gates": {
+      "name": "ignoring_quality_gates",
+      "examples": [
+        Writing outputs without validation,
+        Skipping sections that seem optional
+      ],
+      "why_avoid": "Incomplete outputs. Missing critical information.",
+      "severity": "high",
+      "fix": "Validate all sections before writing: all present, all filled, all specific"
+    },
+    "hallucinating_details": {
+      "name": "hallucinating_details",
+      "examples": [
+        Making up file names that weren't touched,
+        Inventing outcomes that didn't happen,
+        Creating dialogue that wasn't said
+      ],
+      "why_avoid": "Breaks trust. Future reference will be wrong.",
+      "severity": "high",
+      "fix": "Only use facts from actual session. If unsure, don't include."
+    },
+    "over_generating": {
+      "name": "over_generating",
+      "examples": [
+        Creating blog posts when not requested,
+        Generating all profiles instead of one,
+        Making up additional content beyond scope
+      ],
+      "why_avoid": "Wastes tokens. Creates noise. User didn't ask for it.",
+      "severity": "low",
+      "fix": "Generate only what was requested: conversation (always), script (if video), posts (if social)"
+    },
+    "under_generating": {
+      "name": "under_generating",
+      "examples": [
+        Skipping sections that seem 'optional',
+        Leaving placeholders in output,
+        Minimal effort on quality gates
+      ],
+      "why_avoid": "Output is incomplete. Not ready to use.",
+      "severity": "medium",
+      "fix": "Complete all sections. Fill all placeholders. Pass all quality gates."
+    }
+  },
+  "timing": {
+    "description": "When to (not) generate content",
+    "generating_too_soon": {
+      "name": "generating_too_soon",
+      "examples": [
+        Generating content after 5-minute session,
+        Creating outputs for 'hello world' tasks,
+        Documenting trivial file reads
+      ],
+      "why_avoid": "Low-value content wastes space and tokens.",
+      "severity": "low",
+      "fix": "Only generate for substantial sessions (15+ minutes, multiple tools, real work)"
+    },
+    "generating_without_permission": {
+      "name": "generating_without_permission",
+      "examples": [
+        Auto-generating when user didn't expect it,
+        Creating public posts about private work
+      ],
+      "why_avoid": "Surprise. May contain sensitive information.",
+      "severity": "medium",
+      "fix": "Hook is automatic, but make clear what's being generated. Allow manual opt-out."
+    },
+    "ignoring_sensitivity": {
+      "name": "ignoring_sensitivity",
+      "examples": [
+        Generating public posts about proprietary code,
+        Sharing internal architecture decisions publicly
+      ],
+      "why_avoid": "Security risk. May violate NDAs or company policy.",
+      "severity": "high",
+      "fix": "Check for secrets, proprietary mentions before generating public content"
+    }
+  },
+  "formatting": {
+    "description": "Formatting anti-patterns that hurt readability",
+    "inconsistent_structure": {
+      "name": "inconsistent_structure",
+      "examples": [
+        Different formats for similar sessions,
+        Changing section order between outputs,
+        Inconsistent metadata
+      ],
+      "why_avoid": "Hard to parse. Confusing for future reference.",
+      "severity": "medium",
+      "fix": "Use consistent structure: metadata → objective → approach → decisions → outcome → learnings"
+    },
+    "missing_metadata": {
+      "name": "missing_metadata",
+      "examples": [
+        No timestamp, no duration, no files listed,
+        No way to identify when session happened
+      ],
+      "why_avoid": "Can't organize or find sessions later.",
+      "severity": "medium",
+      "fix": "Always include: date, duration, files modified, tools used, outcome"
+    },
+    "poor_markdown": {
+      "name": "poor_markdown",
+      "examples": [
+        Missing headers,
+        No code formatting,
+        Inconsistent bullet styles,
+        Broken links
+      ],
+      "why_avoid": "Hard to read. Looks unprofessional.",
+      "severity": "low",
+      "fix": "Proper markdown: # H1, ## H2, `code`, **bold**, - bullets"
+    }
+  },
+  "anti_patterns_by_severity": {
+    "high": [
+      "generic_summary",
+      "instant_success",
+      "no_rationale",
+      "weak_hook",
+      "no_value",
+      "humble_brag",
+      "monologue",
+      "no_emotion",
+      "skipping_context",
+      "ignoring_quality_gates",
+      "hallucinating_details",
+      "ignoring_sensitivity"
+    ],
+    "medium": [
+      "missing_failures",
+      "vague_outcomes",
+      "code_only",
+      "cta_missing",
+      "wall_of_text",
+      "teleport_solution",
+      "no_dead_ends",
+      "missing_context",
+      "wrong_profile",
+      "ignoring_platform",
+      "under_generating",
+      "generating_without_permission",
+      "inconsistent_structure",
+      "missing_metadata",
+      "poor_markdown"
+    ],
+    "low": [
+      "hashtag_spam",
+      "profile_hopping",
+      "over_generating",
+      "generating_too_soon"
+    ]
+  },
+  "quality_checklist": {
+    "conversation_summary": [
+      "✅ All sections present and filled",
+      "✅ Specific file references (file.ext:line)",
+      "✅ Dead ends documented",
+      "✅ Decisions include rationale",
+      "✅ Outcomes have metrics",
+      "✅ Learnings are concrete",
+      "❌ Generic 'we did stuff' summaries",
+      "❌ Missing failures or struggles",
+      "❌ Vague outcomes without numbers"
+    ],
+    "script_theater": [
+      "✅ Authentic dialogue with real quotes",
+      "✅ Shows evolution of understanding",
+      "✅ Includes failures and dead ends",
+      "✅ Emotional context present",
+      "✅ File references with actions",
+      "❌ Monologue without user interaction",
+      "❌ Instant success without struggle",
+      "❌ No emotional context"
+    ],
+    "social_posts": [
+      "✅ Strong opening hook",
+      "✅ Clear value for reader",
+      "✅ Platform constraints respected",
+      "✅ Call-to-action included",
+      "✅ Relevant hashtags (2-3)",
+      "❌ Weak or generic opening",
+      "❌ No clear value proposition",
+      "❌ Missing CTA"
+    ]
+  }
+}

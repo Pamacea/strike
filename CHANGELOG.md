@@ -7,6 +7,129 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] - 2025-02-24
+
+### Added - EXG Plugin (Session End Content Generator)
+
+#### EXG Plugin
+- **Session-End Hook** - Automatic content generation at session end (exit/clear)
+- **Three Output Formats**:
+  - `conversation.md` - Complete session summary with metadata, objectives, decisions, outcomes
+  - `script.md` - Script theater for video content (dialogue format with scene breakdowns)
+  - `posts.md` - Platform-ready social posts (LinkedIn, Twitter, blog)
+- **Style Profiles** - 4 built-in profiles in `content-reference.json`:
+  - **technical** - Code-focused with file references, metrics, technical rationale
+  - **storytelling** - Narrative arc with struggles, breakthroughs, emotional context
+  - **educational** - Step-by-step, beginner-friendly with analogies and prerequisites
+  - **opinion** - Bold stance with reasoning, evidence, counterarguments
+- **Platform Optimization** - Platform-specific templates:
+  - LinkedIn: 3000 chars, 3 hashtags, professional tone
+  - Twitter: 280 chars, 2 hashtags, thread format
+  - Blog: Long-form, detailed explanations
+  - Contrapoints: Video essay style, 10-30 min
+- **Manual Invocation** - Request specific styles during session:
+  - "Generate a technical deep-dive from this session"
+  - "Create storytelling LinkedIn posts"
+  - "Turn this into a video script"
+  - "Write educational posts"
+
+#### EXG Quality Framework
+- **Comprehensive Anti-Patterns** - 40+ anti-patterns across 7 categories:
+  - Content quality (generic summary, instant success, no rationale)
+  - Social media (weak hook, no value, humble brag)
+  - Script theater (monologue, no emotion, teleport solution)
+  - Style profiles (wrong profile, platform mismatch)
+  - Generation process (skipping context, ignoring quality gates)
+  - Timing (generating too soon, without permission)
+  - Formatting (inconsistent structure, missing metadata)
+- **Quality Gates** - Validation for each output type:
+  - Conversation summary: All sections filled, specific file refs, dead ends documented
+  - Script theater: Authentic dialogue, shows evolution, includes failures
+  - Social posts: Strong hook, clear value, platform constraints, CTA included
+- **Auto-Detection** - Smart profile selection based on session content:
+  - Heavy code/debugging → technical
+  - Multiple dead ends → storytelling
+  - Explaining concepts → educational
+  - Debating choices → opinion
+
+#### EXG Skill Quality
+- **Skill Name** - `exg` (renamed from `exg` for consistency)
+- **Quality Score** - 98/100 (validated by skill-check)
+- **Skill Structure** - 442 lines with comprehensive workflow:
+  - Phase 1: Collect session context
+  - Phase 2: Generate conversation summary
+  - Phase 3: Generate script theater
+  - Phase 4: Generate social posts
+  - Phase 5: Write outputs with validation
+
+#### Plugin Configuration
+- **Hook Format** - Correct Stop hook format following aureus pattern:
+  ```json
+  "hooks": {
+    "Stop": [{
+      "matcher": "*",
+      "hooks": [{
+        "type": "skill",
+        "skill": "exg",
+        "timeout": 60
+      }]
+    }]
+  }
+  ```
+- **Output Directory** - `.ex-g-se/` at project root
+- **Metadata Tracking** - `metadata.json` with generation info and quality checks
+
+#### Documentation
+- **README.md** - Complete user guide with examples, style profiles, configuration
+- **WORKFLOW.md** - Visual flow diagrams for automatic and manual invocation
+- **QUALITY-VALIDATION.md** - Skill quality check results (98/100)
+- **IMPLEMENTATION-SUMMARY.md** - Complete implementation overview
+- **Anti-Patterns Database** - `data/anti-patterns.json` with 40+ patterns
+- **Style Reference** - `data/content-reference.json` with 4 profiles + templates
+
+#### Marketplace Integration
+- **marketplace.json v1.7.0** - Added exg plugin:
+  - Category: content-generation
+  - Tags: session, content-generation, social-media, documentation, script, posts
+  - Keywords: session, content, summary, script, theater, social, posts, automation
+
+### Enhanced
+
+#### Plugin Structure
+- **Unified Naming** - Skill renamed to `exg` for consistency with plugin name
+- **Hook Format** - Corrected to follow aureus Stop hook pattern
+- **Directory Structure** - Consistent with strike plugin conventions
+
+### Quality Improvements
+
+#### Anti-Patterns Enhancement
+- **40+ Anti-Patterns** - Comprehensive database covering all EXG workflows
+- **Severity Levels** - High (13), Medium (15), Low (4) for prioritization
+- **Quality Checklists** - Per-output-type validation criteria
+- **Fix Suggestions** - Specific remedies for each anti-pattern
+
+### Documentation
+
+#### New EXG Documentation
+- `plugins/exg/README.md` - User guide (400+ lines)
+- `plugins/exg/WORKFLOW.md` - Visual diagrams (500+ lines)
+- `plugins/exg/QUALITY-VALIDATION.md` - Quality check (300+ lines)
+- `plugins/exg/IMPLEMENTATION-SUMMARY.md` - Overview (500+ lines)
+- `plugins/exg/data/anti-patterns.json` - Anti-patterns (500+ lines)
+- `plugins/exg/data/content-reference.json` - Style profiles (250+ lines)
+
+### Migration Guide
+
+#### From v1.6.0 to v1.7.0
+
+1. **EXG Plugin** - New plugin, no migration needed
+3. **Output Directory** - New `.ex-g-se/` directory at project root
+4. **Hook Behavior** - Automatic generation at session end (can be disabled if needed)
+
+### Breaking Changes
+
+None - EXG is additive, doesn't affect existing UI plugin functionality
+
 ## [1.6.0] - 2025-02-24
 
 ### Added - Quality Skills Upgrade
@@ -327,6 +450,7 @@ This release was built with insights from:
 - Accessibility-first design principles
 - Schema-validated communication between agents
 
+[1.7.0]: https://github.com/Pamacea/strike/releases/tag/v1.7.0
 [1.6.0]: https://github.com/Pamacea/strike/releases/tag/v1.6.0
 [1.5.0]: https://github.com/Pamacea/strike/releases/tag/v1.5.0
 [1.1.0]: https://github.com/Pamacea/strike/releases/tag/v1.1.0
