@@ -1,9 +1,73 @@
 {
   "name": "ui",
-  "description": "Anti-trend UI generation - Orchestrator, builder, teams mode, and interactive step mode in one unified plugin",
-  "version": "1.1.0",
+  "version": "2.0.0",
+  "description": "Anti-trend UI generation with orchestrator, teams mode, step mode, and marketplace integration. Anti-pattern detection, creative constraints, parallel agent execution.",
   "author": {
     "name": "Pamacea",
-    "contact": "https://github.com/Pamacea/strike/issues"
-  }
+    "contact": "https://github.com/Pamacea/strike/issues",
+    "url": "https://github.com/Pamacea"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pamacea/strike.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "ui",
+    "anti-trend",
+    "anti-patterns",
+    "creative-constraints",
+    "orchestration",
+    "implementation",
+    "teams",
+    "agent-teams",
+    "interactive",
+    "step-mode",
+    "marketplace",
+    "attractor",
+    "dot-workflow",
+    "accessibility"
+  ],
+  "tags": [
+    "ui",
+    "anti-trend",
+    "anti-patterns",
+    "creative-constraints",
+    "orchestration",
+    "implementation",
+    "teams",
+    "agent-teams",
+    "interactive",
+    "step-mode",
+    "marketplace"
+  ],
+  "category": "ui-generation",
+  "claude": {
+    "minVersion": "1.0.33",
+    "maxVersion": null
+  },
+  "capabilities": {
+    "skills": true,
+    "agents": true,
+    "hooks": true,
+    "mcp": false
+  },
+  "lazyLoad": {
+    "enabled": true,
+    "coreSkills": ["ui"],
+    "optionalSkills": ["step", "teams"]
+  },
+  "dependencies": {
+    "plugins": {
+      "design-taste-frontend": "1.0.0",
+      "skill-check": "1.0.0"
+    },
+    "skills": {
+      "pattern-autoloader": "1.0.0"
+    }
+  },
+  "skills": "./skills/",
+  "agents": "./agents/",
+  "hooks": "./.claude-plugin/hooks.json",
+  "data": "./data/"
 }

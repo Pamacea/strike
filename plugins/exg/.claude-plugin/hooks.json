@@ -1,0 +1,34 @@
+{
+  "$schema": "https://anthropic.com/claude-code/hooks.schema.json",
+  "name": "exg-hooks",
+  "version": "1.0.0",
+  "description": "Session-end content generation hooks",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '✓ EXG Plugin v1.0.0 - Session content generation ready' | tee -a .ex-g-se/session.log",
+            "runInBackground": true,
+            "timeout": 1000
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node plugins/exg/hooks/session-end.js",
+            "timeout": 30000,
+            "description": "Generate session-end content (conversation summary, script theater, social posts)"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,14 +1,68 @@
 {
   "name": "exg",
+  "version": "2.0.0",
   "description": "EXG - Session-end content generator that automatically creates conversation summaries, script theater for video content, and platform-ready social posts (LinkedIn, Twitter, blog) in multiple style profiles (technical, storytelling, educational, opinion)",
-  "version": "1.0.0",
   "author": {
     "name": "Pamacea",
-    "contact": "https://github.com/Pamacea/strike/issues"
+    "contact": "https://github.com/Pamacea/strike/issues",
+    "url": "https://github.com/Pamacea"
   },
-  "repository": "https://github.com/Pamacea/strike",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pamacea/strike.git"
+  },
   "license": "MIT",
-  "keywords": ["exg", "session", "content-generation", "social-media", "documentation", "script", "posts", "linkedin", "twitter", "blog", "video", "automation", "hook"],
-  "skills": "./skills/"
+  "keywords": [
+    "exg",
+    "session",
+    "content-generation",
+    "social-media",
+    "documentation",
+    "script",
+    "posts",
+    "linkedin",
+    "twitter",
+    "blog",
+    "video",
+    "automation",
+    "hook",
+    "style-profiles",
+    "theater",
+    "summary"
+  ],
+  "tags": [
+    "session",
+    "content-generation",
+    "social-media",
+    "documentation",
+    "script",
+    "posts",
+    "linkedin",
+    "twitter",
+    "blog",
+    "style-profiles"
+  ],
+  "category": "content-generation",
+  "claude": {
+    "minVersion": "1.0.33",
+    "maxVersion": null
+  },
+  "capabilities": {
+    "skills": true,
+    "agents": false,
+    "hooks": true,
+    "mcp": false
+  },
+  "lazyLoad": {
+    "enabled": false,
+    "coreSkills": ["exg"],
+    "optionalSkills": []
+  },
+  "dependencies": {
+    "plugins": {},
+    "skills": {}
+  },
+  "skills": "./skills/",
+  "hooks": "./.claude-plugin/hooks.json",
+  "data": "./data/"
 }
-

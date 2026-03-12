@@ -1,0 +1,94 @@
+{
+  "$schema": "https://anthropic.com/claude-code/hooks.schema.json",
+  "name": "ui-hooks",
+  "version": "1.7.0",
+  "description": "Performance and quality hooks for UI generation",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '✓ Strike UI Plugin v1.7.0 loaded' | tee -a .claude/.strike/session.log",
+            "runInBackground": true,
+            "timeout": 1000
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "function",
+            "function": "validateAntiPatternCompliance",
+            "description": "Check if file operation violates anti-patterns"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./plugins/ui/scripts/validate-file-size.sh \"$TOOL_INPUT_FILE\"",
+            "timeout": 5000,
+            "allowFailure": true,
+            "description": "Validate file size before write (max 100KB)"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./plugins/ui/scripts/validate-command.sh \"$TOOL_INPUT_COMMAND\"",
+            "timeout": 3000,
+            "allowFailure": true,
+            "description": "Validate bash commands for safety"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./plugins/ui/scripts/log-build-metrics.sh \"$TOOL_NAME\" \"$TOOL_STATUS\"",
+            "runInBackground": true,
+            "description": "Log build metrics for performance tracking"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"[$(date -u +'%Y-%m-%dT%H:%M:%SZ')] Wrote: $TOOL_INPUT_FILE\" >> .claude/.strike/file-operations.log",
+            "runInBackground": true,
+            "description": "Log file write operations"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./plugins/ui/scripts/session-summary.sh",
+            "timeout": 10000,
+            "description": "Generate session summary on exit"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -7,6 +7,111 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2025-03-12
+
+### Breaking Changes - Complete Claude Code Plugin Architecture Overhaul
+
+#### Plugin Structure Redesign
+- **Modular Plugin System** - Monolithic structure split into specialized plugins:
+  - `ui` - Core UI generation with orchestrator, builder, step/teams modes
+  - `exg` - Session-end content generation (conversation summary, script theater, social posts)
+- **Lazy Loading Architecture** - Core skills auto-load, optional skills load on demand:
+  - Core: `ui` (always available)
+  - Optional: `step`, `teams` (disable-model-invocation: true)
+- **Agent Specialization** - 4 specialized agents with appropriate model assignments:
+  - `orchestrator` (sonnet) - Anti-pattern detection and constraint selection
+  - `build` (inherit) - UI implementation with acceptEdits permission
+  - `adversarial` (opus) - Quality challenger for design decisions
+  - `reviewer` (sonnet) - Accessibility and quality validation
+- **Skill Organization** - Restructured into core/ and optional/ directories
+- **Test Suite** - Comprehensive test infrastructure with 100% quality score
+
+#### Enhanced Metadata & Configuration
+- **plugin.json v2** - Complete plugin metadata with:
+  - `claude.minVersion` - Minimum Claude Code version required (1.0.33)
+  - `capabilities` - Explicit skill/agent/hook/mcp capability flags
+  - `lazyLoad` - Core skills vs optional skills configuration
+- **Skill Frontmatter Enhancement** - All skills with proper frontmatter:
+  - `disable-model-invocation` - Prevent auto-loading for optional skills
+  - `user-invocable` - Visible in / menu when applicable
+  - `context` - inline/fork/isolated modes for token efficiency
+  - `memory` - read/save configuration for pattern learning
+  - `maxTurns`, `permissionMode`, `model` - Agent configuration
+
+#### Hooks System
+- **SessionStart Hook** - Welcome message and plugin initialization
+- **PreToolUse Hook** - Anti-pattern compliance validation before Write/Edit
+- **PostToolUse Hook** - Metrics collection (tool usage, timing)
+- **Stop Hook (exg)** - Automatic content generation at session end
+
+#### MCP Server Integration
+- **strike-mcp-server** - Model Context Protocol server for fast data access:
+  - `get_anti_patterns` - Retrieve 100+ forbidden UI patterns
+  - `get_constraints` - Get creative constraints with scoring
+  - `score_constraints` - Evaluate constraint combinations
+  - `search_patterns` - Semantic pattern search
+  - `validate_spec` - Validate UI against anti-patterns
+  - `get_component_registry` - Access validated component list
+- **60-second TTL Cache** - Performance optimization for repeated queries
+- **Cross-Platform Resources** - Access anti-patterns, constraints, components, accessibility checklist
+
+#### CLI Tools (Node.js)
+- **strike list** - Browse marketplace items (patterns, constraints, workflows, plugins)
+- **strike search** - Search marketplace by keyword
+- **strike info** - Get detailed item information
+- **strike install** - Install marketplace items (patterns, constraints, workflows)
+- **strike validate** - Validate marketplace schema and installed items
+
+#### Test Infrastructure
+- **test-runner.sh** - Main test runner with quality scoring
+- **test-marketplace.sh** - Cross-platform JSON validation (Python/Node/jq/grep fallbacks)
+- **test-skill-structure.sh** - Skill frontmatter validation
+- **100% Quality Score** - All tests passing on Windows, macOS, Linux
+
+#### Documentation Overhaul
+- **CLAUDE.md** - Complete quick reference for v2.0.0
+- **ATTRACTOR-INTEGRATION.md** - DOT workflow orchestration guide
+- **memory-integration.md** - claude-mem pattern storage and retrieval
+- **Plugin READMEs** - Comprehensive guides for ui and exg plugins
+- **Agent Documentation** - 4 specialized agent descriptions
+
+### Enhanced
+
+#### Discovery & Usability
+- **Zero Configuration** - Plugin auto-discovered by Claude Code via plugin.json metadata
+- **Automatic Skill Loading** - Core skills available immediately, optional on demand
+- **Cross-Platform Tests** - Tests work on Windows (Git Bash), macOS, Linux
+
+#### Performance
+- **Lazy Loading** - Optional skills only load when explicitly invoked
+- **MCP Caching** - 60-second TTL for anti-patterns and constraints queries
+- **Token Efficiency** - context: inline/fork modes for optimal token usage
+
+### Breaking Changes
+
+- **Skill Paths** - Skills moved from `plugins/ui/skills/` to `plugins/ui/skills/core/` and `plugins/ui/skills/optional/`
+- **Invocation** - Optional skills now require explicit invocation: `/step`, `/teams`
+- **plugin.json** - New required fields: `claude.minVersion`, `capabilities`, `lazyLoad`
+- **Agent Files** - Agents now in `plugins/ui/agents/` with specialized configurations
+
+### Migration Guide
+
+#### From v1.7.0 to v2.0.0
+
+1. **Update workspace references** - Skills moved to core/ and optional/ subdirectories
+2. **Update skill invocation** - Use `/ui` for core, `/step` or `/teams` for optional modes
+3. **Install Node.js** - Required for CLI tools (npm install -g strike-cli)
+4. **Update MCP config** - Add strike-mcp-server to Claude Code MCP servers
+5. **Run tests** - Verify setup with `bash tests/test-runner.sh`
+
+### Contributors
+
+This release was built with insights from:
+- Claude Code optimization masterclass
+- Claude Code workflow developer's guide
+- Plugin architecture best practices (lazy loading, agents, hooks, MCP)
+- Cross-platform bash scripting patterns
+
 ## [1.7.0] - 2025-02-24
 
 ### Added - EXG Plugin (Session End Content Generator)
@@ -450,6 +555,7 @@ This release was built with insights from:
 - Accessibility-first design principles
 - Schema-validated communication between agents
 
+[2.0.0]: https://github.com/Pamacea/strike/releases/tag/v2.0.0
 [1.7.0]: https://github.com/Pamacea/strike/releases/tag/v1.7.0
 [1.6.0]: https://github.com/Pamacea/strike/releases/tag/v1.6.0
 [1.5.0]: https://github.com/Pamacea/strike/releases/tag/v1.5.0

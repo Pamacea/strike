@@ -1,7 +1,26 @@
 ---
 name: step
 description: MANDATORY interactive workshop gate BEFORE building UI when user control is needed. Orchestrates phase-by-phase human-in-the-loop workflow with pause/adjust/continue pattern. Specific phrases: 'step through', 'interactive mode', 'show me how', 'learn to build', 'understand process', 'stakeholder approval', 'review each phase'. Auto-activates with --step flag or stakeholder-driven projects. Pauses after each phase (ANALYSIS → PAUSED → ANTI-PATTERNS → PAUSED → CONSTRAINTS → PAUSED → SPEC → PAUSED → BUILD). Full adjustment capability: adjust/modify, add/insert, remove/delete, replace/swap, show/display, skip/jump, cancel/abort. State preservation via step-state.json. Learning-friendly with explicit phase outputs. Integrates with ui orchestrator and teams mode.
-version: 4.1.0-1.6.0
+version: 4.1.0-1.7.0
+
+# Lazy Loading Configuration
+disable-model-invocation: true  # Prevent auto-loading, only load when explicitly invoked
+user-invocable: true            # Visible in / menu
+context: inline                 # Run inline (not fork) for token efficiency
+model: sonnet                   # Optimal model for interactive workflows
+
+# Memory Integration
+memory:
+  read: false                   # Step mode is interactive, no memory needed
+  save: true                    # Save user choices to memory after completion
+
+# Tool Permissions
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
 ---
 
 # UI Step Mode v4.1
