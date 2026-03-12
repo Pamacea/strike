@@ -1,7 +1,39 @@
 ---
 name: teams
 description: MANDATORY parallel execution gate BEFORE building large/complex UI projects. Orchestrates multi-agent teamwork with 2-4 specialist agents working concurrently. Specific phrases: 'parallel agents', 'team build', 'multi-agent UI', 'split work', 'concurrent UI generation', 'agent team for design'. Auto-activates with --team flag or large/complex prompts (>3 features, multi-domain). Team composition: Orchestrator (analyze/detect/select/enrich), Build (build/validate/metrics), Adversarial (challenge/stress-test), Reviewer (a11y/quality/docs). Parallel execution: 1.85x faster than sequential (4 agents), 1.6x faster (2 agents). Inter-agent communication via team messaging system. Shared task list at ~/.claude/tasks/ui-<session-id>/. Error handling: Orchestrator fails → stop build, Build fails → spec reusable, Communication fails → 30s timeout + restart. Integrates with ui orchestrator and step mode.
-version: 4.1.0-1.6.0
+version: 4.1.0-1.7.0
+
+# Lazy Loading Configuration
+disable-model-invocation: true  # Prevent auto-loading, only load when explicitly invoked
+user-invocable: true            # Visible in / menu
+context: fork                   # Each agent runs in isolated context
+model: inherit                  # Inherit from parent for team coordination
+
+# Team Configuration
+team:
+  min_size: 2                   # Minimum agents for teams mode
+  max_size: 4                   # Maximum agents (orchestrator, build, adversarial, reviewer)
+  default_agents:
+    - orchestrator
+    - build
+  optional_agents:
+    - adversarial
+    - reviewer
+
+# Memory Integration
+memory:
+  read: true                    # Check memory for similar team configurations
+  save: true                    # Save successful team patterns
+
+# Tool Permissions
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - TaskCreate
+  - TaskUpdate
 ---
 
 # UI Teams Mode v4.1

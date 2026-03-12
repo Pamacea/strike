@@ -1,26 +1,26 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "strike",
-  "version": "1.7.0",
-  "description": "Creative constraint marketplace, UI generation, and session content generation - Anti-trend UI with patterns, constraints, workflows, and automatic content extraction",
+  "version": "2.0.0",
+  "description": "Creative constraint marketplace, UI generation, and session content generation - Anti-trend UI with specialized agents, lazy loading, MCP server, and automatic content extraction",
   "owner": {
     "name": "Pamacea",
     "contact": "https://github.com/Pamacea/strike/issues"
   },
   "metadata": {
-    "description": "strike v1.7.0 - Marketplace with UI patterns, constraints, workflows, and session content generation registries",
+    "description": "strike v2.0.0 - Complete plugin architecture overhaul with specialized agents, lazy loading, MCP integration, and comprehensive test suite",
     "pluginRoot": "./plugins"
   },
   "plugins": [
     {
       "name": "ui",
       "source": "./plugins/ui",
-      "description": "Unified UI generation with orchestrator, builder, teams mode, step mode, and marketplace integration. Anti-pattern detection, creative constraints, parallel agent execution.",
-      "version": "1.7.0",
+      "description": "Unified UI generation with orchestrator, builder, teams mode, step mode, and MCP integration. Specialized agents (orchestrator, build, adversarial, reviewer), lazy loading, anti-pattern detection, creative constraints, parallel agent execution.",
+      "version": "2.0.0",
       "author": { "name": "Pamacea" },
       "category": "ui-generation",
-      "tags": ["ui", "anti-trend", "anti-patterns", "creative-constraints", "orchestration", "implementation", "teams", "agent-teams", "interactive", "step-mode", "marketplace"],
-      "keywords": ["ui", "anti-patterns", "constraints", "creative", "teams", "build", "step", "agent-teams", "marketplace", "patterns", "workflows"],
+      "tags": ["ui", "anti-trend", "anti-patterns", "creative-constraints", "orchestration", "implementation", "teams", "agent-teams", "interactive", "step-mode", "marketplace", "mcp", "lazy-loading"],
+      "keywords": ["ui", "anti-patterns", "constraints", "creative", "teams", "build", "step", "agent-teams", "marketplace", "patterns", "workflows", "mcp"],
       "repository": "https://github.com/Pamacea/strike",
       "license": "MIT"
     },
@@ -28,7 +28,7 @@
       "name": "exg",
       "source": "./plugins/exg",
       "description": "Session-end content generation - Automatically generates conversation summaries, script theater for video content, and platform-ready social posts (LinkedIn, Twitter, blog) in multiple style profiles (technical, storytelling, educational, opinion).",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "author": { "name": "Pamacea" },
       "category": "content-generation",
       "tags": ["session", "content-generation", "social-media", "documentation", "script", "posts", "linkedin", "twitter", "blog", "style-profiles"],
