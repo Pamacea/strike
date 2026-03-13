@@ -10,7 +10,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '✓ EXG Plugin v1.0.0 - Session content generation ready' | tee -a .ex-g-se/session.log",
+            "command": "node plugins/exg/hooks/session-start.js",
             "runInBackground": true,
             "timeout": 1000
           }

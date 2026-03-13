@@ -10,7 +10,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '✓ Strike UI Plugin v1.7.0 loaded' | tee -a .claude/.strike/session.log",
+            "command": "node plugins/ui/scripts/session-start.js",
             "runInBackground": true,
             "timeout": 1000
           }
@@ -18,16 +18,6 @@
       }
     ],
     "PreToolUse": [
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "function",
-            "function": "validateAntiPatternCompliance",
-            "description": "Check if file operation violates anti-patterns"
-          }
-        ]
-      },
       {
         "matcher": "Write",
         "hooks": [
@@ -70,7 +60,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo \"[$(date -u +'%Y-%m-%dT%H:%M:%SZ')] Wrote: $TOOL_INPUT_FILE\" >> .claude/.strike/file-operations.log",
+            "command": "node plugins/ui/scripts/log-file-write.js \"$TOOL_INPUT_FILE\"",
             "runInBackground": true,
             "description": "Log file write operations"
           }
