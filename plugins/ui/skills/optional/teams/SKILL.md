@@ -1,7 +1,7 @@
 ---
 name: teams
 description: MANDATORY parallel execution gate BEFORE building large/complex UI projects. Orchestrates multi-agent teamwork with 2-4 specialist agents working concurrently. Specific phrases: 'parallel agents', 'team build', 'multi-agent UI', 'split work', 'concurrent UI generation', 'agent team for design'. Auto-activates with --team flag or large/complex prompts (>3 features, multi-domain). Team composition: Orchestrator (analyze/detect/select/enrich), Build (build/validate/metrics), Adversarial (challenge/stress-test), Reviewer (a11y/quality/docs). Parallel execution: 1.85x faster than sequential (4 agents), 1.6x faster (2 agents). Inter-agent communication via team messaging system. Shared task list at ~/.claude/tasks/ui-<session-id>/. Error handling: Orchestrator fails → stop build, Build fails → spec reusable, Communication fails → 30s timeout + restart. Integrates with ui orchestrator and step mode.
-version: 4.1.0-1.7.0
+version: 5.0.0-positive
 
 # Lazy Loading Configuration
 disable-model-invocation: true  # Prevent auto-loading, only load when explicitly invoked
@@ -36,11 +36,13 @@ allowed-tools:
   - TaskUpdate
 ---
 
-# UI Teams Mode v4.1
+# UI Teams Mode v5.0 - Positive Edition
 
 ## Mission
 
 Execute UI generation with **multiple specialist agents working in parallel** using Claude Code's native Agent Teams feature for maximum speed and quality on large, complex projects.
+
+**Core Philosophy**: Parallel excellence through coordinated collaboration - each agent contributes their expertise while maintaining clear communication channels.
 
 ---
 
@@ -73,8 +75,8 @@ Execute UI generation with **multiple specialist agents working in parallel** us
 
 Teams mode uses Claude Code's **Agent Teams** feature to spawn multiple specialist agents that work together on UI generation:
 
-- **Orchestrator Agent** — Analyzes prompt, detects anti-patterns, selects constraints
-- **Build Agent** — Creates the UI with anti-pattern validation
+- **Orchestrator Agent** — Analyzes prompt, selects paradigms, chooses constraints
+- **Build Agent** — Creates the UI with paradigm validation
 - **Adversarial Agent** — Challenges decisions and proposes alternatives
 - **Reviewer Agent** — Validates accessibility and quality
 
@@ -84,19 +86,21 @@ Each agent has its own context and can communicate with others via the team mess
 
 ## 🎯 When to Use Teams Mode
 
-### Auto-Activation Triggers
+### Optimal Use Cases
 
-**Use Teams Mode when:**
+**USE Teams Mode when:**
 - ✅ Large/complex projects (3+ features, multi-domain)
 - ✅ Time-critical deadlines (need 1.5-2x speedup)
 - ✅ Enterprise scale (full systems, design platforms)
 - ✅ Multi-domain work (frontend + backend + docs)
 
-**Skip Teams Mode when:**
-- ❌ Simple interfaces (single page, minimal UI)
-- ❌ Quick prototypes (faster to do sequentially)
-- ❌ Learning mode (step mode better for teaching)
-- ❌ Resource constraints (teams use more tokens)
+### Sequential Mode Preferred When:
+
+**Sequential mode (without --team) works best when:**
+- ✅ Simple interfaces (single page, minimal UI)
+- ✅ Quick prototypes (faster to do sequentially)
+- ✅ Learning mode (step mode better for teaching)
+- ✅ Resource constraints (teams use more tokens)
 
 ### Specific Trigger Phrases
 
@@ -153,7 +157,7 @@ export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
 │  │                 │      │                     │  │
 │  │ • Analyze       │      │ • Build UI          │  │
 │  │ • Detect        │      │ • Validate a11y     │  │
-│  │ • Select        │      │ • Anti-patterns     │  │
+│  │ • Select        │      │ • Paradigm compliance│  │
 │  │ • Enrich        │      │ • Metrics           │  │
 │  │                 │      │                     │  │
 │  └─────────────────┘      └─────────────────────┘  │
@@ -165,14 +169,14 @@ export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│  STRIKE FULL TEAM                                                    │
+│  STRIKE FULL TEAM                                                            │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                      │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌─────────┐  │
 │  │ORCHESTRATOR  │  │BUILD         │  │ADVERSARIAL   │  │REVIEWER │  │
 │  │              │  │              │  │              │  │         │  │
 │  │• Analysis    │  │• Build       │  │• Challenge   │  │• A11y   │  │
-│  │• Anti-pattern│  │• Components  │  │• Alternatives│  │• Quality │  │
+│  │• Paradigms   │  │• Components  │  │• Alternatives│  │• Quality │  │
 │  │• Constraints │  │• Validation  │  │• Stress test │  │• Docs   │  │
 │  │              │  │              │  │              │  │         │  │
 │  └──────────────┘  └──────────────┘  └──────────────┘  └─────────┘  │
@@ -205,7 +209,7 @@ Shared task list: ~/.claude/tasks/ui-<session-id>/
 
 **Orchestrator Agent:**
 1. Analyzes prompt for trend keywords
-2. Detects anti-patterns from database
+2. Applies PIVOT MATRIX for paradigm mapping
 3. Selects creative constraints with scoring
 4. Generates enriched specification
 5. Writes to `.claude/.strike/enriched-spec.json`
@@ -215,7 +219,7 @@ Shared task list: ~/.claude/tasks/ui-<session-id>/
 2. Loads component registry
 3. Plans implementation with constraints
 4. Builds UI (react-tailwind or vanilla)
-5. Validates against anti-patterns
+5. Validates against paradigms
 6. Creates build-result.json
 
 **Adversarial Agent (parallel):**
@@ -279,15 +283,16 @@ The team shares a task list at `~/.claude/tasks/ui-<session-id>/`:
 ```
 ~/.claude/tasks/ui-abc123/
 ├── task-001-analyze.prompt      # Orchestrator: Analyze prompt
-├── task-002-detect.patterns      # Orchestrator: Detect anti-patterns
-├── task-003-select.constraints   # Orchestrator: Select constraints
-├── task-004-enrich.spec          # Orchestrator: Create spec
-├── task-005-read.registry        # Build: Load components
-├── task-006-plan.ui              # Build: Plan structure
-├── task-007.build.ui             # Build: Build
-├── task-008.validate.a11y        # Build: Check accessibility
-├── task-009-challenge.decision   # Adversarial: Review
-├── task-010.review.quality       # Reviewer: Quality check
+├── task-002-apply-pivot         # Orchestrator: Apply PIVOT MATRIX
+├── task-003-select-paradigms   # Orchestrator: Select paradigms
+├── task-004-select.constraints  # Orchestrator: Select constraints
+├── task-005-enrich.spec         # Orchestrator: Create spec
+├── task-006-read.registry       # Build: Load components
+├── task-007-plan.ui             # Build: Plan structure
+├── task-008-build.ui            # Build: Build
+├── task-009-validate.a11y       # Build: Check accessibility
+├── task-010-challenge.decision  # Adversarial: Review
+├── task-011.review.quality      # Reviewer: Quality check
 ```
 
 Agents claim tasks as they work, blocking dependent tasks.
@@ -301,11 +306,11 @@ Agents communicate via the team messaging system:
 ```markdown
 # Orchestrator → Build
 @build Spec ready at .claude/.strike/enriched-spec.json
+Paradigms: Warm Brutalism, List Narrative
 Constraints: paper_ink (score: 35), architectural (score: 78)
-Anti-patterns: card_grid, glassmorphism, neon_colors
 
 # Build → Orchestrator
-@orchestrator Build complete. Constraint compliance: 100%
+@orchestrator Build complete. Paradigm compliance: 100%
 Used Room components instead of Grid (architectural constraint)
 Output: ./output/react-tailwind/
 
@@ -360,13 +365,13 @@ Before claiming team build complete:
 ### Team Coordination
 - [ ] All agents completed successfully
 - [ ] Inter-agent communication working
-- [] No agent failures or timeouts
+- [ ] No agent failures or timeouts
 - [ ] Task list properly synchronized
 
 ### Output Quality
 - [ ] All deliverables created
 - [ ] Orchestrator spec valid
-- [ ] Build anti-pattern compliant
+- [ ] Build paradigm-compliant
 - [ ] Adversarial challenges addressed
 - [ ] Reviewer checks passed
 
@@ -445,7 +450,7 @@ In demo + teams mode:
 ## 🎯 Best Practices
 
 1. **Use for complex prompts** — Multiple features, enterprise scale
-2. **Skip for simple prompts** — Single page, minimal UI
+2. **Direct mode for simple prompts** — Single page, minimal UI
 3. **Monitor task list** — Check `~/.claude/tasks/ui-*/` for progress
 4. **Read agent messages** — Inter-agent communication contains decisions
 5. **Review outputs** — Each agent creates documentation
@@ -477,7 +482,7 @@ In demo + teams mode:
 {
   "agents": {
     "orchestrator": {
-      "tasks": ["analyze", "detect", "select", "enrich"],
+      "tasks": ["analyze", "pivot", "paradigms", "constraints", "enrich"],
       "skills": ["ui"],
       "dependencies": []
     },
@@ -550,7 +555,7 @@ export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
 # Total: 105s
 ```
 
-**After (teams v4.1):**
+**After (teams v5.0):**
 ```bash
 /ui --team "Create dashboard"
 # Orchestrator + Build run together (60s)
@@ -559,4 +564,4 @@ export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS="1"
 
 ---
 
-*UI Teams Mode v4.1 - Parallel multi-agent orchestration for complex UI projects*
+*UI Teams Mode v5.0 - Positive Edition: Parallel multi-agent orchestration for complex UI projects*

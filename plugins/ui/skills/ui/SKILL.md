@@ -295,7 +295,7 @@ COLOR CONTRAST:
 
 ### Pilar 6: Performance Native
 
-**ALWAYS apply these rules:**
+**ALWAYS use these rules:**
 
 ```
 ASSET STRATEGY:
@@ -411,8 +411,8 @@ digraph PositiveWorkflow {
 | `--explain` | Generate explanation diagram | Document decisions |
 | `--learn` | Extract patterns from this session | Build pattern library |
 | `--stack=<react\|vanilla>` | Force specific tech stack | Override default |
-| `--strict` | Reject prompt if too trend-dependent | Enforce innovation |
-| `--no-challenge` | Skip adversarial challenge | Use with caution |
+| `--strict` | Enforce innovation standards | Reject trend-dependent prompts |
+| `--no-challenge` | Build directly without adversarial review | Use with caution |
 
 ---
 

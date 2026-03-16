@@ -1,9 +1,10 @@
 ---
 name: exg
 description: MANDATORY gate for generating session content - conversation summaries, script theater for video content, and platform-ready social posts (LinkedIn, Twitter, blog) based on style profiles. Use when ending a session or requesting specific content: "generate this as a technical deep-dive" or "create storytelling posts from our session" or "turn this session into video script and social posts". Outputs created in .ex-g-se/ directory. (user)
+version: 5.0.0-positive
 ---
 
-# EXG - Session Content Generation v2.0
+# EXG - Session Content Generation v5.0 - Positive Edition
 
 **Core Principle:** Every session contains valuable content - conversations become knowledge, struggles become stories, and decisions become insights.
 

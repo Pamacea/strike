@@ -1,7 +1,7 @@
 ---
 name: step
-description: MANDATORY interactive workshop gate BEFORE building UI when user control is needed. Orchestrates phase-by-phase human-in-the-loop workflow with pause/adjust/continue pattern. Specific phrases: 'step through', 'interactive mode', 'show me how', 'learn to build', 'understand process', 'stakeholder approval', 'review each phase'. Auto-activates with --step flag or stakeholder-driven projects. Pauses after each phase (ANALYSIS → PAUSED → ANTI-PATTERNS → PAUSED → CONSTRAINTS → PAUSED → SPEC → PAUSED → BUILD). Full adjustment capability: adjust/modify, add/insert, remove/delete, replace/swap, show/display, skip/jump, cancel/abort. State preservation via step-state.json. Learning-friendly with explicit phase outputs. Integrates with ui orchestrator and teams mode.
-version: 4.1.0-1.7.0
+description: MANDATORY interactive workshop gate BEFORE building UI when user control is needed. Orchestrates phase-by-phase human-in-the-loop workflow with pause/adjust/continue pattern. Specific phrases: 'step through', 'interactive mode', 'show me how', 'learn to build', 'understand process', 'stakeholder approval', 'review each phase'. Auto-activates with --step flag or stakeholder-driven projects. Pauses after each phase (ANALYSIS → PAUSED → PARADIGMS → PAUSED → CONSTRAINTS → PAUSED → SPEC → PAUSED → BUILD). Full adjustment capability: adjust/modify, add/insert, remove/delete, replace/swap, show/display, skip/jump, cancel/abort. State preservation via step-state.json. Learning-friendly with explicit phase outputs. Integrates with ui orchestrator and teams mode.
+version: 5.0.0-positive
 
 # Lazy Loading Configuration
 disable-model-invocation: true  # Prevent auto-loading, only load when explicitly invoked
@@ -23,11 +23,13 @@ allowed-tools:
   - Glob
 ---
 
-# UI Step Mode v4.1
+# UI Step Mode v5.0 - Positive Edition
 
 ## Mission
 
 Transform the automated UI generation pipeline into an **interactive workshop** where the user controls each phase, reviews outputs, and makes adjustments before proceeding.
+
+**Core Philosophy**: User control through affirmative guidance - showing what to do at each step, not what to avoid.
 
 ---
 
@@ -70,20 +72,23 @@ Step mode transforms `/ui` from an automated pipeline into an **interactive work
 
 ## 🎯 When to Use Step Mode
 
-### Auto-Activation Triggers
+### Optimal Use Cases
 
-**Use Step Mode when:**
+**USE Step Mode when:**
 - ✅ First-time user (learning the system)
 - ✅ Stakeholder approval needed (client projects)
 - ✅ Complex/ambiguous requirements (need clarification)
 - ✅ Exploration mode (experimenting with options)
 - ✅ Teaching/demonstration (showing workflow)
 
-**Skip Step Mode when:**
-- ❌ Quick iterations (you know what you want)
-- ❌ Simple projects (straightforward requirements)
-- ❌ Trusted patterns (reusing proven combinations)
-- ❌ Time-critical (need speed over control)
+### Direct Mode Preferred When:
+
+**Direct mode (without --step) works best when:**
+- ✅ Quick iterations (you know what you want)
+- ✅ Simple projects (straightforward requirements)
+- ✅ Trusted patterns (reusing proven combinations)
+- ✅ Time-critical delivery (need speed)
+- ✅ Experienced user (familiar with the system)
 
 ### Specific Trigger Phrases
 
@@ -113,13 +118,13 @@ STEP MODE PHASES
 │                                                             │
 │       ↓ [user: continue/adjust/add/remove]                   │
 │                                                             │
-│  PHASE 2: ANTI-PATTERNS                                     │
-│  • Dynamically generated patterns                            │
-│  • Static database patterns                                 │
-│  • Combined blacklist                                       │
-│  • >>> PAUSED - Add/remove patterns? <<<                    │
+│  PHASE 2: PARADIGM SELECTION                                │
+│  • PIVOT MATRIX applied                                      │
+│  • Selected paradigms with rationale                         │
+│  • Alternative paradigms shown                              │
+│  • >>> PAUSED - Approve paradigms? <<<                      │
 │                                                             │
-│       ↓ [user: continue/add/remove/done]                     │
+│       ↓ [user: accept/replace/show/done]                     │
 │                                                             │
 │  PHASE 3: CONSTRAINTS                                      │
 │  • Selected constraints with scores                          │
@@ -132,7 +137,7 @@ STEP MODE PHASES
 │  PHASE 4: ENRICHED SPEC                                     │
 │  • Validated specification                                   │
 │  • Complete brief                                           │
-│  • All anti-pattern warnings                                │
+│  • All paradigm warnings                                    │
 │  • >>> PAUSED - Review before build? <<<                     │
 │                                                             │
 │       ↓ [user: build/edit/show/done]                         │
@@ -197,7 +202,7 @@ At each pause, you can use these commands:
 
 ─────────────────────────────────────────────────────────────────
 Available Commands:
-  continue  | Proceed to anti-patterns detection
+  continue  | Proceed to paradigm selection
   adjust    | Modify the analysis (e.g., "change SaaS to B2B")
   add       | Add keyword to consider (e.g., "add minimalist")
   remove    | Remove keyword (e.g., "remove modern")
@@ -225,35 +230,38 @@ Available Commands:
 
 ---
 
-## 🚫 Phase 2: Anti-Patterns
+## 🎨 Phase 2: Paradigm Selection
 
 ### Output Format
 
 ```markdown
 ════════════════════════════════════════════════════════════════════
-  PHASE 2: ANTI-PATTERNS - PAUSED FOR REVIEW
+  PHASE 2: PARADIGM SELECTION - PAUSED FOR REVIEW
 ════════════════════════════════════════════════════════════════════
 
-🔴 RED FLAGS - Patterns to AVOID:
+🔄 PIVOT MATRIX RESULTS:
 
-Dynamically Generated:
-  ❌ saas_generic           Every SaaS uses the same hero + cards formula
-  ❌ dashboard_cards        Grid of metric cards is the analytics default
+Detected "modern" → Applied: **Warm Brutalism**
+  • Earth tones, bold geometric shapes, raw spacing
+  • Oversized typography, paper textures
+  • Breaks from sterile SaaS conventions
 
-Static Database:
-  ❌ card_grid             Generic card layout
-  ❌ glassmorphism_cards   Overused since 2022
-  ❌ dark_mode_default      Lazy default for dashboards
-  ❌ neon_colors           Tech dashboards love neon accents
+Detected "SaaS" → Applied: **List Narrative**
+  • Vertical lists, full-width items
+  • Story flow instead of card grids
+  • Table alternatives for data
 
-Total: 5 patterns to avoid
+Alternative Paradigms Available:
+  • Architectural: Physical building inspiration
+  • Print First: Design for print, adapt for screen
+  • Mechanical: Industrial interaction patterns
 
 ─────────────────────────────────────────────────────────────────
 Available Commands:
-  continue  | Proceed to constraint selection
-  add       | Add pattern to blacklist (e.g., "add hero_generic")
-  remove    | Remove pattern from blacklist
-  show      | Display patterns again
+  accept    | Accept these paradigms and proceed
+  replace  | Replace a paradigm (e.g., "replace with architectural")
+  add       | Add another paradigm
+  show      | Display paradigms again
   skip      | Jump to build phase
   cancel    | Cancel workflow
 ─────────────────────────────────────────────────────────────────
@@ -262,14 +270,14 @@ Available Commands:
 ### User Adjustments
 
 ```bash
-# Add a pattern you want to avoid
-> add gradient_overkill
-
-# Remove a pattern (if you actually want it)
-> remove dark_mode_default
+# Replace a paradigm
+> replace Warm Brutalism with Architectural
 
 # Accept and continue
-> continue
+> accept
+
+# Add another paradigm
+> add Print First
 ```
 
 ---
@@ -283,7 +291,7 @@ Available Commands:
   PHASE 3: CONSTRAINTS - PAUSED FOR REVIEW
 ════════════════════════════════════════════════════════════════════
 
-🟢 GREEN FLAGS - Selected Constraints:
+🟢 SELECTED CONSTRAINTS:
 
 1. **paper_and_ink** (color_restrictions)
    • Description: Off-white background, dark text, minimal accent
@@ -346,11 +354,11 @@ Available Commands:
 Project Type: Dashboard
 Stack: react-tailwind (default)
 
-Avoid These Patterns:
-  ❌ saas_generic, dashboard_cards, card_grid
-  ❌ glassmorphism_cards, dark_mode_default, neon_colors
+Applied Paradigms:
+  ✅ Warm Brutalism (earth tones, bold geometric)
+  ✅ List Narrative (vertical flow, no card grids)
 
-Apply These Constraints:
+Apply Constraints:
   ✅ paper_and_ink (score: 35)
   ✅ mechanical (score: 68) - REPLACED
   ✅ print_first (score: 72)
@@ -399,20 +407,19 @@ Step mode preserves all user adjustments in `.claude/.strike/step-state.json`:
 
 ```json
 {
-  "version": "4.1.0",
+  "version": "5.0.0-positive",
   "session_id": "uuid-v4",
   "prompt": "Create a modern SaaS dashboard",
   "current_phase": "constraints",
-  "completed_phases": ["analysis", "anti-patterns"],
+  "completed_phases": ["analysis", "paradigms"],
   "user_adjustments": {
     "analysis": {
       "keywords_added": [],
       "keywords_removed": ["modern"],
       "keywords_modified": ["SaaS → enterprise analytics platform"]
     },
-    "anti_patterns": {
-      "patterns_added": ["gradient_overkill"],
-      "patterns_removed": []
+    "paradigms": {
+      "paradigms_accepted": ["Warm Brutalism", "List Narrative"]
     },
     "constraints": {
       "constraints_added": [],
@@ -422,7 +429,7 @@ Step mode preserves all user adjustments in `.claude/.strike/step-state.json`:
   },
   "phase_outputs": {
     "analysis": { /* ... */ },
-    "anti_patterns": { /* ... */ },
+    "paradigms": { /* ... */ },
     "constraints": { /* ... */ }
   }
 }
@@ -430,7 +437,7 @@ Step mode preserves all user adjustments in `.claude/.strike/step-state.json`:
 
 ---
 
-## 🎯 Step Mode Quality Gates
+## ✅ Step Mode Quality Gates
 
 Before proceeding to next phase, verify:
 
@@ -451,7 +458,7 @@ Before proceeding to next phase, verify:
 
 ### Final Build Quality
 - [ ] All constraints applied
-- [ ] Anti-patterns avoided
+- [ ] Paradigms followed
 - [ ] Accessibility passed
 - [ ] Metrics generated
 
@@ -482,30 +489,6 @@ In step + demo mode:
 - Faster phase execution
 - Still pauses for user control
 - Good for learning the basics
-
----
-
-## ✅ Pre-Flight Checklist
-
-Before completing step mode, verify:
-
-### User Experience
-- [ ] User had control at each phase
-- [ ] All adjustments acknowledged
-- [ ] User understood the impact
-- [ ] Final result matches expectations
-
-### Technical Quality
-- [ ] Build successful
-- [ ] All constraints applied
-- [ ] Anti-patterns avoided
-- [ ] Accessibility passed
-
-### State Preservation
-- [ ] All adjustments saved
-- [ ] step-state.json complete
-- [ ] Can resume if interrupted
-- [ ] Session reproducible
 
 ---
 
@@ -548,7 +531,7 @@ cancel     → Stop workflow
 
 ### Phase Order
 ```
-ANALYSIS → ANTI-PATTERNS → CONSTRAINTS → SPEC → BUILD
+ANALYSIS → PARADIGMS → CONSTRAINTS → SPEC → BUILD
 ```
 
 ### State File
@@ -558,4 +541,4 @@ ANALYSIS → ANTI-PATTERNS → CONSTRAINTS → SPEC → BUILD
 
 ---
 
-*UI Step Mode v4.1 - Interactive workshop for user-controlled UI generation*
+*UI Step Mode v5.0 - Positive Edition: Interactive workshop for user-controlled UI generation with PIVOT MATRIX paradigm selection*
