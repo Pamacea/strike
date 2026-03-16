@@ -3,9 +3,11 @@ name: exg
 description: MANDATORY gate for generating session content - conversation summaries, script theater for video content, and platform-ready social posts (LinkedIn, Twitter, blog) based on style profiles. Use when ending a session or requesting specific content: "generate this as a technical deep-dive" or "create storytelling posts from our session" or "turn this session into video script and social posts". Outputs created in .ex-g-se/ directory. (user)
 ---
 
-# EXG - Session Content Generation
+# EXG - Session Content Generation v2.0
 
 **Core Principle:** Every session contains valuable content - conversations become knowledge, struggles become stories, and decisions become insights.
+
+---
 
 ## When to Use
 
@@ -32,13 +34,39 @@ description: MANDATORY gate for generating session content - conversation summar
 "Use the [profile-name] style" → Uses specified profile
 ```
 
-## When NOT to Use
+---
 
-- **During active session** - Wait for session completion (context incomplete)
-- **For one-off answers** - Only for multi-turn sessions with substantial content
-- **Without session context** - Requires full conversation history
-- **For private/sensitive work** - Check for secrets before generating public posts
-- **When nothing was accomplished** - Not every session yields valuable content
+## 📋 Usage Guidelines - When This Excels
+
+### Optimal Session Characteristics
+
+**DO invoke EXG when:**
+- Session has 10+ message turns (substantial content)
+- At least one file was modified or created
+- A problem was solved (even partially)
+- Technical decisions were made with rationale
+- Dead ends or failures occurred (valuable learning!)
+- User expressed satisfaction or "aha!" moments
+- Session lasted 15+ minutes
+
+**WAIT for completion when:**
+- Session is still in progress (context incomplete)
+- Work is exploratory with no clear outcome
+- User is still debugging or iterating
+
+**SECURITY CHECK before generating:**
+- Scan for API keys, passwords, tokens
+- Verify no sensitive user data in conversation
+- Check for proprietary information
+- Confirm project is public-shareable
+
+**CREATE content when:**
+- Session has a clear narrative arc (problem → exploration → solution)
+- Technical insights were discovered
+- Decisions with trade-offs were made
+- Failures led to learning moments
+
+---
 
 ## Workflow
 
@@ -342,7 +370,9 @@ const selectedProfile = userSpecified
 }
 ```
 
-## Style Profile Selection
+---
+
+## 🎯 Style Profile Selection
 
 **User-Specified Profiles:**
 ```
@@ -372,19 +402,114 @@ const selectedProfile = userSpecified
 
 → Create ad-hoc profile by remixing content-reference.json patterns
 
-## Anti-Patterns
+---
 
-| Anti-Pattern | Why It's Wrong | Fix |
-|--------------|----------------|-----|
-| Generic summary without specifics | Not valuable for future reference | Include file paths, line numbers, exact outcomes |
-| Script that shows instant success | Unrealistic, loses audience trust | Show dead ends, wrong turns, evolution |
-| Posts that say "I built X" without details | No value for readers | Explain the challenge, the approach, the learning |
-| Using wrong style profile | Content doesn't match audience | Match profile to session content or user request |
-| Ignoring dead ends and failures | Misses educational value | Document what didn't work and why |
-| Writing posts without hooks | No one will read them | Start with compelling opening line |
-| Skipping quality gates | Outputs may be incomplete | Validate all sections before writing |
+## ✅ Positive Directives - Excellence Standards
 
-## Integration with Other Skills
+| DO This | Why It Works | How to Apply |
+|---------|--------------|--------------|
+| **Include specific file references** | Future-you can find exact context | Use format `file.ext:line` consistently |
+| **Show dead ends and failures** | Builds trust, educational value | Document attempts that didn't work |
+| **Quote human's exact words** | Authenticity, captures real thinking | Copy directly from conversation |
+| **Start posts with compelling hooks** | Captures attention in crowded feeds | Use bold statement, question, or surprise |
+| **Include metrics when possible** | Credibility, concrete outcomes | "Reduced bundle by 47%" not "made it faster" |
+| **Show evolution of understanding** | Relatable, mirrors viewer's journey | Include "wait, let me reconsider" moments |
+| **Match style profile to content** | Right tone for right audience | Technical→devs, Storytelling→everyone |
+| **Add emotional context** | Human connection, memorable | Note frustration, excitement, relief |
+| **Validate all sections before writing** | Prevents incomplete outputs | Use Quality Gates checklist |
+| **Include code snippets** | Practical value, shareable | Show before/after or key changes |
+| **Explain the "why" behind decisions** | Transferable knowledge | Not just what, but reasoning |
+| **Add call-to-action in posts** | Engagement, conversation starter | Ask question or invite comment |
+| **Respect platform constraints** | Professional, native feel | LinkedIn formatting, Twitter threading |
+| **Write for future reference** | Creates knowledge base | You'll thank yourself later |
+
+---
+
+## 🔄 Content Enhancement Patterns
+
+### Pattern: The Struggle-to-Breakthrough Arc
+
+**Apply when:** Session involved debugging, multiple attempts, frustration
+
+**Structure:**
+```
+1. Initial confidence → First attempt fails
+2. Confusion → Second attempt, different angle
+3. Realization moment → "Wait, what if..."
+4. Solution implementation → Step-by-step fix
+5. Verification → Evidence it worked
+6. Reflection → What made this tricky
+```
+
+**Key phrases to include:**
+- "That didn't work as expected"
+- "Let me try a different approach"
+- "Ah, I see the issue now"
+- "The problem was actually..."
+
+### Pattern: The Decision Rationale
+
+**Apply when:** Architectural choices, tech stack decisions, trade-offs
+
+**Structure:**
+```
+1. Problem statement
+2. Options considered (3+ alternatives)
+3. Evaluation criteria (performance, maintainability, etc.)
+4. Chosen solution with rationale
+5. Acknowledged trade-offs
+6. Rejected alternatives with reasons
+```
+
+**Key phrases to include:**
+- "We could use X, but Y has the advantage of..."
+- "The trade-off here is..."
+- "I considered [alternative], but decided against it because..."
+
+### Pattern: The Teaching Moment
+
+**Apply when:** Explaining concepts, step-by-step guidance, "how do I" queries
+
+**Structure:**
+```
+1. Question posed by learner
+2. Concept explanation (with analogy)
+3. Step-by-step implementation
+4. Common pitfalls to avoid
+5. Verification / testing
+6. Next steps / further learning
+```
+
+**Key phrases to include:**
+- "Here's the key concept"
+- "Think of it like..."
+- "A common mistake is..."
+- "You can verify this by..."
+
+### Pattern: The Hot Take
+
+**Apply when:** Strong opinions, controversial stances, debate-worthy content
+
+**Structure:**
+```
+1. Bold claim (the hot take)
+2. Context / setup
+3. Evidence and reasoning
+4. Acknowledge counterarguments
+5. Reaffirm stance
+6. Invite discussion
+```
+
+**Key phrases to include:**
+- "Here's a controversial opinion"
+- "Most people do X, but I believe..."
+- "The evidence suggests..."
+- "Yes, [counterargument], but..."
+```
+
+---
+
+## 🔗 Integration with Other Skills
 
 **Requires:**
 - **exg plugin hook** - Automatic invocation at session end
@@ -396,7 +521,9 @@ const selectedProfile = userSpecified
 **Related:**
 - **documentation-generation** - For technical docs (vs. social content)
 
-## Quick Reference
+---
+
+## 📋 Quick Reference
 
 **Automatic Invocation:**
 - Triggered by exg plugin hook at session end
@@ -429,7 +556,7 @@ const selectedProfile = userSpecified
 
 ---
 
-## Success Criteria
+## 🎯 Success Criteria
 
 This skill works when:
 
@@ -442,3 +569,16 @@ This skill works when:
 - Users can request specific styles or profiles
 
 **The test:** If you can hand the script.md to a video creator and they can produce a high-quality video without asking questions, the skill succeeded.
+
+---
+
+## 🏆 Positive Prompting Manifesto
+
+This skill embodies the **Positive Prompting** philosophy:
+
+1. **Affirmative Direction**: Tell WHAT to include, not what to avoid
+2. **Pattern Recognition**: Match session type to appropriate narrative structure
+3. **Specific Excellence**: Clear quality gates that ensure professional output
+4. **Authentic Content**: Real quotes, real struggles, real learning
+
+**Result**: Content that feels genuine, teaches effectively, and performs well on social platforms.
