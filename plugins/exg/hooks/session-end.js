@@ -11,12 +11,12 @@ const fs = require('fs');
 const path = require('path');
 
 // Configuration
-const EXG_DIR = '.ex-g-se';
+const EXG_DIR = '.claude/.ex-g-se';
 const SESSION_ID = process.env.CLAUDE_SESSION_ID || 'unknown';
 const TIMESTAMP = new Date().toISOString();
 
 // Create output directory
-const outputDir = path.join(process.cwd(), EXG_DIR);
+const outputDir = path.join(process.cwd(), '.claude', '.ex-g-se');
 if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });
 }

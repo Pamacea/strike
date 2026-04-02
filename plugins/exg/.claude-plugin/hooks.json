@@ -10,7 +10,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node plugins/exg/hooks/session-start.js",
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/session-start.js",
             "runInBackground": true,
             "timeout": 1000
           }
@@ -23,7 +23,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node plugins/exg/hooks/session-end.js",
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/session-end.js",
             "timeout": 30000,
             "description": "Generate session-end content (conversation summary, script theater, social posts)"
           }
