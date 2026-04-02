@@ -1,14 +1,14 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "strike",
-  "version": "2.0.0",
+  "version": "2.0.4",
   "description": "Creative constraint marketplace, UI generation, and session content generation - Anti-trend UI with specialized agents, lazy loading, MCP server, and automatic content extraction",
   "owner": {
     "name": "Pamacea",
     "contact": "https://github.com/Pamacea/strike/issues"
   },
   "metadata": {
-    "description": "strike v2.0.3 - Fixed hooks to use ${CLAUDE_PLUGIN_ROOT} for cross-project compatibility, moved EXG output to .claude/.ex-g-se/, removed unused UI session logging",
+    "description": "strike v2.0.4 - Removed automatic EXG/ UI session-start hooks (fake/useless content), use /exg skill manually for real content generation",
     "pluginRoot": "./plugins"
   },
   "plugins": [
@@ -16,7 +16,7 @@
       "name": "ui",
       "source": "./plugins/ui",
       "description": "Unified UI generation with orchestrator, builder, teams mode, step mode, and MCP integration. Specialized agents (orchestrator, build, adversarial, reviewer), lazy loading, anti-pattern detection, creative constraints, parallel agent execution.",
-      "version": "2.0.3",
+      "version": "2.0.4",
       "author": { "name": "Pamacea" },
       "category": "ui-generation",
       "tags": ["ui", "anti-trend", "anti-patterns", "creative-constraints", "orchestration", "implementation", "teams", "agent-teams", "interactive", "step-mode", "marketplace", "mcp", "lazy-loading"],
@@ -28,7 +28,7 @@
       "name": "exg",
       "source": "./plugins/exg",
       "description": "Session-end content generation - Automatically generates conversation summaries, script theater for video content, and platform-ready social posts (LinkedIn, Twitter, blog) in multiple style profiles (technical, storytelling, educational, opinion).",
-      "version": "2.0.3",
+      "version": "2.0.4",
       "author": { "name": "Pamacea" },
       "category": "content-generation",
       "tags": ["session", "content-generation", "social-media", "documentation", "script", "posts", "linkedin", "twitter", "blog", "style-profiles"],

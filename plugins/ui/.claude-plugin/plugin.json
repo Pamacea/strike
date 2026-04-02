@@ -1,6 +1,6 @@
 {
   "name": "ui",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Anti-trend UI generation with orchestrator, teams mode, step mode, and marketplace integration. Anti-pattern detection, creative constraints, parallel agent execution.",
   "author": {
     "name": "Pamacea"

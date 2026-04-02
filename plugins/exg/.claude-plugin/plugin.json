@@ -1,6 +1,6 @@
 {
   "name": "exg",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "EXG - Session-end content generator that automatically creates conversation summaries, script theater for video content, and platform-ready social posts (LinkedIn, Twitter, blog) in multiple style profiles (technical, storytelling, educational, opinion)",
   "author": {
     "name": "Pamacea"

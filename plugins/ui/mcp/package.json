@@ -1,6 +1,6 @@
 {
   "name": "strike-mcp-server",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "MCP Server for Strike UI Plugin - Cached access to anti-patterns, constraints, and component registry",
   "type": "module",
   "main": "server.js",
